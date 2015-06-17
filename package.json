@@ -1,0 +1,26 @@
+{
+  "name": "edje",
+  "version": "0.0.1",
+  "description": "Lightweight Sass framework specially for PSD conversion",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hrsetyono/edje.git"
+  },
+  "keywords": [
+    "html",
+    "sass",
+    "css",
+    "framework",
+    "web"
+  ],
+  "author": "Henner Setyono",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hrsetyono/edje/issues"
+  },
+  "homepage": "https://github.com/hrsetyono/edje"
+}
