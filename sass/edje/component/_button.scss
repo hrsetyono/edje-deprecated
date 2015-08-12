@@ -1,0 +1,16 @@
+// =============
+// EDGE BUTTON
+// =============
+
+// All the elements that need button styling
+@mixin button {
+
+  button,
+  .button,
+  input[type="submit"],
+  input[type="reset"],
+  input[type="button"] {
+    @content;
+  }
+
+}

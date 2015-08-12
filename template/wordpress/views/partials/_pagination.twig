@@ -1,0 +1,19 @@
+<footer class="pagination">
+  {% if pagination.prev %}
+    <a href="{{ pagination.prev.link }}">Prev</a>
+  {% endif %}
+
+  {% for page in pagination.pages %}
+  
+    {% if page.link %}
+      <a href="{{ page.link }}">{{ page.title }}</a>
+    {% else %}
+      <span>{{ page.title }}</span>
+    {% endif %}
+
+  {% endfor %}
+
+  {% if pagination.next %}
+    <a href="{{ pagination.next.link }}">Next</a>
+  {% endif %}
+</footer>

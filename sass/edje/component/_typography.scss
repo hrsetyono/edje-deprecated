@@ -1,0 +1,98 @@
+// ==================
+// EDGE TYPOGRAPHY
+// ==================
+
+// ------------------------------
+// BASELINE
+// - Create notebook-like row
+// ------------------------------
+@mixin baseline($lh : $body-line-height) {
+
+  @include background(
+    linear-gradient(to bottom, rgba(black, 0) 95%, rgba(black, .1) 100%)
+  );
+  background-size: 100% ($lh * 1em);
+}
+
+// ----------------------
+// Create Inline List
+// ----------------------
+@mixin inline-list() {
+  @include clearfix();
+
+  > li {
+    display: inline-block;
+    float: left;
+    vertical-align: top;
+  }
+}
+
+@if $include-typography and not $user-mode {
+
+/* -----------------
+  EDGE Typography
+----------------- */
+
+body {
+  position: relative;
+  background: $body-background;
+  font-size: $body-font-size;
+  font-family: $body-font-family;
+  font-weight: $body-font-weight;
+  line-height: $body-line-height;
+  color: $body-font-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $header-font-color;
+  font-family: $header-font-family;
+  font-weight: $header-font-weight;
+  line-height: $header-line-height;
+}
+
+a {
+  color: $link-color;
+}
+
+h1 { font-size: em($h1-font-size); }
+h2 { font-size: em($h2-font-size); }
+h3 { font-size: em($h3-font-size); }
+h4 { font-size: em($h4-font-size); }
+h5 { font-size: em($h5-font-size); }
+h6 { font-size: em($h6-font-size); }
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+// -----------
+// LIST
+// -----------
+
+ul {
+  list-style-type: $ul-parent-style;
+  padding-left: 20px;
+
+  ul {
+    list-style-type: $ul-child-style;
+  }
+}
+
+ol {
+  list-style-type: $ol-parent-style;
+  padding-left: 25px;
+
+  ol {
+    list-style-type: $ol-child-style;
+  }
+}
+
+blockquote {
+  cite {
+    display: block;
+    font-style: italic;
+  }
+}
+
+} // include-typography

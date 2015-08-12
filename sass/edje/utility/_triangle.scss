@@ -1,0 +1,83 @@
+
+// -------------
+// TRIANGLE
+// -------------
+@mixin triangle(
+  $width,
+  $direction : top,
+  $color     : $main-color,
+  $height    : false) {
+  // If height is not specified, make the triangle equalateral
+  @if not $height {
+    // If normal triangle, `height` must follow the formula
+    @if $direction == top or
+      $direction == up or
+      $direction == right or
+      $direction == left or
+      $direction == bottom or 
+      $direction == down {
+      $height : ($width / 2) * 1.732;
+    }
+    // Else if cornered triangle, `heigth` is the same as `width`
+    @else if $direction == top-right or
+         $direction == top-left or
+         $direction == bottom-right or
+         $direction == bottom-left {
+      $height : $width;
+    }
+  }
+  width: 0;
+  height: 0;
+  font-size: 0;
+  line-height: 0%;
+  border-style: solid;
+  border-color: transparent;
+  // Top /\
+  @if $direction == top or $direction == up {
+    border-width        : 0 $width/2 $height $width/2;
+    border-bottom-color : $color;
+  }
+  // Right |>
+  @else if $direction == right {
+    border-width      : $width/2 0 $width/2 $height;
+    border-left-color : $color;
+  }
+  // Bottom \/
+  @else if $direction == bottom or $direction == down {
+    border-width     : $height $width/2 0 $width/2;
+    border-top-color : $color;
+  }
+  // Left <|
+  @else if $direction == left {
+    border-width       : $width/2 $height $width/2 0;
+    border-right-color : $color;
+  }
+
+  //            __
+  // Top-right  \ | 
+  //             \|
+  @else if $direction == top-right {
+    border-width       : 0 $width $height 0;
+    border-right-color : $color;
+  }
+  
+  // Bottom-right /|
+  //             /_|
+  @else if $direction == bottom-right {
+    border-width        : 0 0 $height $width;
+    border-bottom-color : $color;
+  }
+  // Bottom-left |\
+  //             |_\
+  @else if $direction == bottom-left {
+    border-width      : $height 0 0 $width;
+    border-left-color : $color;
+  }
+  //           __
+  // Top-left | /
+  //          |/
+  @else if $direction == top-left {
+    border-width     : $height $width 0 0;
+    border-top-color : $color;
+  }
+}

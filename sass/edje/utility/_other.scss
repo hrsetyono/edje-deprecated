@@ -1,0 +1,44 @@
+// ----------------------------------------------
+// CLEARING FLOAT
+// Make a container wraps floated element
+// ----------------------------------------------
+@mixin clearfix {
+  &::before, &::after {
+    content: " ";
+    display: table;
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+// --------------------------------
+// SELECTION
+// Change the text highlight color
+// --------------------------------
+
+@mixin selection($background-color:lighten($main-color, 35%), $color:white) {
+  ::-moz-selection {
+    background: $background-color;
+    text-shadow: none !important;
+    color: $color !important;
+  }
+
+  ::selection {
+    background: $background-color;
+    text-shadow: none !important;
+    color: $color !important;
+  }
+}
+
+// -------------------------------
+// DISABLE SELECTION
+// Prevents highlighting
+// -------------------------------
+
+@mixin user-select($value) {
+  -webkit-touch-callout: $value;
+  -webkit-user-select: $value;
+  -moz-user-select: $value;
+  user-select: $value;
+}

@@ -1,0 +1,95 @@
+// -----------------------------------------------------
+// SPRITES MAKER
+// Combine multiple PNGs into one
+// - Image's type must be PNG
+// - Image's name can't start with number or contains special symbol like `@`
+//
+// Special Thanks:
+// www.gayadesign.com/diy/retina-sprites-for-compass
+// -----------------------------------------------------
+
+
+// --------------------------
+// Loop through sprite-map
+// --------------------------
+@mixin _loop-sprite(
+  $map,
+  $is-retina  : false ,
+  $prefix     : "") {
+
+  $divide-by  : 1; // for retina sprites' scaling
+  $sprite-url : "";
+
+  @if $is-retina {
+    $divide-by : 2;
+    $sprite-url : sprite-url($map);
+  }
+
+  @each $i in sprite_names($map) {
+    &.#{$prefix}#{$i} {
+      
+      // It makes sure that if the sprite doesn't exist in Retina folder,
+      //     it uses sprite from the Standard one.
+      @if $is-retina {  
+        background: $sprite-url;
+        background-size: 
+          (image-width(sprite-path($map)) / 2)
+          (image-height(sprite-path($map)) / 2);
+      }
+      background-position:
+        round(nth(sprite-position($map, $i), 1) / $divide-by)
+        round(nth(sprite-position($map, $i), 2) / $divide-by);
+      height : image-height(sprite-file($map, $i)) / $divide-by;
+      width  : image-width(sprite-file($map, $i)) / $divide-by;
+    }
+  }
+}
+
+// --------------------------
+// Generate standard sprites
+// --------------------------
+@mixin sprite(
+  $folder  : "sprites",
+  $class   : "sprite",
+  $prefix  : "") {
+
+  $sprites: sprite-map("#{$folder}/*.png", $layout: smart);
+
+  .#{$class} {
+    background: $sprites;
+    display: inline-block;
+    @include _loop-sprite($sprites, false, $prefix);
+
+    @content; // placeholder for retina sprites
+  }
+}
+
+// ---------------------------------------------
+// Generate both Retina and Standard sprites
+// - Folder's name for Retina must be EXACT SAME as Standard one with the addition of `@2x`
+// - Image's name must be EXACT SAME for standard and retina
+// ----------------------------------------------------------
+@mixin sprite-retina(
+  $folder  : "sprites",
+  $class   : "sprite",
+  $prefix  : "") {
+
+  @include sprite($folder, $class, $prefix) {
+    $sprites    : sprite-map("#{$folder}/*.png", $layout: smart);
+    $sprites-2x : sprite-map("#{$folder}@2x/*.png", $layout: smart);
+    
+    @include below(retina) {
+      // If all images in Retina and Standard folder is the same
+      @if length(sprite_names($sprites) ) == length(sprite_names($sprites-2x) ) {
+      background: $sprites-2x;
+      background-size: 
+          (image-width(sprite-path($sprites-2x)) / 2)
+          (image-height(sprite-path($sprites-2x)) / 2);
+      }
+      // If there's missing images in retina folder
+      @else {
+        @include _loop-sprite($sprites-2x, true, $prefix);
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+// --------------
+// EM CONVERTER
+// --------------
+
+// Strips unit and return plain number
+@function _stripUnit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+// Convert the number to EM
+@function _convertToEm($value, $context: $body-font-size) {
+  // if not number, return it as is
+  @if type-of($value) != number { @return $value; }
+  
+  $value: _stripUnit($value) / _stripUnit($context) * 1em;
+  // turn 0em into 0
+  @if ($value == 0em) {
+    $value: 0;
+  }
+  @return $value;
+}
+
+@function em($values, $context: $body-font-size) {
+  // if only contain single number, convert it directly
+  @if type-of($values) == number {
+    @return _convertToEm($values, $context);
+  }
+  
+  // if contains multiple values, loop through it
+  $emValues   : ();
+  @each $val in $values {
+    $emValues: append($emValues, _convertToEm($val, $context) );
+  }
+  @return join((), $emValues, space );
+}

@@ -1,0 +1,68 @@
+// ---------------
+// MEDIA QUERY
+// ---------------
+
+@function _translateSize($size) {
+  // if number, return it as it is
+  @if type-of($size) == number {
+    @return $size;
+  }
+  // if keyword, translate from the map
+  @else {
+    @return map-get($_media-sizes, $size);
+  }
+}
+
+@mixin below($named-size) {
+  @if $responsive {
+    $in-media: true !global;
+    $size: _translateSize($named-size);
+
+    @if $named-size == retina {
+      @media only screen and (-webkit-max-device-pixel-ratio: 2), (max-resolution: $size) {
+        @content;
+      }
+    } 
+    @else {
+      @media only screen and (max-width: $size) { @content; }
+    }
+
+    $in-media: false !global;
+  }
+}
+
+@mixin above($named-size) {
+  $in-media: true !global;
+  $size: _translateSize($named-size) + 1px;
+
+  @if $named-size == retina {
+    @media only screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: $size) {
+      @content;
+    }
+  }
+  @else {
+    @media (min-width: $size) { @content; }
+  }
+
+  $in-media: false !global;
+}
+
+@mixin between($smaller-size, $larger-size) {
+  @if $responsive {
+    $in-media: true !global;
+    $smaller-size: _translateSize($smaller-size);
+    $larger-size: _translateSize($larger-size);
+
+    @media only screen and (min-width: $smaller-size) and (max-width: $larger-size) {
+      @content;
+    }
+
+    $in-media: false !global;
+  }
+}
+
+@mixin print {
+  @media only print {
+    @content;
+  }
+}

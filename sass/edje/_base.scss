@@ -1,0 +1,141 @@
+@charset "UTF-8";
+
+// ------------------
+// OUTPUT CONFIG
+// ------------------
+
+// User modifiable
+$responsive : true !default;
+$adaptive   : false !default;
+
+// Shouldn't be modified by user
+$user-mode   : false !default; // check whether the mixin call is coming from framework or user
+$in-media    : false !default; // check whether the content is inside media query
+
+// Must be true
+$include-normalize  : true !default;
+$include-typography : true !default;
+$include-grid       : true !default;
+$include-tile       : true !default;
+
+// Default is false
+$include-animate  : false !default;
+$include-print    : false !default;
+$include-code     : false !default;
+
+// ----------
+// COLOR
+// ----------
+$main-color    : #2a71e3 !default;
+$sub-color     : #d7d7d7 !default;
+
+$link-color    : $main-color !default;
+
+$passive-color : #d7d7d7 !default;
+$blue-color    : #2a71e3 !default;
+$yellow-color  : #fac741 !default;
+$red-color     : #d35400 !default;
+$green-color   : #229e61 !default;
+
+// ---------------
+// GLOBAL VALUE
+// ---------------
+$g-radius : 3px !default;
+$g-transition : all .2s ease-out !default;
+
+// ----------------------------
+// BASE FONT and LINE-HEIGHT
+// ----------------------------
+$body-font-size   : 16px !default;
+$body-line-height : 1.5 !default;
+
+// -------------------
+// MEDIA QUERIES
+// -------------------
+$mini-size  : 480px !default;
+$small-size : 767px !default;
+$medium-size : 1120px !default;
+$large-size  : 1440px !default;
+$retina-size : 192dpi !default;
+
+$_media-sizes: (
+  mini: $mini-size,
+  small: $small-size,
+  medium: $medium-size,
+  large: $large-size,
+  retina: $retina-size
+);
+
+// ---------------------
+// TEXT DIRECTION
+// ---------------------
+$text-direction   : ltr !default; // Controls default global text direction, 'rtl' or 'ltr'
+$default-float    : left !default;
+$default-opposite : right !default;
+// No need to change this conditional statement, $text-direction variable controls it all.
+@if $text-direction == ltr {
+  $default-float    : left;
+  $default-opposite : right;
+} @else {
+  $default-float    : right;
+  $default-opposite : left;
+}
+
+// ------------
+// c/GRID
+// ------------
+
+$row-max-width   : $medium-size !default;
+$total-columns   : 12 !default;
+$column-gutter   : 20px !default;
+
+$adaptive-breakpoints : $medium-size, $small-size, $mini-size !default;
+
+// ----------
+// c/TILE
+// ----------
+
+$max-tiles   : 12 !default;
+$tile-gutter : 20px !default;
+
+// -----------
+// c/PRINT
+// -----------
+
+$override-color: true !default;
+
+// -------------
+// c/TYPOGRAPHY
+// -------------
+
+// BODY
+$body-background  : #fff !default;
+$body-font-color  : #222 !default;
+$body-font-weight : 400 !default;
+
+// Compass VERTICAL RHYTM
+$base-font-size   : $body-font-size;
+$base-line-height : $body-line-height * $body-font-size;
+
+// FONT FAMILY
+$header-font-family : Helvetica, Arial, "sans-serif" !default;
+$body-font-family   : Helvetica, Arial, "sans-serif" !default;
+
+// HEADER
+$h1-font-size : 44px !default;
+$h2-font-size : 38px !default;
+$h3-font-size : 30px !default;
+$h4-font-size : 24px !default;
+$h5-font-size : 20px !default;
+$h6-font-size : 16px !default;
+
+$header-font-color  : $body-font-color !default;
+$header-font-weight : 700 !default;
+$header-line-height : 1 !default;
+
+// LIST
+$ul-parent-style  : disc !default;
+$ul-child-style   : circle !default;
+
+$ol-parent-style  : decimal !default;
+$ol-child-style   : lower-alpha !default;

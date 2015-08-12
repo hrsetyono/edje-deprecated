@@ -1,0 +1,60 @@
+// ====================
+// EDGEMAIL GENERIC
+// ====================
+
+/* ----------------
+  GENERIC STYLING
+---------------- */
+
+#background-table {
+  background-color: $body-background;
+  width: $row-max-width !important;
+  margin: 0 auto;
+  padding: 0;
+  font-size: $body-font-size;
+  font-family: $body-font-family;
+  line-height: 100% !important;
+
+  @include box-shadow(1px 1px 5px 2px rgba(black, .3) );
+}
+
+table {
+  width: 100%;
+  -premailer-cellspacing: 0;
+  -premailer-cellpadding: 0;
+}
+
+// LINK
+%link-style {
+  color: $link-color;
+
+  &:active {
+    color: darken($link-color, 10%);
+  }
+
+  &:visited {
+    color: lighten($link-color, 10%);
+  }
+}
+
+a {
+  @extend %link-style;
+}
+
+// HEADER
+h1, h2, h3, h4, h5, h6 {
+  color: $header-font-color;
+  font-family: $header-font-family !important;
+  font-weight: $header-font-weight;
+
+  a {
+    @extend %link-style;
+  }
+}
+
+h1 { font-size: $h1-font-size; }
+h2 { font-size: $h2-font-size; }
+h3 { font-size: $h3-font-size; }
+h4 { font-size: $h4-font-size; }
+h5 { font-size: $h5-font-size; }
+h6 { font-size: $h6-font-size; }
