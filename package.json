@@ -41,6 +41,6 @@
   "homepage": "https://github.com/hrsetyono/edje#readme",
   "preferGlobal": true,
   "bin": {
-    "edje": "command.js"
+    "edje": "edje.js"
   }
 }

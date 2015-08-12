@@ -1,4 +1,4 @@
-// Handle CLI command
+#! /usr/bin/env node
 
 var args = process.argv.slice(2);
 
@@ -14,6 +14,7 @@ var commander = {
         break;
 
       default:
+        console.log("asd");
         logger.warn("Invalid commando");
     }
   },
