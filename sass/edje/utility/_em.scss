@@ -8,7 +8,7 @@
 }
 
 // Convert the number to EM
-@function _convertToEm($value, $context: $body-font-size) {
+@function _convertToEm($value, $context: $font-size) {
   // if not number, return it as is
   @if type-of($value) != number { @return $value; }
   
@@ -20,7 +20,7 @@
   @return $value;
 }
 
-@function em($values, $context: $body-font-size) {
+@function em($values, $context: $font-size) {
   // if only contain single number, convert it directly
   @if type-of($values) == number {
     @return _convertToEm($values, $context);

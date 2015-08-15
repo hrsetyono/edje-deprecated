@@ -1,1 +1,5 @@
-@import "user";
+$user-mode  : true; // disable the ouput from component
+
+@import "base";
+@import "utility";
+@import "component";

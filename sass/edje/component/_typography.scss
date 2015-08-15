@@ -1,18 +1,6 @@
 // ==================
-// EDGE TYPOGRAPHY
+// Edje Typography
 // ==================
-
-// ------------------------------
-// BASELINE
-// - Create notebook-like row
-// ------------------------------
-@mixin baseline($lh : $body-line-height) {
-
-  @include background(
-    linear-gradient(to bottom, rgba(black, 0) 95%, rgba(black, .1) 100%)
-  );
-  background-size: 100% ($lh * 1em);
-}
 
 // ----------------------
 // Create Inline List
@@ -29,62 +17,55 @@
 
 @if $include-typography and not $user-mode {
 
-/* -----------------
-  EDGE Typography
------------------ */
+/* ----- Typography ----- */
 
 body {
   position: relative;
   background: $body-background;
-  font-size: $body-font-size;
-  font-family: $body-font-family;
-  font-weight: $body-font-weight;
-  line-height: $body-line-height;
-  color: $body-font-color;
+  
+  font-family: $font-family;
+  font-weight: $font-weight;
+  font-size: $font-size;
+  line-height: $font-line;
+  color: $font-color;
 }
+
+p { margin-top: 0; margin-bottom: 0; }
+a { color: $color-link; }
 
 h1, h2, h3, h4, h5, h6 {
-  color: $header-font-color;
-  font-family: $header-font-family;
-  font-weight: $header-font-weight;
-  line-height: $header-line-height;
+  font-family: $font-family-header;
+  font-weight: $header-weight;
+  line-height: $header-line;
+  color: $header-color;
 }
 
-a {
-  color: $link-color;
-}
-
-h1 { font-size: em($h1-font-size); }
-h2 { font-size: em($h2-font-size); }
-h3 { font-size: em($h3-font-size); }
-h4 { font-size: em($h4-font-size); }
-h5 { font-size: em($h5-font-size); }
-h6 { font-size: em($h6-font-size); }
-
-p {
-  margin-top: 0;
-  margin-bottom: 0;
-}
+h1 { font-size: em($h1); }
+h2 { font-size: em($h2); }
+h3 { font-size: em($h3); }
+h4 { font-size: em($h4); }
+h5 { font-size: em($h5); }
+h6 { font-size: em($h6); }
 
 // -----------
 // LIST
 // -----------
 
 ul {
-  list-style-type: $ul-parent-style;
+  list-style-type: $ul-parent;
   padding-left: 20px;
 
   ul {
-    list-style-type: $ul-child-style;
+    list-style-type: $ul-child;
   }
 }
 
 ol {
-  list-style-type: $ol-parent-style;
+  list-style-type: $ol-parent;
   padding-left: 25px;
 
   ol {
-    list-style-type: $ol-child-style;
+    list-style-type: $ol-child;
   }
 }
 
@@ -95,4 +76,15 @@ blockquote {
   }
 }
 
-} // include-typography
+@include below(small) {
+  body { font-size: $font-size-small ;}
+
+  h1 { font-size: em($h1-small, $font-size-small); }
+  h2 { font-size: em($h2-small, $font-size-small); }
+  h3 { font-size: em($h3-small, $font-size-small); }
+  h4 { font-size: em($h4-small, $font-size-small); }
+  h5 { font-size: em($h5-small, $font-size-small); }
+  h6 { font-size: em($h6-small, $font-size-small); }
+}
+
+} // include-typography 

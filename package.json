@@ -39,7 +39,6 @@
     "url": "https://github.com/hrsetyono/edje/issues"
   },
   "homepage": "https://github.com/hrsetyono/edje#readme",
-  "preferGlobal": true,
   "bin": {
     "edje": "edje.js"
   }

@@ -2,58 +2,55 @@
 // MEDIA QUERY
 // ---------------
 
-@function _translateSize($size) {
+// Map a keyword to the pixel size
+// @return the pixel size
+@function _getSize($size) {
   // if number, return it as it is
   @if type-of($size) == number {
     @return $size;
   }
-  // if keyword, translate from the map
+  // if keyword, get from the map
   @else {
     @return map-get($_media-sizes, $size);
   }
 }
 
-@mixin below($named-size) {
+// Media query for below or equal the size
+@function below($size) {
+  $size: _getSize($size);
+  @return "(max-width: #{$size} )";
+}
+
+@mixin below($size) {
   @if $responsive {
     $in-media: true !global;
-    $size: _translateSize($named-size);
 
-    @if $named-size == retina {
-      @media only screen and (-webkit-max-device-pixel-ratio: 2), (max-resolution: $size) {
-        @content;
-      }
-    } 
-    @else {
-      @media only screen and (max-width: $size) { @content; }
-    }
+    @media only screen and #{ below($size) } { @content; }
 
     $in-media: false !global;
   }
 }
 
-@mixin above($named-size) {
-  $in-media: true !global;
-  $size: _translateSize($named-size) + 1px;
+// Media query for above the size
+@function above($size) {
+  $size: _getSize($size) + 1px;
+  @return "(min-width: #{$size} )";
+}
 
-  @if $named-size == retina {
-    @media only screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: $size) {
-      @content;
-    }
-  }
-  @else {
-    @media (min-width: $size) { @content; }
-  }
+@mixin above($size) {
+  $in-media: true !global;
+
+  @media #{ above($size) } { @content; }
 
   $in-media: false !global;
 }
 
+// Media query for between two sizes
 @mixin between($smaller-size, $larger-size) {
   @if $responsive {
     $in-media: true !global;
-    $smaller-size: _translateSize($smaller-size);
-    $larger-size: _translateSize($larger-size);
 
-    @media only screen and (min-width: $smaller-size) and (max-width: $larger-size) {
+    @media only screen and #{ above($smaller-size) } and #{ below($larger-size) } {
       @content;
     }
 
@@ -61,6 +58,7 @@
   }
 }
 
+// Media query when printing the website
 @mixin print {
   @media only print {
     @content;
