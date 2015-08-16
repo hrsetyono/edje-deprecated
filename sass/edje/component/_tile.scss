@@ -7,7 +7,7 @@
 // - Styling for base framework
 // ------------------------------
 
-@mixin base-tile(
+@mixin _base-tile(
   $size     : 0,
   $gutter   : 0,
   $collapse : false,
@@ -16,6 +16,8 @@
   
   @if $for-base {
     display: block;
+    padding-left: 0;
+    list-style-type: none;
     @include clearfix;
   }
 
@@ -32,7 +34,7 @@
     margin-left: -($gutter / 2);
   }
 
-  > h-ti {
+  > li {
     @if $for-base {
       display: block;
       float: $default-float;
@@ -79,7 +81,7 @@
   $gutter : 0,
   $collapse : false) {
 
-  @include base-tile(
+  @include _base-tile(
     $size: $size,
     $gutter: $gutter,
     $collapse: $collapse,
@@ -88,13 +90,13 @@
 
   @if $small > 0 {
     @include below(small) {
-      @include base-tile($small, $clear:true);
+      @include _base-tile($small, $clear:true);
     }
   }
 
   @if $mini > 0 {
     @include below(mini) {
-      @include base-tile($mini, $clear:true);
+      @include _base-tile($mini, $clear:true);
     }
   }
 }
@@ -105,30 +107,29 @@
   EDGE Tile
 -------------- */
 
-h-tile {
-  @include base-tile($gutter:$tile-gutter, $for-base:true);
+[class*="tile-"] {
+  @include _base-tile($gutter:$tile-gutter, $for-base:true);
 
   &.collapse {
-    @include base-tile($collapse:true);
+    @include _base-tile($collapse:true);
   }
 }
 
-@for $i from 1 through $max-tiles {
-  .block-#{$i} {
-    @include base-tile($i);
+@for $i from 1 through $tile-max {
+  .tile-#{$i} {
+    @include _base-tile($i);
   }
 }
 
 @include below(small) {
-  // reset large block
-  %block-reset { @include base-tile(1, $clear:true); }
-  @for $i from 1 through $max-tiles {
-    .block-#{$i} { @extend %block-reset; }
+  // reset large tile
+  [class*="tile"] {
+    @include _base-tile(1, $clear:true);
   }
 
-  @for $i from 1 through $max-tiles {
-    .small-block-#{$i} {
-      @include base-tile($i);
+  @for $i from 1 through $tile-max {
+    .small-tile-#{$i} {
+      @include _base-tile($i);
     }
   }
 }

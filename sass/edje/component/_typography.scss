@@ -17,7 +17,9 @@
 
 @if $include-typography and not $user-mode {
 
-/* ----- Typography ----- */
+/* -----------
+  Typography
+----------- */
 
 body {
   position: relative;

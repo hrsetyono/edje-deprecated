@@ -5,7 +5,9 @@
 
 @if $include-normalize and not $user-mode {
   
-/* ----- Normalize ----- */
+/* ----------
+  Normalize
+---------- */
 
 *,
 *:before,
