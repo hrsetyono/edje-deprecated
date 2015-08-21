@@ -19,13 +19,14 @@ class TimberEdge extends TimberSite {
   function add_to_context($context) {
     $context["menu"] = new TimberMenu();
     $context["site"] = $this;
+    $context["home_url"] = home_url();
 
-    $context["home"] = home_url();
-    $context["root"] = get_template_directory_uri();
-    $context["img"] = $context["root"]."/assets/img";
-    $context["css"] = $context["root"]."/assets/css";
-    $context["js"] = $context["root"]."/assets/js";
-    $context["files"] = $context["root"]."/assets/files";
+    $root = get_template_directory_uri();
+    $context["images"] = $root."/assets/images";
+    $context["img"] = $context["images"]; // alias
+    $context["css"] = $root."/assets/css";
+    $context["js"] = $root."/assets/js";
+    $context["files"] = $root."/assets/files";
     
     return $context;
   }

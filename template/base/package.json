@@ -1,0 +1,16 @@
+{
+  "name": "my-app",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/username/my-app.git"
+  },
+  "dependencies": {
+    "edje": "^0.1.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-sass": "^1.0.0"
+  }
+}

@@ -143,13 +143,17 @@ input,
 optgroup,
 select,
 textarea {
+  outline: none;
+  margin: 0;
   color: inherit;
   font: inherit;
-  margin: 0;
 }
 
 button, input[type="submit"] {
   overflow: visible;
+  cursor: pointer;
+  outline: none;
+  -webkit-backface-visibility: hidden;
 
   &:focus { outline: none; }
 }

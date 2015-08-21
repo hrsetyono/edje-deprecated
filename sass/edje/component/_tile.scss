@@ -9,16 +9,20 @@
 
 @mixin _base-tile(
   $size     : 0,
-  $gutter   : 0,
+  $gutter   : null,
   $collapse : false,
   $for-base : false,
   $clear    : false) {
   
   @if $for-base {
-    display: block;
     padding-left: 0;
     list-style-type: none;
     @include clearfix;
+  }
+  
+  @if $gutter {
+    margin-right: -($gutter / 2);
+    margin-left: -($gutter / 2);
   }
 
   // Collapse, reduce all margin and padding to 0
@@ -28,25 +32,20 @@
     padding-right: 0; // override grid's .collapse
     padding-left: 0;
   }
-  
-  @if $gutter > 0 {
-    margin-right: -($gutter / 2);
-    margin-left: -($gutter / 2);
-  }
 
   > li {
     @if $for-base {
-      display: block;
       float: $default-float;
+    }
+  
+    @if $gutter {
+      padding-right: ($gutter / 2); 
+      padding-left: ($gutter / 2);
     }
 
     @if $collapse {
-      padding: 0;
-    }
-
-    @if $gutter > 0 {
-      padding-right: ($gutter / 2); 
-      padding-left: ($gutter / 2);
+      padding-right: 0;
+      padding-left: 0;
     }
   
     // Number of tiles per row
@@ -78,14 +77,14 @@
   $size   : 0,
   $small  : 0,
   $mini   : 0,
-  $gutter : 0,
+  $gutter : null,
   $collapse : false) {
 
   @include _base-tile(
     $size: $size,
     $gutter: $gutter,
     $collapse: $collapse,
-    $clear: $in-media
+    $clear: true
   );
 
   @if $small > 0 {
@@ -103,11 +102,11 @@
 
 @if $include-tile and not $user-mode {
 
-/* --------------
-  EDGE Tile
--------------- */
+/* ------
+  Tile
+------ */
 
-[class*="tile-"] {
+[class*="tile"] {
   @include _base-tile($gutter:$tile-gutter, $for-base:true);
 
   &.collapse {
@@ -123,8 +122,9 @@
 
 @include below(small) {
   // reset large tile
-  [class*="tile"] {
-    @include _base-tile(1, $clear:true);
+  %reset-tile { @include _base-tile(1, $clear:true); }
+  @for $i from 1 through $tile-max {
+    .tile-#{$i} { @extend %reset-tile; }
   }
 
   @for $i from 1 through $tile-max {

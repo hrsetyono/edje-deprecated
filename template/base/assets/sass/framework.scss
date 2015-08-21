@@ -1,17 +1,34 @@
+// Put styles that you might reuse in other projects here
 @import "setting";
-@import "edge";
+@import "edje";
 
-// This file contains style that can be re-used for other website.
-
-@include button {
+// ----------
+// BUTTON
+// ----------
+.button,
+input[type="submit"] {
   display: inline-block;
-  cursor: pointer;
-  // write your button style here
+  background-color: $color-main;
 }
 
-@include input {
+// --------
+// INPUT
+// --------
+input:not([type="submit"]):not([type="radio"]):not([type="checkbox"]),
+textarea,
+select {
   display: block;
   width: 100%;
-  outline: none;
-  // write your input styling here
+  border: 1px solid $color-passive;
+  border-top-color: darken($color-passive, 5%);
+
+  &:hover {
+    border-color: darken($color-passive, 10%);
+    box-shadow: inset 0 0 3px $color-passive;
+  }
+
+  &:focus {
+    border-color: $color-main;
+    box-shadow: inset 0 1px 2px rgba(black, .2);
+  }
 }

@@ -1,34 +1,34 @@
 @charset "UTF-8";
-@import "compass";
-
-// FONT
-$header-font-family : Helvetica, Arial, "sans-serif" !default;
-$body-font-family   : Helvetica, Arial, "sans-serif" !default;
 
 // COLORS
-$main-color : #2a71e3 !default;
-$sub-color  : #d7d7d7 !default;
+$color-main : #2a71e3 !default;
+$color-sub  : #d7d7d7 !default;
 
-$link-color : $main-color !default;
+$color-passive : #e0e0e0 !default;
+$color-link : $main-color !default;
+$body-background  : #ffffff !default;
 
 // SIZING
-$row-max-width : 650px !default;
-$mini-size   : 480px !default;
-
-// BODY
-$body-background  : #ffffff !default;
-$body-font-color  : #222222 !default;
-$body-font-weight : 400 !default;
-$body-font-size   : 16px !default;
-$body-line-height : 1.5 !default;
+$grid-max-width : 650px !default;
+$size-mini      : 480px !default;
 
 // TYPOGRAPHY
-$h1-font-size : 44px !default;
-$h2-font-size : 38px !default;
-$h3-font-size : 30px !default;
-$h4-font-size : 24px !default;
-$h5-font-size : 20px !default;
-$h6-font-size : 16px !default;
+$font-family : Helvetica, Arial, "sans-serif" !default;
+$font-family-header : Helvetica, Arial, "sans-serif" !default;
 
-$header-font-color  : $body-font-color !default;
-$header-font-weight : 700 !default;
+$font-color  : #222 !default;
+$font-weight : 400 !default;
+$font-line   : 1.65 !default;
+$font-size   : 16px !default;
+
+// HEADER
+$header-color  : $font-color !default;
+$header-weight : 700 !default;
+$header-line   : 1.5 !default;
+
+$h1 : 42px !default;
+$h2 : 36px !default;
+$h3 : 30px !default;
+$h4 : 24px !default;
+$h5 : 20px !default;
+$h6 : $font-size !default;

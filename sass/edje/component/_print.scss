@@ -77,15 +77,14 @@
     page-break-after: avoid;
   }
   
-  // set the page size
-  
+  // make most outer row the page size
   h-row {
     min-width: $row-max-width + $column-gutter;
 
     h-row {
       min-width: 0;
     }
-  } 
+  }
 }
 
 }

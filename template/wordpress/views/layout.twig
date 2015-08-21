@@ -13,8 +13,8 @@
   <meta name="description" content="{{ site.description }}">
 
   <!-- FAVICON -->
-  <link rel="icon" href="{{ img }}/favicon.png">
-  <link rel="apple-touch-icon-precomposed" href="{{ img }}/favicon-big.png">
+  <link rel="icon" href="{{ images }}/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="{{ images }}/favicon-big.png">
   
   <!-- STYLESHEET -->
   <link rel="stylesheet" href="{{ css }}/framework.css">
@@ -29,6 +29,12 @@
     
     <!-- Main Navigation Menu -->
     <nav class="main-menu">
+      <div class="logo">
+        <a href="{{ home_url }}">
+          <img src="{{ images }}/favicon-big.png" alt="{{ site.name }}'s Logo">
+        </a>
+      </div>
+
       {% for item in menu.get_items %}
         <div class="item {% if item.get_children %} has-child {% endif %}">
           
@@ -53,7 +59,7 @@
     </nav>
 
     <!-- Search -->
-    <form method="get" action="{{ home }}" role="search">
+    <form method="get" action="{{ home_url }}" role="search">
       <input type="search" name="s" placeholder="Enter keyword">
       <input type="submit" value="Search">
     </form>

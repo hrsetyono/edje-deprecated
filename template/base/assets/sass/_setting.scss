@@ -1,36 +1,38 @@
-// Override EDGE variables here
-// To override, uncomment the variable and set the new value
+// Customize the framework by changing these variables
+// Put your custom variables and mixins here too
 
 // -------
 // FONT
 // -------
-$header-font-family : Helvetica, Arial, "sans-serif";
-$body-font-family   : Helvetica, Arial, "sans-serif";
-// $code-font-family   : Consolas, Courier, "monospace";
+$font-family : Helvetica, Arial, "sans-serif";
+$font-family-header : Helvetica, Arial, "sans-serif";
 
-// -----------
+// --------
 // COLORS
-// -----------
+// --------
 
-$main-color : #2a71e3;
-$sub-color  : #d7d7d7;
-// $link-color : $main-color;
+$color-main : #2a71e3;
+$color-sub  : #d7d7d7;
 
-// -------------------
-// MEDIA QUERIES
-// -------------------
-// $mini-size   : 480px;
-// $small-size  : 767px;
-// $medium-size : 1120px;
-// $large-size  : 1440px;
-// $retina-size : 192dpi;
+$color-passive : #e0e0e0;
+// $color-link : $color-main;
+
+// $body-background  : #fff;
+
+// ---------
+// SIZING
+// ---------
+// $size-mini   : 480px;
+// $size-small  : 767px;
+// $size-medium : 1120px;
+// $size-large  : 1440px;
 
 // ----------------
 // RESPONSIVE
 // ----------------
 // $responsive : true;
 // $adaptive   : false;
-// $adaptive-breakpoints : $medium-size, $small-size, $mini-size;
+// $adaptive-breakpoints : $size-medium, $size-small, $size-mini;
 
 // ---------------
 // GLOBAL VALUE
@@ -41,39 +43,47 @@ $sub-color  : #d7d7d7;
 // --------
 // GRID
 // --------
-// $row-max-width : $medium-size;
-// $total-columns : 12;
-// $column-gutter : 20px;
+// $grid-max-width : $size-medium;
+// $grid-columns : 12;
+// $grid-gutter  : 20px; // distance between columns
+// $grid-rim     : $grid-gutter / 2; // distance from edge of screen
 
 // ------------
 // TILE
 // ------------
-// $max-tiles   : 12;
+// $tile-max    : 8;
 // $tile-gutter : 20px;
 
-// ------
-// BODY
-// ------
-// $body-background  : #fff;
-// $body-font-color  : #222;
-// $body-font-weight : 400;
-
-// $body-font-size   : 16px;
-// $body-line-height : 1.5;
-
-// ---------------
+// ------------
 // TYPOGRAPHY
-// ---------------
-// $h1-font-size : 44px;
-// $h2-font-size : 38px;
-// $h3-font-size : 30px;
-// $h4-font-size : 24px;
-// $h5-font-size : 20px;
-// $h6-font-size : 16px;
+// ------------
+// $font-color  : #222;
+// $font-weight : 400;
+// $font-line : 1.65;
 
-// $header-font-color  : $body-font-color;
-// $header-font-weight : 700;
-// $header-line-height : 1;
+$font-size : 18px;
+// $font-size-small : 16px;
+
+// ---------
+// HEADER
+// ---------
+// $header-color  : $font-color;
+// $header-weight : 700;
+// $header-line   : 1;
+
+// $h1 : 44px;
+// $h2 : 36px;
+// $h3 : 30px;
+// $h4 : 24px;
+// $h5 : 20px;
+// $h6 : $font-size;
+
+// $h1-small : 30px;
+// $h2-small : 26px;
+// $h3-small : 22px;
+// $h4-small : 20px;
+// $h5-small : 18px;
+// $h6-small : $font-size-small;
 
 // ---------
 // PRINT
@@ -85,3 +95,9 @@ $sub-color  : #d7d7d7;
 // TEXT DIRECTION
 // ------------------
 // $text-direction   : ltr;  // Global text direction, 'rtl' or 'ltr'
+
+// --------------
+// CUSTOM MIXIN
+// --------------
+
+@mixin your-custom-mixin() { }

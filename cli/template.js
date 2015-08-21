@@ -1,54 +1,63 @@
 var fs = require("fs-extra"),
-    path = require("path"),
     inquirer = require("inquirer"), // prompt
 
-    logger = require("./logger.js"),
-    STR = require("./str.js"), // message list
+    logger = require("./logger.js"), // pretty logging
+    str = require("./string.js"), // constant string
+    printf = require("./printf.js"),
 
     https = require("https"), // download wordpress
     url = require("url"), // download wordpress
     progress = require("progress"), // download progress
     adm_zip = require("adm-zip"); // unzip wp download
 
+// constant
+var PATH = {
+  src: require("path").dirname(require.main.filename),
+  current: process.cwd(),
+};
+
 /* --------------------
   Template Generator
 -------------------- */
 
-var _template = {
-  APP_DIR: path.dirname(require.main.filename),
+var template = {
   MENU: ["html", "email", "wordpress"],
+  BASE_SRC: PATH.src + "/template/base",
+  TYPE_SRC: PATH.src + "/template/{type}",
 
   init: function(type) {
     if(type) {
       this._run(type);
-    }
-    // ask menu if type not given
-    else {
+    } else { // ask menu if type not given
       this._menu();
     }
   },
 
   // execute based on type, but only if it's safe
   _run: function(type) {
-    _safety.check(function(isSafe) {
+    safety.check(function(isSafe) {
       if(isSafe) {
-
         switch(type) {
           case "wordpress":
-            logger.info(STR.template.download_wp + "\n");
-            _wordpress.create();
+            logger.info(str.WP.start + "\n");
+            wordpress.create();
+            break;
+
+          case "email":
+            this._create(type);
             break;
 
           default:
             if(this.MENU.indexOf(type) >= 0) {
-              this._create(type);  
+              this._createBase();
+              this._create(type);
             } else {
-              logger.error(STR.template.invalid);
+              logger.error(str.TEMPLATE.invalid);
             }
         } // endswitch
       }
       else {
-        logger.warn(STR.template.cancelled);
+        logger.warn(str.TEMPLATE.cancelled);
       } // endif
     });
   },
@@ -58,7 +67,7 @@ var _template = {
     var questions = [{
       type: "rawlist",
       name: "type",
-      message: STR.template.ask_menu,
+      message: str.TEMPLATE.ask_menu,
       choices: this.MENU,
     }];
 
@@ -68,22 +77,26 @@ var _template = {
     }.bind(this) );
   },
 
-  // copy template to current directory
+  // copy the base file like assets, readme
+  _createBase: function() {
+    var basePath = this.BASE_SRC;
+
+    fs.copy(basePath, PATH.current, function(err) {
+      if(err) { return logger.error(err); }
+    });
+  },
+
+  // copy the specific template
   _create: function(type) {
     logger.create(type + " template");
 
-    var basePath = this.APP_DIR + "/template/base";
-    var templatePath = this.APP_DIR + "/template/" + type;
+    var templatePath = printf(this.TYPE_SRC, {type: type});
 
-    fs.copy(basePath, process.cwd(), function(err) {
+    fs.copy(templatePath, PATH.current, function(err) {
       if(err) { return logger.error(err); }
     });
 
-    fs.copy(templatePath, process.cwd(), function(err) {
-      if(err) { return logger.error(err); }
-    });
-
-    logger.success(STR.template.success);
+    logger.success(str.TEMPLATE.success);
   },
 };
 
@@ -91,16 +104,19 @@ var _template = {
   WordPress module
 ------------------ */
 
-var _wordpress = {
-  APP_DIR: path.dirname(require.main.filename),
+var wordpress = {
   FILE_URL: "https://wordpress.org/latest.zip",
   SRC_NAME: "wordpress.zip", // local wp file
-  SRC_PATH: "/template/wordpress-src",
+
+  BASE_DIR: PATH.src + "/template/wordpress-src-test",
+  ZIP_SRC: PATH.current + "/wordpress.zip",
+
+  THEME_SRC: PATH.src + "/template/wordpress",
+  THEME_DEST: PATH.current + "/wp-content/themes/{name}",
 
   // get the zip file from local source
   create: function() {
-    var wpDir = this.APP_DIR + this.SRC_PATH;
-    fs.copySync(wpDir, process.cwd() );
+    fs.copySync(this.BASE_DIR, PATH.current);
 
     // TODO: when there is existing wordpress.zip file, it takes time to replace it. So setup will return "file not found" error
     this._setup();
@@ -125,7 +141,7 @@ var _wordpress = {
 
       // create progress bar
       console.log("");
-      var bar = new progress(STR.template.download_bar, {
+      var bar = new progress(str.WP.download_bar, {
         complete: "=",
         incomplete: " ",
         width: 20,
@@ -143,100 +159,99 @@ var _wordpress = {
     this._setup();
   },
 
-  /*
-    unzip, re-arrange, and add theme files
-  */
+  // Arrange the directory and add theme
   _setup: function() {
-    this._promptName(function(themeName) {
-      logger.info("Setting up " + themeName + " directory...");
-      var file = process.cwd() + "/" + this.SRC_NAME;
-      this._unzip(file, process.cwd() );
-      this._setTheme(themeName);
+    this._prompt(function(name) {
+      logger.info(str.WP.setup_theme);
+
+      this._unzip(this.ZIP_SRC, PATH.current);
+      this._setTheme(name);
     });
   },
 
   /*
-    unzip the files
+    Unzips the file, then deletes it
     @param file (string) path to the zip file
-           toDir (string) directory to put the extracted files
+           to (string) directory to put the extracted files
   */
-  _unzip: function(file, toDir) {
+  _unzip: function(file, to) {
     var zip = new adm_zip(file);
-    zip.extractAllTo(toDir, true);
-    fs.removeSync(file);
+    zip.extractAllTo(to, true);
+    
+    fs.remove(file, function() {});
   },
 
   /*
-    arrange the directory and add theme files.
+    Arrange the directory and add theme files.
     @param name (string) theme's directory name (preferrably no-space, lower case)
   */
   _setTheme: function(name) {
     // all files contained in /wordpress dir, so we move them out.
-    var srcFrom = process.cwd() + "/wordpress/";
-    var srcTo = process.cwd();
+    var srcFrom = PATH.current + "/wordpress/";
+    var srcTo = PATH.current;
+
     fs.move(srcFrom, srcTo, function(err) {
       if(err) { return logger.error(err); }
 
       // add theme
-      var themeFrom = _wordpress.APP_DIR + "/template/wordpress";
-      var themeTo = process.cwd() + "/wp-content/themes/" + name;
+      var themeFrom = this.THEME_SRC;
+      var themeTo = printf(this.THEME_DEST, {
+        name: name
+      });
 
       fs.copy(themeFrom, themeTo, function(err) {
         if(err) { return logger.error(err); }
 
-        logger.success(STR.template.success_wp);
+        logger.success(str.WP.success);
       });
-    });
+    }.bind(this) );
   },
 
   // Ask the theme's directory name
-  _promptName: function(callback) {
+  _prompt: function(callback) {
     var questions = [{
       type: "type",
       name: "name",
       default: "custom-theme",
-      message: STR.template.prompt_wp,
+      message: str.WP.ask_name,
     }];
 
     inquirer.prompt(questions, function(answers) {
-      callback.bind(_wordpress)(answers.name);
+      callback.bind(wordpress)(answers.name);
     });
   },
 };
 
 // Check safety of the directory, only proceed if empty or user allow
-var _safety = {
+var safety = {
   /*
-    Check whether dir is safe (empty or answer "Y")
-    @param onSafe (function) - after ensuring its safe
+    Check whether dir is safe to drop the template files
+    @param callback (function) - run after checking the condition
       ~ (boolean) safe or not
   */
-  check: function(onSafe) {
-    var dirTarget = process.cwd();
-    var files = fs.readdirSync(dirTarget);
+  check: function(callback) {
+    var files = fs.readdirSync(PATH.current);
 
-    // if not empty
+    // if not empty, ask for replace confirmation
     if(files.length > 0) {
-      this._prompt(onSafe);
+
+      var questions = [{
+        type: "confirm",
+        name: "proceed",
+        default: false,
+        message: str.TEMPLATE.ask_confirm
+      }];
+
+      inquirer.prompt(questions, function(answers) {
+        // set the param to what user say
+        callback.bind(template)(answers.proceed);
+      });
     }
-    // if empty
+    // if empty, set the param to true
     else {
-      onSafe.bind(_template)(true);
+      callback.bind(template)(true);
     }
-  },
-
-  _prompt: function(onSafe) {
-    var questions = [{
-      type: "confirm",
-      name: "proceed",
-      default: false,
-      message: STR.template.ask_confirm
-    }];
-
-    inquirer.prompt(questions, function(answers) {
-      onSafe.bind(_template)(answers.proceed);
-    });
   },
 };
 
-module.exports = _template;
+module.exports = template;

@@ -22,6 +22,8 @@ $color-main : #2a71e3 !default;
 $color-sub  : #d7d7d7 !default;
 $color-link : $color-main !default;
 
+$color-passive : #e0e0e0 !default;
+
 $body-background: #fff !default;
 
 // ----------------
@@ -110,6 +112,12 @@ $default-opposite : right !default;
   $default-opposite : left;
 }
 
+// ----------
+// u/OTHER
+// ----------
+$dir-images: "../images" !default;
+$dir-fonts: "../fonts" !default;
+
 // --------
 // c/GRID
 // --------
@@ -121,7 +129,7 @@ $grid-rim     : $grid-gutter / 2 !default;
 // ----------
 // c/TILE
 // ----------
-$tile-max    : 12 !default;
+$tile-max    : 8 !default;
 $tile-gutter : 20px !default;
 
 // -----------

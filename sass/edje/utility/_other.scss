@@ -1,3 +1,15 @@
+// ----------------
+// URL SHORTCUT
+// ----------------
+
+@function image-url($file) {
+  @return url("#{ $dir-images }/#{ $file }");
+}
+
+@function font-url($file) {
+  @return url("#{ $dir-fonts }/#{ $file }");
+}
+
 // ----------------------------------------------
 // CLEARING FLOAT
 // Make a container wraps floated element

@@ -5,7 +5,7 @@
 @mixin triangle(
   $width,
   $direction : top,
-  $color     : $main-color,
+  $color     : $color-main,
   $height    : false) {
   // If height is not specified, make the triangle equalateral
   @if not $height {
@@ -53,29 +53,23 @@
     border-right-color : $color;
   }
 
-  //            __
-  // Top-right  \ | 
-  //             \|
+  // Top-right  \|              
   @else if $direction == top-right {
     border-width       : 0 $width $height 0;
     border-right-color : $color;
   }
   
-  // Bottom-right /|
-  //             /_|
+  // Bottom-right /| 
   @else if $direction == bottom-right {
     border-width        : 0 0 $height $width;
     border-bottom-color : $color;
   }
   // Bottom-left |\
-  //             |_\
   @else if $direction == bottom-left {
     border-width      : $height 0 0 $width;
     border-left-color : $color;
   }
-  //           __
-  // Top-left | /
-  //          |/
+  // Top-left |/
   @else if $direction == top-left {
     border-width     : $height $width 0 0;
     border-top-color : $color;
