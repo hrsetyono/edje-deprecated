@@ -1,0 +1,92 @@
+// ==================
+// Edje Typography
+// ==================
+
+// ----------------------
+// Create Inline List
+// ----------------------
+@mixin inline-list() {
+  @include clearfix();
+
+  > li {
+    display: inline-block;
+    float: left;
+    vertical-align: top;
+  }
+}
+
+@if $include-typography and not $user-mode {
+
+/* -----------
+  Typography
+----------- */
+
+body {
+  position: relative;
+  background: $body-background;
+  
+  font-family: $font-family;
+  font-weight: $font-weight;
+  font-size: $font-size;
+  line-height: $font-line;
+  color: $font-color;
+}
+
+p { margin-top: 0; margin-bottom: 0; }
+a { color: $color-link; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-header;
+  font-weight: $header-weight;
+  line-height: $header-line;
+  color: $header-color;
+}
+
+h1 { font-size: em($h1); }
+h2 { font-size: em($h2); }
+h3 { font-size: em($h3); }
+h4 { font-size: em($h4); }
+h5 { font-size: em($h5); }
+h6 { font-size: em($h6); }
+
+// -----------
+// LIST
+// -----------
+
+ul {
+  list-style-type: $ul-parent;
+  padding-left: 20px;
+
+  ul {
+    list-style-type: $ul-child;
+  }
+}
+
+ol {
+  list-style-type: $ol-parent;
+  padding-left: 25px;
+
+  ol {
+    list-style-type: $ol-child;
+  }
+}
+
+blockquote {
+  cite {
+    display: block;
+    font-style: italic;
+  }
+}
+
+@include below(small) {
+  body { font-size: $font-size-small ;}
+
+  h1 { font-size: em($h1-small, $font-size-small); }
+  h2 { font-size: em($h2-small, $font-size-small); }
+  h3 { font-size: em($h3-small, $font-size-small); }
+  h4 { font-size: em($h4-small, $font-size-small); }
+  h5 { font-size: em($h5-small, $font-size-small); }
+  h6 { font-size: em($h6-small, $font-size-small); }
+}
+
+} // include-typography 

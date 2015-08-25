@@ -1,0 +1,103 @@
+// Customize the framework by changing these variables
+// Put your custom variables and mixins here too
+
+// -------
+// FONT
+// -------
+$font-family : Helvetica, Arial, "sans-serif";
+$font-family-header : Helvetica, Arial, "sans-serif";
+
+// --------
+// COLORS
+// --------
+
+$color-main : #2a71e3;
+$color-sub  : #d7d7d7;
+
+$color-passive : #e0e0e0;
+// $color-link : $color-main;
+
+// $body-background  : #fff;
+
+// ---------
+// SIZING
+// ---------
+// $size-mini   : 480px;
+// $size-small  : 767px;
+// $size-medium : 1120px;
+// $size-large  : 1440px;
+
+// ----------------
+// RESPONSIVE
+// ----------------
+// $responsive : true;
+// $adaptive   : false;
+// $adaptive-breakpoints : $size-medium, 960px, $size-small, $size-mini;
+
+// ---------------
+// GLOBAL VALUE
+// ---------------
+// $g-radius     : 3px;
+// $g-transition : all .2s ease-in-out;
+
+// --------
+// GRID
+// --------
+// $grid-max-width : $size-medium;
+// $grid-columns : 12;
+// $grid-gutter  : 20px; // distance between columns
+// $grid-rim     : $grid-gutter / 2; // distance from edge of screen
+
+// ------------
+// TILE
+// ------------
+// $tile-max    : 8;
+// $tile-gutter : 20px;
+
+// ------------
+// TYPOGRAPHY
+// ------------
+// $font-color  : #222;
+// $font-weight : 400;
+// $font-line : 1.65;
+
+$font-size : 18px;
+// $font-size-small : 16px;
+
+// ---------
+// HEADER
+// ---------
+// $header-color  : $font-color;
+// $header-weight : 700;
+// $header-line   : 1;
+
+// $h1 : 44px;
+// $h2 : 36px;
+// $h3 : 30px;
+// $h4 : 24px;
+// $h5 : 20px;
+// $h6 : $font-size;
+
+// $h1-small : 30px;
+// $h2-small : 26px;
+// $h3-small : 22px;
+// $h4-small : 20px;
+// $h5-small : 18px;
+// $h6-small : $font-size-small;
+
+// ---------
+// PRINT
+// ---------
+// $include-print  : false;
+// $override-color : true;   // Override all text color to #000 black
+
+// ------------------
+// TEXT DIRECTION
+// ------------------
+// $text-direction   : ltr;  // Global text direction, 'rtl' or 'ltr'
+
+// --------------
+// CUSTOM MIXIN
+// --------------
+
+@mixin your-custom-mixin() { }

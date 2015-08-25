@@ -1,0 +1,396 @@
+// =============
+// EDGE GRID
+// =============
+
+// Calculate percentages for grid
+@function _gridCalc($size, $total) {
+  // If column specified is not fraction
+  @if $size >= 1 {
+    @return percentage($size / $total);
+  }
+  // If column specified is fraction (like 2/12)
+  @else {
+    @return percentage($size);
+  }
+}
+
+// ---------------------------------
+// BASE ROW
+// - Styling for base framework
+// ---------------------------------
+
+@mixin _base-row(
+  $gutter   : $grid-gutter,
+  $width    : $grid-max-width,
+  $rim      : $grid-rim,
+  $nest     : false,
+  $collapse : false,
+  $for-base : false) {
+
+  @if $for-base {
+    display: block;
+    margin: 0 auto;
+    max-width: $width + $gutter;
+    width: 100%;  
+    @include _rim($gutter, $rim);
+
+    @if $responsive and $adaptive {
+      @include _adaptive($adaptive-breakpoints, $gutter);
+    }
+    
+    @if not $responsive {
+      min-width: $width + $gutter;
+    }
+
+    @include clearfix;
+  }
+
+  // Nested and collapsed
+  @if $nest and $collapse {
+    margin: 0;
+    padding-right: 0;
+    padding-left: 0;
+    width: auto;
+    max-width: none;
+
+    @if not $responsive {
+      min-width: 0;
+    }
+  }
+  // Only nested
+  @else if $nest {
+    margin-right: -($gutter / 2);
+    margin-left: -($gutter / 2);
+    width: auto;
+    max-width: none;
+
+    @if not $responsive {
+      min-width: 0;
+    }
+  }
+  // Only collapsed
+  @else if $collapse {
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+  }
+}
+
+// Calculate the distance of grid with edge of screen
+@mixin _rim($gutter, $rim, $width: $grid-max-width) {
+  $padding: $gutter / 2; // column padding, acted as base rim
+  
+  @if $rim != $padding {
+    // if custom rim is bigger than base, make width smaller, else make width bigger
+    $new-rim: if($rim > $padding,
+                $rim - $padding,
+                $padding - $rim
+              );
+
+    $new-width: if($rim > $padding,
+                  calc(100% - #{$new-rim * 2} ),
+                  calc(100% + #{$new-rim * 2} )
+                );
+
+    width: $new-width;
+    
+    // if custom rim is smaller, need to adjust margin
+    @if $rim < $padding {
+      @include below($width + $rim) {
+        margin: 0 -#{$new-rim};
+      }
+    } //endif
+  } //endif
+}
+
+// Adaptive site, fixed width until it reached next breakpoint
+// @param breakpoints - (map) screen sizes in descending order
+@mixin _adaptive($breakpoints, $gutter) {
+  @for $i from 1 through length($breakpoints) {
+    // get current breakpoint
+    $bp : nth($adaptive-breakpoints, $i);
+    $next-width : null;
+
+    // if last item
+    @if $i == length($breakpoints) {
+      $next-width: 100%;
+    } @else {
+      $next-width : nth($breakpoints, $i + 1) - $gutter;
+    }
+
+    @include below($bp) {
+      width: $next-width;
+    }
+  } //endfor
+}
+
+// -----------------------------------
+// ROW
+// - Styling for external mixin call
+// -----------------------------------
+
+@mixin row(
+  $gutter   : null,
+  $width    : null,
+  $rim      : null,
+  $collapse : false) {
+  
+  @if $gutter {
+    // row needs the negative margin only if nested
+    h-row &,
+    h-row  {
+      margin-right: -($gutter / 2);
+      margin-left: -($gutter / 2);
+    }
+
+    h-column {
+      padding-right: $gutter / 2;
+      padding-left: $gutter / 2;
+    }
+  }
+  
+  // recalculate width if any number is passed
+  @if $gutter or $width or $rim {
+    // assign value to (in case) null variable
+    $width: if($width, $width, $grid-max-width);
+    $gutter: if($gutter, $gutter, $grid-gutter);
+
+    max-width: $width + $gutter;
+ 
+    @if not $responsive {
+      min-width: $width + $gutter;
+    }
+
+    @if $rim {
+      @include _rim($gutter, $rim, $width);
+    }
+  }
+
+  // collapsed behavior
+  @if $collapse {
+    $gutter: if($gutter, $gutter, $grid-gutter);
+
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+
+    > h-column,
+    > * > h-column {
+      @include column($collapse: true);
+    }
+  }
+}
+
+// ------------------------------
+// BASE COLUMN
+// - Styling for base framework
+// ------------------------------
+
+@mixin _base-column(
+  $size   : 0,
+  $offset : null, // `0` means reset offset, so default is `null` 
+  $gutter : null, // if default is $grid-gutter, all mixin call will output the padding
+  $collapse : false,
+  $centered : null, // `false` means uncentered, so default is `null`
+  $total  : $grid-columns,
+  $for-base : false) {
+  
+  @if $for-base {
+    display: block;
+    float: $default-float;
+    padding-right: $grid-gutter / 2; // default
+    padding-left: $grid-gutter / 2;
+  }
+  
+  // Custom Gutter
+  @if $gutter {
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+  }
+
+  // Collapsed, resets padding to 0
+  @if $collapse {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  // Offset, calculate margin
+  @if $offset {
+    margin-#{$default-float}: _gridCalc($offset, $total);
+  }
+  
+  // Size, calculate width
+  @if $size > 0 {
+    width: _gridCalc($size, $total);
+  }
+  
+  // Centered, add centered margin
+  @if $centered {
+    display: block;
+    float: none;
+    margin-right: auto;
+    margin-left: auto;
+  } @else if $centered == false { // Uncenter the column
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+// -----------------------------------
+// COLUMN
+// - Styling for external mixin call
+// -----------------------------------
+
+@mixin column(
+  $size   : 0,
+  $small  : 0,
+  $mini   : 0,
+  $offset : null,
+  $gutter : null,
+  $collapse : false,
+  $centered : null,
+  $total  : $grid-columns) {
+
+  // Sizing
+  @if $size > 0 {
+    @include _base-column($size, $offset: $offset, $total: $total);
+    
+    // Reset offset in small / mini screen
+    $reset-offset: if($offset, 0, null);
+    @if $small > 0 {
+      @include below(small) {
+        @include _base-column($small, $offset: $reset-offset, $total: $total);
+      }
+      
+      // if the reset is already applied on small screen, no need for the mini screen
+      $reset-offset: null;
+    }
+
+    @if $mini > 0 {
+      @include below(mini) {
+        @include _base-column($mini, $offset: $reset-offset, $total: $total);
+      }
+    }
+  }
+  
+  // Collapse and Centered behavior is the same as base column
+  @include _base-column(
+    $collapse: $collapse,
+    $centered: $centered,
+    $gutter: $gutter,
+    $total: $total
+  );
+}
+
+// ----------------------------------------------
+// COLUMN PIXEL
+// - Measured with pixel instead of grid portion
+// ----------------------------------------------
+
+@mixin column-px(
+  $size     : 0px,
+  $width    : 0px,
+  $gutter   : $grid-gutter,
+  $centered : false ) {
+  
+  // Collapse and Centered behavior is the same as base column
+  @include _base-column(
+    $centered: $centered
+  );
+  
+  width: percentage(($size + $gutter) / ($width + $gutter) );
+  
+  @if $gutter > 0 {
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+  }
+}
+
+// -------------
+// Sizing
+// -------------
+
+@mixin _grid-size($name) {
+  // Large sizing
+  @for $i from 1 through $grid-columns {
+    .#{$name}-#{$i} { @include _base-column($i); }
+  }
+}
+
+@mixin _grid-offset($name) {
+  @for $i from 1 through $grid-columns - 1 {
+    .#{$name}-#{$i} { @include _base-column($offset:$i); }
+  }
+}
+
+@if $include-grid and not $user-mode {
+
+/* --------
+  Grid
+-------- */
+
+// normal row
+h-row {
+  @include _base-row($for-base:true);
+  
+  // nested row
+  h-row {
+    @include _base-row($nest:true);
+    
+    // collapsed nested row
+    &.collapse {
+      @include _base-row($nest:true, $collapse:true);
+    }
+  }
+}
+
+// normal column
+h-column {
+  @include _base-column($grid-columns, $for-base:true);
+}
+
+// collapsed row
+.collapse {
+  @include _base-row($collapse:true);
+  
+  // nested row inside collapsed
+  h-row {
+    @include _base-row($nest:true);
+  }
+  
+  // TODO: potential error, only works if h-column is child or grand-child
+  > h-column,
+  > * > h-column {
+    @include _base-column($collapse:true);
+  }
+}
+
+@include _grid-size("large");
+@include _grid-offset("offset");
+
+// centered column
+.centered {
+  @include _base-column($centered:true);
+}
+
+// small screen and below
+@include below(small) {
+  // reset large sizing
+  %large-reset { @include _base-column($grid-columns); }
+  @for $i from 1 through $grid-columns {
+    .large-#{$i} { @extend %large-reset; }
+  }
+  
+  // reset large offset
+  %offset-reset { @include _base-column($offset: 0); }
+  @for $i from 1 through ($grid-columns - 1) {
+    .offset-#{$i} { @extend %offset-reset; }
+  }
+  
+  @include _grid-size("small");
+  @include _grid-offset("small-offset");
+
+  .small-centered {
+    @include _base-column($centered:true);
+  }
+}
+
+} // $include-grid

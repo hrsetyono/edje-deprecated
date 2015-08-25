@@ -1,0 +1,98 @@
+// =======================
+// EDGEMAIL NORMALIZE
+// =======================
+// Based on htmlemailboilerplate.com/
+
+/* -----------
+  Normalize
+----------- */
+
+// Prevent Webkit and Windows Mobile platforms from changing default font sizes, while not breaking desktop design.
+body {
+  width: 100% !important;
+  margin: 0;
+  padding: 0;
+
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+// Some sensible defaults for images
+img {
+  display: block;
+  outline: none;
+  text-decoration: none;
+  -ms-interpolation-mode: bicubic;
+}
+
+a img {
+  border:none;
+}
+
+// Yahoo paragraph fix
+p {
+  margin: 1em 0;
+}
+
+// Remove spacing around Outlook 07, 10 tables
+table {
+  border-collapse:collapse;
+  mso-table-lspace: 0pt;
+  mso-table-rspace: 0pt;
+}
+
+// ------------
+// PHONE
+// ------------
+
+@media only screen and (max-width: 480px) {
+  #background-table {
+    width: 100%;
+  }
+
+  // Part one of controlling phone number linking for mobile.
+  a[href^="tel"],
+  a[href^="sms"] {
+    text-decoration: none;
+    color: $color-link;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .mobile_link a[href^="tel"],
+  .mobile_link a[href^="sms"] {
+    text-decoration: default;
+    color: orange !important;
+    pointer-events: auto;
+    cursor: default;
+  }
+}
+
+@media only screen and (max-width: $size-small) {
+  #background-table {
+    width: $size-small;
+  }
+}
+
+// ------------
+// TABLET
+// ------------
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+
+  a[href^="tel"],
+  a[href^="sms"] {
+    cursor: default;
+    pointer-events: none;
+    text-decoration: none;
+    color: $color-link;
+  }
+
+  .mobile_link a[href^="tel"],
+  .mobile_link a[href^="sms"] {
+    cursor: default;
+    pointer-events: auto;
+    text-decoration: default;
+    color: $color-link;
+  }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html {{ site.language_attributes }}>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- WEBSITE DETAIL -->
+  <title>
+    {{ site.name }}
+    {% if wp_title %} | {{ wp_title }} {% endif %}
+  </title>
+  <meta name="description" content="{{ site.description }}">
+
+  <!-- FAVICON -->
+  <link rel="icon" href="{{ images }}/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="{{ images }}/favicon-big.png">
+  
+  <!-- STYLESHEET -->
+  <link rel="stylesheet" href="{{ css }}/framework.css">
+  <link rel="stylesheet" href="{{ css }}/app.css">
+
+  {{ wp_head }}
+</head>
+
+<body class="{{ body_class }}">
+
+  <div id="main-wrapper">
+    
+    <!-- Main Navigation Menu -->
+    <nav class="main-menu">
+      <div class="logo">
+        <a href="{{ home_url }}">
+          <img src="{{ images }}/favicon-big.png" alt="{{ site.name }}'s Logo">
+        </a>
+      </div>
+
+      {% for item in menu.get_items %}
+        <div class="item {% if item.get_children %} has-child {% endif %}">
+          
+          <a href="{{ item.get_link }}"
+            {% if "current-menu-item" in item.classes %}
+              class="active"
+            {% endif %}>
+
+            {{ item.title }}
+          </a>
+          
+          {% if item.get_children %}
+            <div class="child-menu">
+              {% for child in item.get_children %}
+                <a href="{{ child.get_link }}">{{ child.title }}</a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        
+        </div>
+      {% endfor %}
+    </nav>
+
+    <!-- Search -->
+    <form method="get" action="{{ home_url }}" role="search">
+      <input type="search" name="s" placeholder="Enter keyword">
+      <input type="submit" value="Search">
+    </form>
+    
+    <!-- Main Content -->
+    {% block content %}{% endblock %}
+
+    <div id="footer-push"></div>
+  </div>
+
+  <footer class="main-footer">
+    {{ site.name }} &copy; {{ "now" | date("Y") }}
+  </footer>
+
+  <!-- JAVASCRIPT LIBRARY -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+  <script src="{{ js }}/vendor/jquery.min.js"></script>
+
+  <script src="{{ js }}/vendor/fastclick.min.js"></script>
+  <script src="{{ js }}/vendor/edge.js"></script>
+  <script src="{{ js }}/app.js"></script>
+
+  {{ wp_footer }}
+  
+</body>
+</html>

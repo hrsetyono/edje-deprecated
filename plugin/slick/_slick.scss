@@ -1,0 +1,129 @@
+// Slick theme
+
+.slick-slider {
+  position: relative;
+}
+
+.slick-list {
+  overflow: hidden;
+}
+
+.slick-track {
+  @include clearfix;
+
+  > * {
+    float: left;
+  }
+}
+
+.slick-list,
+.slick-track {
+  height: 100%;
+}
+
+.slick-arrow {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: 0;
+  width: 50px; // bigger hitbox
+  height: 80px;
+  color: transparent;
+  font-size: 0;
+
+  transition: $g-transition;
+  @include transform(translateY(-50%) );
+
+  @include below(small) {
+    width: 35px;
+    height: 55px;
+    background-size: 50% auto;
+  }
+
+  @include below(mini) {
+    width: 25px;
+    height: 40px;
+  }
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &.slick-disabled {
+    opacity: 0.2;
+  }
+}
+
+.slick-prev {
+  left: -60px;
+  background-image: image-url("slick/arrow-prev.png");
+  
+  &:hover {
+    @include transform(translateY(-50%) translateX(-5px) );
+  }
+}
+
+.slick-next {
+  right: -60px;
+  background-image: image-url("slick/arrow-next.png");
+  
+  &:hover {
+    @include transform(translateY(-50%) translateX(5px) );
+  }
+}
+
+.slick-dots {
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+  left: 0;
+  text-align: center;
+  list-style-type: none;
+
+  @include below(small) {
+    display: none !important;
+  }
+
+  li {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px;
+    line-height: 0;
+
+    transition: $g-transition;
+
+    &:hover {
+      opacity: .6;
+    }
+  }
+
+  button {
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border: 3px solid transparent;
+    padding: 0;
+    color: transparent;
+
+    border-radius: 50%;
+    box-shadow: 0 0 1px 0 rgba(black, .4);
+
+    &:hover {
+      background-color: white; // override button's hover
+    }
+  }
+
+  .slick-active {
+    button {
+      background-color: $main-color;
+      border-color: white;
+    }
+  }
+}
+
+.slick-inner-nav {
+  @include slick-inner-nav();
+}
