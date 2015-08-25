@@ -5,12 +5,12 @@ $color-main : #2a71e3 !default;
 $color-sub  : #d7d7d7 !default;
 
 $color-passive : #e0e0e0 !default;
-$color-link : $main-color !default;
+$color-link : $color-main !default;
 $body-background  : #ffffff !default;
 
 // SIZING
-$grid-max-width : 650px !default;
-$size-mini      : 480px !default;
+$size-max   : 650px !default;
+$size-small : 360px !default;
 
 // TYPOGRAPHY
 $font-family : Helvetica, Arial, "sans-serif" !default;

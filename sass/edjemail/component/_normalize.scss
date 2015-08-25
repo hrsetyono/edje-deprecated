@@ -3,9 +3,9 @@
 // =======================
 // Based on htmlemailboilerplate.com/
 
-/* -------------------
-  EDGEMAIL NORMALIZE
-------------------- */
+/* -----------
+  Normalize
+----------- */
 
 // Prevent Webkit and Windows Mobile platforms from changing default font sizes, while not breaking desktop design.
 body {
@@ -54,7 +54,7 @@ table {
   a[href^="tel"],
   a[href^="sms"] {
     text-decoration: none;
-    color: $link-color;
+    color: $color-link;
     pointer-events: none;
     cursor: default;
   }
@@ -68,9 +68,9 @@ table {
   }
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: $size-small) {
   #background-table {
-    width: 360px;
+    width: $size-small;
   }
 }
 
@@ -85,7 +85,7 @@ table {
     cursor: default;
     pointer-events: none;
     text-decoration: none;
-    color: $link-color;
+    color: $color-link;
   }
 
   .mobile_link a[href^="tel"],
@@ -93,6 +93,6 @@ table {
     cursor: default;
     pointer-events: auto;
     text-decoration: default;
-    color: $link-color;
+    color: $color-link;
   }
 }

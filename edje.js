@@ -2,9 +2,10 @@
 
 var args = process.argv.slice(2);
 
-var logger = require("./cli/logger.js"),
-    template = require("./cli/template.js");
-    plugin = require("./cli/plugin.js");
+var logger = require("./bin/logger.js"),
+    template = require("./bin/template.js"),
+    plugin = require("./bin/plugin.js"),
+    str = require("./bin/string.js");
 
 // command center
 var commander = {
@@ -20,7 +21,7 @@ var commander = {
         break;
 
       default:
-        logger.warn("Invalid commando");
+        logger.warn(str.BASE.invalid_command);
     }
   },
 };
