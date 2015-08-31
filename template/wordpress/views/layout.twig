@@ -36,13 +36,8 @@
       </div>
 
       {% for item in menu.get_items %}
-        <div class="item {% if item.get_children %} has-child {% endif %}">
-          
-          <a href="{{ item.get_link }}"
-            {% if "current-menu-item" in item.classes %}
-              class="active"
-            {% endif %}>
-
+        <div class="{{ item.classes | join(' ') }}">
+          <a href="{{ item.get_link }}">
             {{ item.title }}
           </a>
           
@@ -79,7 +74,6 @@
   <script src="{{ js }}/vendor/jquery.min.js"></script>
 
   <script src="{{ js }}/vendor/fastclick.min.js"></script>
-  <script src="{{ js }}/vendor/edge.js"></script>
   <script src="{{ js }}/app.js"></script>
 
   {{ wp_footer }}

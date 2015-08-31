@@ -12,21 +12,30 @@ All modern browsers:
 - Android 4.0 and above
 - IE 9 and above
 
-INSTALLATION
+Installation
 -----------------
 
 1. Install [Node JS](https://nodejs.org/download/).
 
 2. Open command prompt (as admin) and type `npm install -g node-sass`.
 
-GETTING STARTED
+3. Then type `npm install -g edje`.
+
+Getting Started
 ------------------
 
-1. Generate template by running `edje template` **inside** your project directory. Available templates are HTML, WordPress, and Email (more coming soon).
+Open command prompt and run `edje template` **inside** your project directory. Choose the template you want by inputting in the number.
 
-2. Follow the guide given in the success message. For example HTML template needs to run `npm install` then `grunt` to compile Sass.
+Follow the guide given in the success message. For example HTML template needs to run `npm install` then `grunt` to compile Sass.
 
-GRID SYSTEM
+Table of Content
+------------------
+
+1. [Grid System](#grid-system)
+
+2. [Grid System - Tile](#grid-system---tile)
+
+Grid System
 ==================
     
     <h-row>
@@ -150,10 +159,11 @@ Just like row, you can collapse it to remove the gutter:
 - The `ul` and `li` elements have magic in it. So try not to add your own styling there.
 
 
-SASS
+Sass
 =================
 
-![Edje Sass](http://cdn.setyono.net/edge/compass-edge.jpg)
+![Edje Sass](http://cdn.setyono.net/edge/sass-edge.jpg)
+
 
 Run `grunt` in your project directory to start compiling the Sass.
 
@@ -167,8 +177,7 @@ Become:
 
     $grid-columns : 8;
 
-EM Converter
-===============
+## EM Converter
     
     .post p {
       font-size: em(14px);  
@@ -195,8 +204,7 @@ If the base size is not default, pass it as second parameter:
       }
     }
 
-MEDIA QUERY - mixin
-=========================
+## Media Query mixin
 
     below($size)
     above($size)
@@ -229,8 +237,7 @@ The parameter `$size` can accept pixel or keyword. Available keywords are `large
 - *Between* is inclusive to both (`>= smaller-size` and `<= larger-size`).
 
 
-GRID - mixin
-======================
+## Grid mixin
   
     row()
       $gutter   (px) Distance between columns
@@ -270,7 +277,7 @@ Custom grid makes the markup cleaner and easier to change.
 
 - Custom row and column MUST be applied to `h-row` and `h-column` elements respectively.
 
-### GUTTER
+### Gutter
 
 Custom gutter is applied to the row
 
@@ -286,7 +293,7 @@ Custom gutter is applied to the row
       @include row($gutter: 50px);
     }
 
-### RESPONSIVE GUTTER
+### Responsive Gutter
 
 Unlike the column's sizing. There's no parameter called `small-gutter` or `mini-gutter`.
 
@@ -304,7 +311,7 @@ So, the workaround is to use media query:
 
 - Use the same workaround for column's `offset`.
 
-### COLLAPSE
+### Collapse
 
 Collapse is also applied to the row
     
@@ -319,7 +326,7 @@ Collapse is also applied to the row
       @include row($collapse: true);
     }
 
-### TOTAL COLUMNS
+### Total Columns
 
 You can either use `$total` parameter or fraction:
       
@@ -333,19 +340,19 @@ You can either use `$total` parameter or fraction:
       @include column($size: 7 / 15, $offset: 3 / 15);
     }
 
-ADAPTIVE GRID
+Adaptive Grid
 ======================
 
-**Responsive grid** is always as wide as the screen size. This means your site must not break on all sizes.
+**Responsive grid** is always as wide as the screen size. This means you must ensure the site looks fine on every sizes.
 
-**Adaptive grid** follows the fixed-width of the next breakpoint.
+**Adaptive grid** follows the predefined sets of widths.
 
-Let's say the breakpoint is 700px and 500px, when the screen reaches below 700px, the grid will become 500px, leaving empty gap on the sides.
+Let's say the sets are 1120px, 960px and 720px. When the screen reaches below 1120px, the grid will become 960px, leaving empty gap on the sides.
 
 To use this, go to `settings.scss` and change the variable `$adaptive` to true. You can add more breakpoints in the variable `$adaptive-breakpoint`. Just make sure it's ordered **descendingly**.
 
 
-TILE - mixin
+Tile mixin
 ======================
 
     tile()
@@ -366,7 +373,7 @@ The **class** for custom tile MUST contain the word "tile"
       @include tile(7, 4, 2);
     }
 
-WORDPRESS
+WordPress
 ====================
 
 ![Edje Wordpress](http://cdn.setyono.net/edge/wp-edge.jpg)
@@ -407,6 +414,6 @@ EMAIL
 
 With the task `grunt build`, all external CSS will be inlined.
 
-You can also send a test email with `grunt send`. But first you need to configure your sender and receiver in Gruntfile in "nodemailer" section.
+You can also send a test email with `grunt send`. But first you need to configure your **sender and receiver** in Gruntfile's "nodemailer" section.
 
 **WARNING** - The configuration requires your email's password written in plain text. For safety, create a NEW Gmail address to be used as sender.
