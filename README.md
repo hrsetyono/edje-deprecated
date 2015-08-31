@@ -35,6 +35,18 @@ Table of Content
 
 2. [Grid System - Tile](#grid-system---tile)
 
+3. [Sass](#sass)
+
+4. [Grid mixin](#grid-mixin)
+
+5. [Adaptive Grid](#adaptive-grid)
+
+6. [Tile mixin](#tile-mixin)
+
+7. [WordPress](#wordpress)
+
+8. [Email](#email)
+
 Grid System
 ==================
     
@@ -128,7 +140,7 @@ It is ignored on small screen unless the small offset is specified.
 ![Edje Grid - Offset](http://cdn.setyono.net/edge/grid-offset.jpg)
 
 
-GRID SYSTEM - TILE
+Grid System - Tile
 =================
     
     <ul>
@@ -237,8 +249,9 @@ The parameter `$size` can accept pixel or keyword. Available keywords are `large
 - *Between* is inclusive to both (`>= smaller-size` and `<= larger-size`).
 
 
-## Grid mixin
-  
+Grid mixin
+=============
+
     row()
       $gutter   (px) Distance between columns
       $rim      (px) Distance from edge of screen
@@ -409,7 +422,7 @@ Example:
 
 Notice the `^` at the end of column's name? That indicates that the column is sortable.
 
-EMAIL
+Email
 =============
 
 With the task `grunt build`, all external CSS will be inlined.
