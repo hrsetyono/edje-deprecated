@@ -79,17 +79,26 @@ class CPT {
       "menu_position" => $menu_position
     );
 
-    if($args["icon"]) {
-      $post_args["menu_icon"] = "dashicons-".$args["icon"];
+    if(isset($args["icon"]) ) {
+      $icon = str_replace("dashicons-", "", $args["icon"] );
+      $post_args["menu_icon"] = "dashicons-" . $icon;
     }
 
     return $post_args;
   }
 
   // Create taxonomy and it's filter
-  private function add_taxonomy($tax_name, $post_type) {
-    $plural = Inflector::pluralize($tax_name);
-    $singular = $tax_name;
+  private function add_taxonomy($tax, $post_type) {
+    // if value is string, create the slug
+    if(is_string($tax) ) {
+      $tax = array(
+        "label" => $tax,
+        "slug" => h_paramize($tax)
+      );
+    }
+
+    $plural = Inflector::pluralize($tax["label"]);
+    $singular = $tax["label"];
 
     $labels = array(
       "name" => $plural,
@@ -114,9 +123,12 @@ class CPT {
       "show_admin_column" => false,
       "hierarchical" => true,
     );
-    register_taxonomy(strtolower($tax_name), strtolower($post_type), $tax_args);
 
-    new CPT_Filter(array(strtolower($post_type) => array(strtolower($singular) ) ) );
+    register_taxonomy($tax["slug"], strtolower($post_type), $tax_args);
+
+    new CPT_Filter(array(
+      strtolower($post_type) => array(strtolower($tax["slug"]) )
+    ) );
   }
 
   // Add visible column in admin panel
@@ -134,14 +146,16 @@ class CPT {
     // create the filter function
     $filter_create = function($defaults) use ($columns) {
       $cols = array();
-      foreach($columns as $c) {
-        $cols[$c] = ucwords( str_replace("_", " ", $c) );
+      foreach($columns as $key => $value) {
+        $col_title = is_string($key) ? $key : $value;
+        $cols[$col_title] = ucwords( str_replace("_", " ", $col_title) );
       }
+
       $cols = array("cb" => $defaults["cb"]) + $cols;
       return $cols;
     };
 
-    $filter_fill = function($column_name, $post_id) {
+    $filter_fill = function($column_name, $post_id) use ($columns) {
       switch($column_name) {
         case "cb":
         case "title":
@@ -156,36 +170,45 @@ class CPT {
         // if custom field
         default:
           global $post;
-          
-          $meta = get_field($column_name, $post_id);
-          $terms = get_the_terms($post_id, $column_name);
-      
-      // is a term if no error and has been ticked
-          $is_terms = !isset($terms->errors) && $terms;
-          
-          // if the column is a custom field
-          if($meta) {
-            echo $meta;
-          }
-          // if the column is a term
-          elseif ($is_terms) {
-            $out = array();
 
-            // loop through each term, linking to the 'edit posts' page for the specific term
-            foreach ($terms as $term) {
-              $out[] = sprintf("<a href='%s'>%s</a>",
-                esc_url( add_query_arg(
-                  array("post_type" => $post->post_type, "type" => $term->slug), "edit.php")
-                ),
-                esc_html( sanitize_term_field(
-                  "name", $term->name, $term->term_id, "type", "display")
-                )
-              );
+          // if object, then run the function
+          if(isset($columns[$column_name]) ) {
+            $fields = get_fields($post_id);
+            echo $columns[$column_name]($post, $fields);
+          }
+          // if plain string, look for the custom field
+          else {
+            $meta = get_field($column_name, $post_id);
+            $terms = get_the_terms($post_id, $column_name);
+        
+            // is a term if no error and has been ticked
+            $is_terms = !isset($terms->errors) && $terms;
+            
+            // if the column is a custom field
+            if($meta) {
+              echo $meta;
             }
+            // if the column is a term
+            elseif ($is_terms) {
+              $out = array();
 
-            // join the terms, separating with comma
-            echo join(", ", $out);
+              // loop through each term, linking to the 'edit posts' page for the specific term
+              foreach ($terms as $term) {
+                $out[] = sprintf("<a href='%s'>%s</a>",
+                  esc_url( add_query_arg(
+                    array("post_type" => $post->post_type, "type" => $term->slug), "edit.php")
+                  ),
+                  esc_html( sanitize_term_field(
+                    "name", $term->name, $term->term_id, "type", "display")
+                  )
+                );
+              }
+
+              // join the terms, separating with comma
+              echo join(", ", $out);
+            }
           }
+          
           break;
       }
     };
@@ -199,11 +222,12 @@ class CPT {
     };
 
     // additional wp args if sort by custom field
+    // TODO: bug with custom name
     $metakey_sortable = function($vars) use ($sortable_columns) {
       $is_orderby_meta = isset($vars["orderby"]) && in_array($vars["orderby"], $sortable_columns);
 
       if ($is_orderby_meta) {
-        $vars = array_merge( $vars, array(
+        $vars = array_merge($vars, array(
           "meta_key" => $vars["orderby"],
           "orderby" => "meta_value"
         ));
@@ -217,10 +241,14 @@ class CPT {
     add_filter("request", $metakey_sortable);
   }
 
-  // Cleanup the column args from annotation
+  // Cleanup the column args from annotation, return as is if it's an object
   private function clean_columns($raw) {
-    $columns = array_map(function($c) {
-      return trim($c, "^");
+    $columns = array_map(function($r) {
+      if(is_string($r) ) {
+        return trim($r, "^");
+      } else {
+        return $r;
+      }
     }, $raw);
 
     return $columns;
@@ -228,11 +256,12 @@ class CPT {
 
   // Look for sortable column, annotated with ^
   private function get_sortable_columns($raw) {
-    $columns = array_map(function($c) {
-      if(strpos($c, "^") ) {
-        return trim($c, "^");
+    $columns = array_map(function($val, $key) {
+      // if value is string and contains ^
+      if(is_string($val) && strpos($val, "^") ) {
+        return trim($val, "^");
       }
-    }, $raw);
+    }, $raw, array_keys($raw) );
 
     return array_filter($columns);
   }
@@ -262,6 +291,7 @@ class CPT_Filter {
 
       foreach ($filters as $tax_slug) {
         // retrieve the taxonomy object
+        $tax_slug = h_paramize($tax_slug);
         $tax_obj = get_taxonomy($tax_slug);
         $tax_name = $tax_obj->labels->name;
 
@@ -287,7 +317,7 @@ class CPT_Filter {
     $tab = "";
     
     for($i = 0; $i < $level; $i++) {
-      $tab .= "--";
+      $tab .= "- ";
     }
 
     foreach ($terms as $term) {

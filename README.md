@@ -391,7 +391,7 @@ WordPress
 
 ![Edje Wordpress](http://cdn.setyono.net/edge/wp-edge.jpg)
 
-Our WordPress template requirs [Timber](https://wordpress.org/plugins/timber-library/). It is a template engine that separates PHP and HTML into their own file, reducing the amount of "spaghetti" code.
+Our WordPress template comes with [Timber](https://wordpress.org/plugins/timber-library/). It is a plugin that allow separation of PHP and HTML file, reducing the amount of "spaghetti" code.
 
 ### CPT - Custom Post Type
 
@@ -406,7 +406,7 @@ The `$name` MUST be one-word, singular, and titleized case. Example:
 
 Optional arguments list:
 
-*icon* - Icon names are listed here [melchoyce.github.io/dashicons/](http://melchoyce.github.io/dashicons/). Exclude the "dashicons-".
+*icon* - Icon names are listed here [https://developer.wordpress.org/resource/dashicons/](https://developer.wordpress.org/resource/dashicons/). Exclude the "dashicons-".
 
 *taxonomy* - The custom category term. The naming convention is the same as CPT's name.
 

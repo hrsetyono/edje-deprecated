@@ -113,7 +113,7 @@ remove_action("admin_print_scripts", "print_emoji_detection_script");
 
 // remove extra rss
 remove_action("wp_head", "feed_links", 2 );
-remove_action(" wp_head", "feed_links_extra", 3 );
+remove_action("wp_head", "feed_links_extra", 3 );
 
 // remove thank you message in admin
 add_filter("admin_footer_text", "__return_empty_string", 11);
