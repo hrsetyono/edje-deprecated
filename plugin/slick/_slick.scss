@@ -31,6 +31,7 @@
   padding: 0;
   width: 50px; // bigger hitbox
   height: 80px;
+  border: none;
   color: transparent;
   font-size: 0;
 
@@ -118,12 +119,8 @@
 
   .slick-active {
     button {
-      background-color: $main-color;
+      background-color: $color-main;
       border-color: white;
     }
   }
-}
-
-.slick-inner-nav {
-  @include slick-inner-nav();
 }

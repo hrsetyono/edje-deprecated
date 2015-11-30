@@ -79,7 +79,7 @@
   
   // make most outer row the page size
   h-row {
-    min-width: $row-max-width + $column-gutter;
+    min-width: $grid-max-width + $grid-gutter;
 
     h-row {
       min-width: 0;

@@ -25,3 +25,8 @@ function ellipsize($text, $char_number = "160", $etc = "...") {
   $text = htmlentities($text, ENT_QUOTES);
   return $text;
 }
+
+// Transform string into parameter-safe
+function h_paramize($str) {
+  return strtolower( str_replace(" ", "_", $str) );
+}

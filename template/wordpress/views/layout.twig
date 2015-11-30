@@ -7,8 +7,8 @@
 
   <!-- WEBSITE DETAIL -->
   <title>
+    {% if wp_title %} {{ wp_title }} | {% endif %}
     {{ site.name }}
-    {% if wp_title %} | {{ wp_title }} {% endif %}
   </title>
   <meta name="description" content="{{ site.description }}">
 
@@ -20,6 +20,16 @@
   <link rel="stylesheet" href="{{ css }}/framework.css">
   <link rel="stylesheet" href="{{ css }}/app.css">
 
+  <!-- SOCIAL -->
+  <meta property="og:title" content="{{ wp_title }}">
+  <meta property="og:site_name" content="{{ site.name }}">
+  {% if post.content %}
+    <meta property="og:description" content="{{ post.get_preview(25, false, '') }}">
+  {% endif %}
+  {% if post.thumbnail %}
+    <meta property="og:image" content="{{ post.thumbnail.src }}">
+  {% endif %}
+
   {{ wp_head }}
 </head>
 
@@ -29,7 +39,7 @@
     
     <!-- Main Navigation Menu -->
     <nav class="main-menu">
-      <div class="logo">
+      <div class="main-logo">
         <a href="{{ home_url }}">
           <img src="{{ images }}/favicon-big.png" alt="{{ site.name }}'s Logo">
         </a>
@@ -54,7 +64,7 @@
     </nav>
 
     <!-- Search -->
-    <form method="get" action="{{ home_url }}" role="search">
+    <form method="get" action="{{ home_url }}">
       <input type="search" name="s" placeholder="Enter keyword">
       <input type="submit" value="Search">
     </form>
