@@ -1,6 +1,6 @@
 {
   "name": "edje",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Lightweight Sass framework for creating website from scratch",
   "main": "index.js",
   "dependencies": {
@@ -18,9 +18,7 @@
     "grunt-sass": "^1.0.0",
     "load-grunt-tasks": "^3.2.0"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hrsetyono/edje.git"

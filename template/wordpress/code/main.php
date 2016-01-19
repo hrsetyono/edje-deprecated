@@ -94,14 +94,6 @@ add_action("admin_menu", function() {
   }
 });
 
-/* REMOVE IMAGE RESIZER */
-add_filter("intermediate_image_sizes_advanced", function($sizes) {
-  unset( $sizes["medium"]);
-  unset( $sizes["large"]);
-
-  return $sizes;
-});
-
 // remove wp meta tag
 remove_action("wp_head", "wp_generator") ;
 remove_action("wp_head", "wlwmanifest_link") ;
