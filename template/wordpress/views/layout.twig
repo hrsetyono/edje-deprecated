@@ -11,11 +11,12 @@
     {{ site.name }}
   </title>
   <meta name="description" content="{{ site.description }}">
+  <meta name="theme-color" content=""> <!-- use Hex color -->
 
   <!-- FAVICON -->
   <link rel="icon" href="{{ images }}/favicon.png">
   <link rel="apple-touch-icon-precomposed" href="{{ images }}/favicon-big.png">
-  
+
   <!-- STYLESHEET -->
   <link rel="stylesheet" href="{{ css }}/framework.css">
   <link rel="stylesheet" href="{{ css }}/app.css">
@@ -36,7 +37,7 @@
 <body class="{{ body_class }}">
 
   <div id="main-wrapper">
-    
+
     <!-- Main Navigation Menu -->
     <nav class="main-menu">
       <div class="main-logo">
@@ -50,7 +51,7 @@
           <a href="{{ item.get_link }}">
             {{ item.title }}
           </a>
-          
+
           {% if item.get_children %}
             <div class="child-menu">
               {% for child in item.get_children %}
@@ -58,7 +59,7 @@
               {% endfor %}
             </div>
           {% endif %}
-        
+
         </div>
       {% endfor %}
     </nav>
@@ -68,7 +69,7 @@
       <input type="search" name="s" placeholder="Enter keyword">
       <input type="submit" value="Search">
     </form>
-    
+
     <!-- Main Content -->
     {% block content %}{% endblock %}
 
@@ -87,6 +88,6 @@
   <script src="{{ js }}/app.js"></script>
 
   {{ wp_footer }}
-  
+
 </body>
 </html>

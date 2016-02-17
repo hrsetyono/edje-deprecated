@@ -24,6 +24,10 @@
 body {
   position: relative;
   background: $body-background;
+
+  @if not $responsive {
+    min-width: $size-medium;
+  }
   
   font-family: $font-family;
   font-weight: $font-weight;

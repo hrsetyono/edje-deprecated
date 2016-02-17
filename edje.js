@@ -2,10 +2,10 @@
 
 var args = process.argv.slice(2);
 
-var logger = require("./bin/logger.js"),
-    template = require("./bin/template.js"),
-    plugin = require("./bin/plugin.js"),
-    str = require("./bin/string.js");
+var logger = require("./script/logger.js"),
+    template = require("./script/template.js"),
+    plugin = require("./script/plugin.js"),
+    str = require("./script/string.js");
 
 // command center
 var commander = {
