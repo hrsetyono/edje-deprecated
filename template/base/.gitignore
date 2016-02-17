@@ -55,4 +55,17 @@ $RECYCLE.BIN/
 .sass-cache/
 .esproj/
 
+# Node
 node_modules/
+logs
+*.log
+npm-debug.log*
+
+pids
+*.pid
+*.seed
+
+.grunt
+.npm
+
+.node_repl_history

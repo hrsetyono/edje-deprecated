@@ -2,7 +2,7 @@
 
 var string = {
   BASE: {
-    invalid_command: "Command not found. Try `edje template`.",
+    invalid_command: "Command not found. Try `edje create`.",
   },
 
   // TEMPLATE
@@ -15,7 +15,7 @@ var string = {
     command_email:
         "\n    grunt build : inline the CSS" +
         "\n    grunt send  : inline and send test email, configure it in Gruntfile first",
-    invalid: "Invalid template name. Type `edje template` to see available one.",
+    invalid: "Invalid template name. Type `edje create` to see available one.",
     cancelled: "Template creation cancelled",
 
     // string prompt
@@ -28,6 +28,7 @@ var string = {
     ask_name: "Enter your theme's directory name:",
     download_bar: "downloading [:bar] :percent :etas",
     setup_theme: "Setting up theme directory...",
+    setup_plugin: "Downloading default plugins...",
     success: "Go to `wp-content/themes/{name}` to run these commands:",
   },
 
@@ -36,9 +37,8 @@ var string = {
     success: "JS needs <script> tag and Sass must be @import-ed (in framework.scss).",
     not_edje: "Sorry, this command only works on Edje project.",
     not_found: "Plugin not found, type `edje plugin` to see available list."
-        
+
   },
 };
 
 module.exports = string;
-

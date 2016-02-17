@@ -1,14 +1,12 @@
 {
   "name": "edje",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "description": "Lightweight Sass framework for creating website from scratch",
   "main": "index.js",
   "dependencies": {
     "adm-zip": "^0.4.7",
     "fs-extra": "^0.22.1",
     "inquirer": "^0.9.0",
-    "node-sass": "^3.2.0",
-    "npm": "^2.11.2",
     "winston": "^1.0.1"
   },
   "devDependencies": {
@@ -28,7 +26,8 @@
     "css",
     "scss",
     "sass",
-    "lightweight"
+    "lightweight",
+    "framework"
   ],
   "author": "Henner Setyono",
   "license": "ISC",

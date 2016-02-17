@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
-    
+
     path: {
       assets: "assets",
       css: [ "<%= path.assets %>/css" ],
@@ -68,7 +68,7 @@ module.exports = function(grunt) {
           options: {
             service: "Gmail",
             auth: {
-              user: "your.fake.email@gmail.com",
+              user: "your.fake.address@gmail.com",
               pass: "yourpassword",
             }
           }
