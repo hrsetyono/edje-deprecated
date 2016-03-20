@@ -1,32 +1,32 @@
-"use strict";
+'use strict';
 
 module.exports = function(grunt) {
 
   grunt.initConfig({
-    pkg: grunt.file.readJSON("package.json"),
+    pkg: grunt.file.readJSON('package.json'),
 
     path: {
-      assets: "assets",
-      css: [ "<%= path.assets %>/css" ],
-      sass: [ "<%= path.assets %>/sass" ],
-      js: [ "<%= path.assets %>/js" ]
+      assets: 'assets',
+      css: [ '<%= path.assets %>/css' ],
+      sass: [ '<%= path.assets %>/sass' ],
+      js: [ '<%= path.assets %>/js' ]
     },
 
     sass: {
       options: {
-        includePaths: require("edje").includePaths()
+        includePaths: require('edje').includePaths()
       },
       dev: {
         options: {
-          outputStyle: "compact",
+          outputStyle: 'compact',
           sourceMap: false
         },
         files: [{
           expand: true,
-          cwd: "<%= path.sass %>/",
-          src: ["**/*.scss"],
-          dest: "<%= path.css %>/",
-          ext: ".css"
+          cwd: '<%= path.sass %>/',
+          src: ['**/*.scss'],
+          dest: '<%= path.css %>/',
+          ext: '.css'
         }]
       },
     },
@@ -34,14 +34,14 @@ module.exports = function(grunt) {
     watch: {
       sass: {
         files: [
-          "<%= path.sass %>/**/*.{scss,sass}"
+          '<%= path.sass %>/**/*.{scss,sass}'
         ],
-        tasks: ["sass:dev"]
+        tasks: ['sass:dev']
       }
     },
   });
 
-  grunt.registerTask("default", ["watch"]);
-  grunt.loadNpmTasks("grunt-sass");
-  grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.registerTask('default', ['watch']);
+  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 };

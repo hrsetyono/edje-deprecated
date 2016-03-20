@@ -1,6 +1,6 @@
 // Thanks to https://gist.github.com/garth/2570757
 
-var winston = require("winston");
+var winston = require('winston');
 
 // level and color list
 var _cust = {
@@ -13,24 +13,24 @@ var _cust = {
     success: 5,
   },
   colors: {
-    info: "cyan",
-    warn: "yellow",
-    error: "red",
-    debug: "white",
-    create: "yellow",
-    success: "green",
+    info: 'cyan',
+    warn: 'yellow',
+    error: 'red',
+    debug: 'white',
+    create: 'yellow',
+    success: 'green',
   }
 };
 
 // create custom logging
 var _logger = new (winston.Logger)({
-  level: "info",
+  level: 'info',
   levels: _cust.levels,
   colors: _cust.colors,
 
   transports: [
     new winston.transports.Console({
-      level: "info",
+      level: 'info',
       levels: _cust.levels,
       colorize: true,
       prettyPrint: true,
@@ -40,10 +40,10 @@ var _logger = new (winston.Logger)({
 });
 
 // try all logging levels
-_logger["all"] = function() {
+_logger['all'] = function() {
   for(var lvl in _cust.levels) {
     if(_cust.levels.hasOwnProperty(lvl) ) {
-      this[lvl]("hello world");
+      this[lvl]('hello world');
     }
   }
 }

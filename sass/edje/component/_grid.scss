@@ -31,13 +31,13 @@
     display: block;
     margin: 0 auto;
     max-width: $width + $gutter;
-    width: 100%;  
+    width: 100%;
     @include _rim($gutter, $rim);
 
     @if $responsive and $adaptive {
       @include _adaptive($adaptive-breakpoints, $gutter);
     }
-    
+
     @if not $responsive {
       min-width: $width + $gutter;
     }
@@ -78,7 +78,7 @@
 // Calculate the distance of grid with edge of screen
 @mixin _rim($gutter, $rim, $width: $grid-max-width) {
   $padding: $gutter / 2; // column padding, acted as base rim
-  
+
   @if $rim != $padding {
     // if custom rim is bigger than base, make width smaller, else make width bigger
     $new-rim: if($rim > $padding,
@@ -92,7 +92,7 @@
                 );
 
     width: $new-width;
-    
+
     // if custom rim is smaller, need to adjust margin
     @if $rim < $padding {
       @include below($width + $rim) {
@@ -133,7 +133,7 @@
   $width    : null,
   $rim      : null,
   $collapse : false) {
-  
+
   @if $gutter {
     // row needs the negative margin only if nested
     h-row &,
@@ -147,7 +147,7 @@
       padding-left: $gutter / 2;
     }
   }
-  
+
   // recalculate width if any number is passed
   @if $gutter or $width or $rim {
     // assign value to (in case) null variable
@@ -155,7 +155,7 @@
     $gutter: if($gutter, $gutter, $grid-gutter);
 
     max-width: $width + $gutter;
- 
+
     @if not $responsive {
       min-width: $width + $gutter;
     }
@@ -186,20 +186,20 @@
 
 @mixin _base-column(
   $size   : 0,
-  $offset : null, // `0` means reset offset, so default is `null` 
+  $offset : null, // `0` means reset offset, so default is `null`
   $gutter : null, // if default is $grid-gutter, all mixin call will output the padding
   $collapse : false,
   $centered : null, // `false` means uncentered, so default is `null`
   $total  : $grid-columns,
   $for-base : false) {
-  
+
   @if $for-base {
     display: block;
     float: $default-float;
     padding-right: $grid-gutter / 2; // default
     padding-left: $grid-gutter / 2;
   }
-  
+
   // Custom Gutter
   @if $gutter {
     padding-right: $gutter / 2;
@@ -216,12 +216,12 @@
   @if $offset {
     margin-#{$default-float}: _gridCalc($offset, $total);
   }
-  
+
   // Size, calculate width
   @if $size > 0 {
     width: _gridCalc($size, $total);
   }
-  
+
   // Centered, add centered margin
   @if $centered {
     display: block;
@@ -252,14 +252,14 @@
   // Sizing
   @if $size > 0 {
     @include _base-column($size, $offset: $offset, $total: $total);
-    
+
     // Reset offset in small / mini screen
     $reset-offset: if($offset, 0, null);
     @if $small > 0 {
       @include below(small) {
         @include _base-column($small, $offset: $reset-offset, $total: $total);
       }
-      
+
       // if the reset is already applied on small screen, no need for the mini screen
       $reset-offset: null;
     }
@@ -270,7 +270,7 @@
       }
     }
   }
-  
+
   // Collapse and Centered behavior is the same as base column
   @include _base-column(
     $collapse: $collapse,
@@ -290,14 +290,14 @@
   $width    : 0px,
   $gutter   : $grid-gutter,
   $centered : false ) {
-  
+
   // Collapse and Centered behavior is the same as base column
   @include _base-column(
     $centered: $centered
   );
-  
+
   width: percentage(($size + $gutter) / ($width + $gutter) );
-  
+
   @if $gutter > 0 {
     padding-right: $gutter / 2;
     padding-left: $gutter / 2;
@@ -330,11 +330,11 @@
 // normal row
 h-row {
   @include _base-row($for-base:true);
-  
+
   // nested row
   h-row {
     @include _base-row($nest:true);
-    
+
     // collapsed nested row
     &.collapse {
       @include _base-row($nest:true, $collapse:true);
@@ -350,12 +350,12 @@ h-column {
 // collapsed row
 .collapse {
   @include _base-row($collapse:true);
-  
+
   // nested row inside collapsed
   h-row {
     @include _base-row($nest:true);
   }
-  
+
   // TODO: potential error, only works if h-column is child or grand-child
   > h-column,
   > * > h-column {
@@ -378,13 +378,13 @@ h-column {
   @for $i from 1 through $grid-columns {
     .large-#{$i} { @extend %large-reset; }
   }
-  
+
   // reset large offset
   %offset-reset { @include _base-column($offset: 0); }
   @for $i from 1 through ($grid-columns - 1) {
     .offset-#{$i} { @extend %offset-reset; }
   }
-  
+
   @include _grid-size("small");
   @include _grid-offset("small-offset");
 

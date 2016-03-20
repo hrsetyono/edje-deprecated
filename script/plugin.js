@@ -1,25 +1,25 @@
 // Additional scripts for a project, such as slider, datepicker, etc.
 
-var path = require("path"),
-    fs = require("fs-extra"),
-    inquirer = require("inquirer"),
+var path = require('path'),
+    fs = require('fs-extra'),
+    inquirer = require('inquirer'),
 
-    logger = require("./logger.js"),
-    str = require("./string.js"),
-    printf = require("./printf.js");
+    logger = require('./logger.js'),
+    str = require('./string.js'),
+    printf = require('./printf.js');
 
 // constant
 var PATH = {
-  src: require("path").dirname(require.main.filename),
+  src: require('path').dirname(require.main.filename),
   current: process.cwd(),
 };
 
 var plugin = {
-  MENU: ["slick", "fancybox"],
-  TYPE_DIR: PATH.src + "/plugin/{type}",
-  
-  SASS_DEST: "/assets/sass",
-  JS_DEST: "/assets/js/vendor",
+  MENU: ['slick', 'fancybox'],
+  TYPE_DIR: PATH.src + '/plugin/{type}',
+
+  SASS_DEST: '/assets/sass',
+  JS_DEST: '/assets/js/vendor',
 
   init: function(type) {
     // if the project depends on Edje
@@ -52,21 +52,21 @@ var plugin = {
         // look for the right destination dir
         var dest = null;
         switch(path.extname(files[i]) ) {
-          case ".scss":
+          case '.scss':
             dest = this.SASS_DEST;
             break;
 
-          case ".js":
+          case '.js':
           default:
             dest = this.JS_DEST;
             break;
         }
 
         // copy files
-        var filePath = srcDir + "/" + files[i];
-        var fullDest = PATH.current + dest + "/" + files[i]; 
+        var filePath = srcDir + '/' + files[i];
+        var fullDest = PATH.current + dest + '/' + files[i];
         fs.copySync(filePath, fullDest);
-        logger.create(dest + "/" + files[i] );
+        logger.create(dest + '/' + files[i] );
       } // endfor
 
       logger.success(str.PLUGIN.success);
@@ -76,7 +76,7 @@ var plugin = {
   // check if the project depends on Edje
   _dependsOnEdje: function() {
     try {
-      var pack = require(PATH.current + "/package.json");
+      var pack = require(PATH.current + '/package.json');
       return pack.dependencies.edje ? true : false;
     } catch(e) {
       return false
@@ -85,8 +85,8 @@ var plugin = {
 
   _menu: function() {
     var questions = [{
-      type: "rawlist",
-      name: "type",
+      type: 'rawlist',
+      name: 'type',
       message: str.PLUGIN.ask_menu,
       choices: this.MENU,
     }];
@@ -111,8 +111,8 @@ var safety = {
     if(files.length > 0) {
 
       var questions = [{
-        type: "confirm",
-        name: "proceed",
+        type: 'confirm',
+        name: 'proceed',
         default: false,
         message: str.TEMPLATE.ask_confirm
       }];

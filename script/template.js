@@ -1,14 +1,14 @@
-var fs = require("fs-extra"),
-    inquirer = require("inquirer"), // prompt
-    adm_zip = require("adm-zip"), // unzip wp
+var fs = require('fs-extra'),
+    inquirer = require('inquirer'), // prompt
+    adm_zip = require('adm-zip'), // unzip wp
 
-    logger = require("./logger.js"), // pretty logging
-    str = require("./string.js"), // constant string
-    printf = require("./printf.js");
+    logger = require('./logger.js'), // pretty logging
+    str = require('./string.js'), // constant string
+    printf = require('./printf.js');
 
 // constant
 var PATH = {
-  src: require("path").dirname(require.main.filename),
+  src: require('path').dirname(require.main.filename),
   current: process.cwd(),
 };
 
@@ -17,9 +17,9 @@ var PATH = {
 -------------------- */
 
 var template = {
-  MENU: ["html", "email", "wordpress"],
-  BASE_SRC: PATH.src + "/template/base",
-  TYPE_SRC: PATH.src + "/template/{type}",
+  MENU: ['html', 'email', 'wordpress'],
+  BASE_SRC: PATH.src + '/template/base',
+  TYPE_SRC: PATH.src + '/template/{type}',
 
   init: function(type) {
     if(type) {
@@ -40,12 +40,13 @@ var template = {
       }
 
       switch(type) {
-        case "wordpress":
-          logger.info(str.WP.start + "\n");
-          wordpress.create();
+        case 'wordpress':
+        case 'woocommerce':
+          logger.info(str.WP.start + '\n');
+          wordpress.create(type);
           break;
 
-        case "email":
+        case 'email':
           this._create(type);
           logger.success(
             str.TEMPLATE.success +
@@ -72,14 +73,14 @@ var template = {
   // ask for which template to output
   _menu: function() {
     var questions = [{
-      type: "rawlist",
-      name: "type",
+      type: 'rawlist',
+      name: 'type',
       message: str.TEMPLATE.ask_menu,
       choices: this.MENU,
     }];
 
     inquirer.prompt(questions, function(answers) {
-      console.log(""); // line break
+      console.log(''); // line break
       this._run(answers.type);
     }.bind(this) );
   },
@@ -95,7 +96,7 @@ var template = {
 
   // copy the specific template
   _create: function(type) {
-    logger.create(type + " template");
+    logger.create(type + ' template');
 
     var templatePath = printf(this.TYPE_SRC, {type: type});
 
@@ -110,52 +111,92 @@ var template = {
 ------------------ */
 
 var wordpress = {
-  SRC_NAME: "wordpress.zip", // local wp file
+  SRC_NAME: 'wordpress.zip', // local wp file
 
-  BASE_DIR: PATH.src + "/template/wordpress-src",
-  ZIP_SRC: PATH.current + "/wordpress.zip",
+  WP_INSTALL_SRC: PATH.src + '/template/wordpress-src',
+  WP_INSTALL_CURRENT: PATH.current + '/wordpress.zip',
 
-  BASE_SRC: PATH.src + "/template/base",
-  THEME_SRC: PATH.src + "/template/wordpress",
-  PLUGIN_SRC: PATH.src + "/template/wordpress-plugins",
-  PLUGINS: ["timber-library.zip", "edje-wp.zip"],
+  BASE_TEMPLATE: PATH.src + '/template/base',
+  WP_TEMPLATE: PATH.src + '/template/wordpress',
+  WOO_TEMPLATE: PATH.src + '/template/woocommerce',
 
-  THEME_DEST: PATH.current + "/wp-content/themes/{name}",
-  PLUGIN_DEST: PATH.current + "/wp-content/plugins",
+  PLUGIN_SRC: PATH.src + '/template/wordpress-plugins',
+  WP_PLUGINS: ['timber-library.zip', 'edje-wp.zip'],
+  WOO_PLUGINS: ['edje-woo.zip', 'woocommerce.zip'],
+
+  TEMPLATE_DEST: PATH.current + '/wp-content/themes/{name}',
+  PLUGIN_DEST: PATH.current + '/wp-content/plugins',
 
   // get the zip file from local source
-  create: function() {
-    fs.copySync(this.BASE_DIR, PATH.current);
+  create: function(type) {
+    var that = this;
 
-    // TODO: when there is existing wordpress.zip file, it takes time to replace it. So setup will return "file not found" error
-    this._setup();
-  },
+    // copy WP installation
+    fs.copySync(that.WP_INSTALL_SRC, PATH.current);
 
-  // Arrange the directory and add theme
-  _setup: function() {
-    this._prompt(function(name) {
+    // TODO: when there is existing wordpress.zip file, it takes time to replace it. So setup will return 'file not found' error
+
+    // copy Template and Plugins
+    var name = '';
+    that._prompt(function(_name) {
+      name = _name;
       logger.info(str.WP.setup_theme);
 
-      this._unzip(this.ZIP_SRC, PATH.current);
-      this._theme(name);
-      this._basePlugin();
+      that._unzipSync(that.WP_INSTALL_CURRENT, PATH.current);
+
+      that._addTemplate(name, that.BASE_TEMPLATE, _afterAddBase);
+      this._addPlugins(this.WP_PLUGINS);
     });
+
+    /////
+
+    function _afterAddBase(err) {
+      if(err) { logger.error(err); }
+
+      logger.info(str.WP.setup_plugin);
+      that._addTemplate(name, that.WP_TEMPLATE, _afterAddWp);
+    }
+
+    function _afterAddWp(err) {
+      if(err) { logger.error(err); }
+
+      // if woocomemrce
+      if(type === 'woocommerce') {
+        logger.info(str.WP.setup_woo_plugin);
+
+        that._addTemplate(name, that.WOO_TEMPLATE, _afterSuccessAll );
+        that._addPlugins(that.WOO_PLUGINS);
+      }
+      else {
+        _afterSuccessAll();
+      }
+    }
+
+    function _afterSuccessAll() {
+      logger.success(
+        printf(str.WP.success, { name: name }) +
+        str.TEMPLATE.command_all
+      );
+    }
   },
+
+  /////
 
   /*
     Unzips the file, then deletes it
     @param file (string) path to the zip file
-           to (string) directory to put the extracted files
+           dest (string) directory to put the extracted files
   */
-  _unzip: function(file, to) {
+  _unzipSync: function(file, dest) {
     var zip = new adm_zip(file);
-    zip.extractAllTo(to, true);
-    fs.remove(file, function() {});
+    zip.extractAllTo(dest, true);
+
+    fs.remove(file, function() {} );
   },
 
   /*
     Add base and theme files.
-    @param name (string) theme's directory name (preferrably no-space, lower case)
+    @param name (string) - theme's directory name (preferrably no-space, lower case)
   */
   _theme: function(name) {
     var that = this;
@@ -183,22 +224,42 @@ var wordpress = {
         str.TEMPLATE.command_all
       );
     }
-
   },
 
   /*
-    Copy and unzip the Base plugin, includes Timber and Edje-WP
+    Copy template files
+
+    @param name (string) - The theme's directory name.
+    @param srcDir (string) - Directory where the source is.
   */
-  _basePlugin: function() {
+  _addTemplate: function(name, srcDir, callback) {
+    var destDir = printf(this.TEMPLATE_DEST, { name: name });
+    callback = callback || _afterCopy;
+
+    fs.copy(srcDir, destDir, callback);
+
+    function _afterCopy(err) {
+      logger.error('from addTemplate ' + srcDir);
+      logger.error(err);
+    }
+  },
+
+  /*
+    Copy and unzip the plugins
+
+    @param array - List of file name of the zipped plugins
+  */
+  _addPlugins: function(plugins) {
     var that = this;
-    logger.info(str.WP.setup_plugin)
 
-    this.PLUGINS.forEach(function(i) {
-      var src = that.PLUGIN_SRC + "/" + i;
-      var dest = that.PLUGIN_DEST + "/" + i;
+    plugins.forEach(function(i) {
+      var srcZip = that.PLUGIN_SRC + '/' + i;
+      var destZip = that.PLUGIN_DEST + '/' + i;
 
-      fs.copy(src, dest, function(err) {
-        that._unzip(dest, that.PLUGIN_DEST);
+      fs.copy(srcZip, destZip, function(err) {
+        if(err) { logger.error('from plugins'); logger.error(err); }
+
+        that._unzipSync(destZip, that.PLUGIN_DEST);
       });
     });
   },
@@ -206,9 +267,9 @@ var wordpress = {
   // Ask the theme's directory name
   _prompt: function(callback) {
     var questions = [{
-      type: "type",
-      name: "name",
-      default: "custom-theme",
+      type: 'type',
+      name: 'name',
+      default: 'custom-theme',
       message: str.WP.ask_name,
     }];
 
@@ -232,8 +293,8 @@ var safety = {
     if(files.length > 0) {
 
       var questions = [{
-        type: "confirm",
-        name: "proceed",
+        type: 'confirm',
+        name: 'proceed',
         default: false,
         message: str.TEMPLATE.ask_confirm
       }];

@@ -46,16 +46,16 @@
         </a>
       </div>
 
-      {% for item in menu.get_items %}
+      {% for item in menu.items %}
         <div class="{{ item.classes | join(' ') }}">
-          <a href="{{ item.get_link }}">
+          <a href="{{ item.url }}">
             {{ item.title }}
           </a>
 
-          {% if item.get_children %}
+          {% if item.children %}
             <div class="child-menu">
-              {% for child in item.get_children %}
-                <a href="{{ child.get_link }}">{{ child.title }}</a>
+              {% for child in item.children %}
+                <a href="{{ child.url }}">{{ child.title }}</a>
               {% endfor %}
             </div>
           {% endif %}
