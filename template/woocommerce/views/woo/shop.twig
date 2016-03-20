@@ -1,0 +1,21 @@
+{% extends "layout.twig" %}
+{% block content %}
+
+  {% do action("woocommerce_before_main_content") %}
+
+  <div class="before-shop-loop">
+    {% do action("woocommerce_before_shop_loop") %}
+  </div>
+
+  <div class="loop">
+    <ul class="tile-2">
+    {% for post in posts %}
+      {% include "woo/_tease.twig" %}
+    {% endfor %}
+    </ul>
+  </div>
+
+  {% do action("woocommerce_after_shop_loop") %}
+  {% do action("woocommerce_after_main_content") %}
+
+{% endblock %}

@@ -5,8 +5,9 @@
 // ----------
 // BUTTON
 // ----------
+button,
 .button,
-input[type="submit"] {
+[type="submit"] {
   display: inline-block;
   background-color: $color-main;
 }
@@ -14,7 +15,13 @@ input[type="submit"] {
 // --------
 // INPUT
 // --------
-input:not([type="submit"]):not([type="radio"]):not([type="checkbox"]),
+[type="text"],
+[type="number"],
+[type="tel"],
+[type="password"],
+[type="email"],
+[type="search"],
+[type="url"],
 textarea,
 select {
   display: block;
