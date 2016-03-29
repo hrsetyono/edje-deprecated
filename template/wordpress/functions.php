@@ -1,18 +1,8 @@
 <?php // Requirement : WP 4.1 and PHP 5.3
 
-// If Edje WP or Timber not installed, ignore all
-if (!class_exists('H') || !class_exists('Timber')) {
-  // show notice in admin
-  if(is_admin() && current_user_can('install_plugins') ) {
-    $text = 'TIMBER or EDJE WP is not activated. Please <a href="' . admin_url('plugins.php#timber') . '">visit here</a> to active it.';
-    add_action('admin_notices', function() use ($text) {
-      echo '<div class="notice notice-error"><p>' . $text . '</p></div>';
-    });
-  }
-  return;
-}
-
 include 'code/timber.php';
+
+if(!has_required_plugins() ) { return false; }
 
 // THEME SUPPORT
 add_action('after_setup_theme', 'h_theme_support');
