@@ -4,8 +4,9 @@ Brief project's description.
 
 ## Compiling Sass
 
-1. Install Node-Sass and Edje globally if you haven't. Open command prompt as admin and type `npm install -g node-sass` and `npm install -g edje`.
+1. Install NodeJS
+2. Install Node-Sass and Edje globally with `npm install -g node-sass` and `npm install -g edje`.
+3. Restart your PC.
+4. Open a command prompt in your project directory and type `npm run sass` (PC) or `npm run sass-mac` (Mac).
 
-2. Open a command prompt in your project directory and type `npm run sass` to start compiling.
-
-3. (Optional) If you like to use Grunt, type `npm install` in the project directory. After finished, type `grunt` to compile the Sass.
+Compiled with Edje 1.0.

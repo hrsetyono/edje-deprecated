@@ -114,7 +114,8 @@
     @if $i == length($breakpoints) {
       $next-width: 100%;
     } @else {
-      $next-width : nth($breakpoints, $i + 1) - $gutter;
+      $size : _getSize( nth($breakpoints, $i + 1) );
+      $next-width : $size - $gutter;
     }
 
     @include below($bp) {
@@ -321,7 +322,7 @@
   }
 }
 
-@if $include-grid and not $user-mode {
+@if not $_user-mode {
 
 /* --------
   Grid

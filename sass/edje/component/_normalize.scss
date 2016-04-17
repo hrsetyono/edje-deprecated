@@ -3,8 +3,8 @@
 // =================
 // Based on git.io/normalize v3.0.3
 
-@if $include-normalize and not $user-mode {
-  
+@if not $_user-mode {
+
 /* ----------
   Normalize
 ---------- */
@@ -60,7 +60,7 @@ audio:not([controls]) {
 
 // Webkit sibling selector fix
 body { -webkit-animation: bugfix infinite 1s; }
-@-webkit-keyframes bugfix { 
+@-webkit-keyframes bugfix {
   from { padding: 0; }
   to { padding: 0; }
 }
@@ -85,7 +85,7 @@ img {
   border: 0;
   display: inline-block;
   vertical-align: middle;
-  -ms-interpolation-mode: bicubic; 
+  -ms-interpolation-mode: bicubic;
 }
 svg:not(:root) { overflow: hidden; }
 figure { margin: 0; }

@@ -23,11 +23,7 @@
 
 @mixin below($size) {
   @if $responsive {
-    $in-media: true !global;
-
     @media only screen and #{ below($size) } { @content; }
-
-    $in-media: false !global;
   }
 }
 
@@ -38,23 +34,15 @@
 }
 
 @mixin above($size) {
-  $in-media: true !global;
-
   @media #{ above($size) } { @content; }
-
-  $in-media: false !global;
 }
 
 // Media query for between two sizes
 @mixin between($smaller-size, $larger-size) {
   @if $responsive {
-    $in-media: true !global;
-
     @media only screen and #{ above($smaller-size) } and #{ below($larger-size) } {
       @content;
     }
-
-    $in-media: false !global;
   }
 }
 

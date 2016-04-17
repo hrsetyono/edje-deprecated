@@ -1,0 +1,66 @@
+// ---------------
+// MEDIA QUERY
+// ---------------
+
+// Map a keyword to the pixel size
+// @return the pixel size
+@function _getSize($size) {
+  // if number, return it as it is
+  @if type-of($size) == number {
+    @return $size;
+  }
+  // if keyword, get from the map
+  @else {
+    @return map-get($_media-sizes, $size);
+  }
+}
+
+// Media query for below or equal the size
+@function below($size) {
+  $size: _getSize($size);
+  @return "(max-width: #{$size} )";
+}
+
+@mixin below($size) {
+  @if $responsive {
+    $in-media: true !global;
+
+    @media only screen and #{ below($size) } { @content; }
+
+    $in-media: false !global;
+  }
+}
+
+// Media query for above the size
+@function above($size) {
+  $size: _getSize($size) + 1px;
+  @return "(min-width: #{$size} )";
+}
+
+@mixin above($size) {
+  $in-media: true !global;
+
+  @media #{ above($size) } { @content; }
+
+  $in-media: false !global;
+}
+
+// Media query for between two sizes
+@mixin between($smaller-size, $larger-size) {
+  @if $responsive {
+    $in-media: true !global;
+
+    @media only screen and #{ above($smaller-size) } and #{ below($larger-size) } {
+      @content;
+    }
+
+    $in-media: false !global;
+  }
+}
+
+// Media query when printing the website
+@mixin print {
+  @media only print {
+    @content;
+  }
+}

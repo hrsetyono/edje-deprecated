@@ -1,0 +1,129 @@
+@charset "UTF-8";
+
+// ----- OUTPUT CONFIG -----
+$include-animate  : false !default;
+$include-print    : false !default;
+$include-code     : false !default;
+
+// ----- COLOR -----
+$color-main : #2196f3 !default;
+$color-sub  : #607d8b !default;
+
+$color-link : $color-main !default;
+$color-link-hover : lighten($color-main, 10%) !default;
+
+$color-passive : #e0e0e0 !default;
+$color-red : #f44336 !default;
+$color-yellow : #ffeb3b !default;
+$color-green : #4caf50 !default;
+$color-blue: #2196f3 !default;
+
+$body-background: #fff !default;
+$text-highlight: null !default;
+
+
+// ----- MEDIA QUERIES -----
+$size-mini   : 480px !default;
+$size-small  : 767px !default;
+$size-medium : 960px !default;
+$size-large  : 1120px !default;
+
+$_media-sizes: (
+  mini: $size-mini,
+  small: $size-small,
+  medium: $size-medium,
+  large: $size-large
+);
+
+// ----- RESPONSIVE -----
+$responsive : true !default;
+$adaptive   : false !default;
+$adaptive-breakpoints : large, medium, small, mini !default;
+
+$_user-mode   : true !default; // when importing component, output the style or just mixin?
+
+
+// ----- GLOBAL VALUE -----
+$g-radius : 2px !default;
+$g-transition : all .25s ease-out !default;
+
+
+// ----- c/TYPOGRAPHY -----
+$font-family : Helvetica, Arial, "sans-serif" !default;
+$font-family-header : Helvetica, Arial, "sans-serif" !default;
+
+$font-color  : #222 !default;
+$font-weight : 400 !default;
+$font-line   : 1.65 !default;
+
+$font-size : 16px !default;
+
+// HEADER
+$header-color   : $font-color !default;
+$header-weight  : 700 !default;
+$header-line    : 1.25 !default;
+$header-spacing : 0 !default;
+$header-transform : none !default;
+
+$h1 : 42px !default;
+$h2 : 36px !default;
+$h3 : 30px !default;
+$h4 : 24px !default;
+$h5 : 20px !default;
+$h6 : $font-size !default;
+
+// ----- RESPONSIVE HEADER -----
+// the header size below that media query
+
+$h1-sizes: (base: $h1, small: 30px) !default;
+$h2-sizes: (base: $h2, small: 26px) !default;
+$h3-sizes: (base: $h3, small: 22px) !default;
+$h4-sizes: (base: $h4, small: 20px) !default;
+$h5-sizes: (base: $h5, small: 18px) !default;
+$h6-sizes: (base: $h6, small: $h6) !default;
+
+// LIST
+$ul-parent : disc !default;
+$ul-child  : circle !default;
+
+$ol-parent : decimal !default;
+$ol-child  : lower-alpha !default;
+
+// ----- TEXT DIRECTION -----
+$text-direction   : ltr !default; // Controls default global text direction, 'rtl' or 'ltr'
+$default-float    : left !default;
+$default-opposite : right !default;
+
+// No need to change this conditional statement, $text-direction variable controls it all.
+@if $text-direction == ltr {
+  $default-float    : left;
+  $default-opposite : right;
+} @else {
+  $default-float    : right;
+  $default-opposite : left;
+}
+
+// ----- SHADOW -----
+$shadow-z0: 0 0.5px 2px rgba(black, .18), 0 1.5px 6px rgba(black, .08) !default;
+$shadow-z1: 0 1.5px 4px rgba(black, .24), 0 1.5px 6px rgba(black, .12) !default;
+$shadow-z2: 0 3px 12px rgba(black, .23), 0 3px 12px rgba(black, .16) !default;
+$shadow-z3: 0 6px 12px rgba(black, .23), 0 10px 40px rgba(black, .19) !default;
+
+// ----- u/OTHER -----
+$_dir-images: "../images" !default;
+$_dir-fonts: "../fonts" !default;
+
+$z-indexes: ( menu: 1010 ) !default;
+
+// ----- c/GRID -----
+$grid-max-width : $size-large !default;
+$grid-columns : 12 !default;
+$grid-gutter  : 20px !default;
+$grid-rim     : $grid-gutter / 2 !default;
+
+// ----- c/TILE -----
+$tile-max    : 8 !default;
+$tile-gutter : 20px !default;
+
+// ----- c/PRINT -----
+$override-color: true !default;

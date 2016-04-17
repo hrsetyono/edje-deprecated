@@ -1,11 +1,14 @@
-/* --------------------
-- EDJE Framework
-- http://github.com/hrsetyono/edje
-- v0.3.0 (Icarus)
---------------------- */
+// EDJE FRAMEWORK
 
-@import "edje/base";
-@import "edje/utility";
-@import "edje/component";
+$version: 1.0 !default;
 
-/* ------- */
+@if $version < 1.0 {
+  @import "edje-v0/base";
+  @import "edje-v0/utility";
+  @import "edje-v0/component";
+}
+@else {
+  @import "edje/setting";
+  @import "edje/utility";
+  @import "edje/component";
+}

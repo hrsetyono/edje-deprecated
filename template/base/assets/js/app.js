@@ -1,4 +1,14 @@
 (function($) {
+'use strict';
+
+$(document).ready(start);
+$(document).on('page:load', start);
+
+function start() {
+  app.init();
+}
+
+/////
 
 var app = {
   init: function() {
@@ -9,14 +19,6 @@ var app = {
   doSomething: function(e) {},
   doSomething2: function(e) {},
 };
-
-// What to do after document is ready
-function start() {
-  app.init();
-}
-
-$(document).ready(start);
-$(document).on('page:load', start);
 
 // Browser compatibility, leave this untouched
 if('registerElement' in document) { document.createElement('h-row'); document.createElement('h-column'); }

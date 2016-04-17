@@ -40,7 +40,7 @@
   }
 }
 
-@if $include-animate and not $user-mode {
+@if $include-animate and not $_user-mode {
 /* ---------------
   EDGE Animate
 --------------- */

@@ -1,4 +1,5 @@
-User-agent: *
+# www.robotstxt.org/
 
-Disallow: /cgi-bin/
-Disallow: /tmp/
+# Allow crawling of all content
+User-agent: *
+Disallow:
