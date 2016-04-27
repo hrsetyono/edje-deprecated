@@ -1,12 +1,8 @@
 @charset "UTF-8";
 
-@if not $user-mode {
-/* --------------------
-- EDJE Framework
-- http://github.com/hrsetyono/edje
-- v0.3.0 (Icarus)
---------------------- */
-}
+// Shouldn't be modified by user
+$user-mode   : false !default; // if mixin call came from framework or user
+$in-media    : false !default; // if mixin call came from inside @media block
 
 // ----------------
 // OUTPUT CONFIG
@@ -55,10 +51,6 @@ $_media-sizes: (
 $responsive : true !default;
 $adaptive   : false !default;
 $adaptive-breakpoints : $size-medium, $size-small, $size-mini !default;
-
-// Shouldn't be modified by user
-$user-mode   : false !default; // if mixin call came from framework or user
-$in-media    : false !default; // if mixin call came from inside @media block
 
 // ---------------
 // GLOBAL VALUE

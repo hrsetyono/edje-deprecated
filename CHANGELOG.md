@@ -1,8 +1,18 @@
 ## 1.0.0
 
-- Not compatible with version 0. If you need to compile older project, add `$version: 0;` at the top of *setting*, then change all `@import "edje...";` to `@import "edje-v0...";` in *app* and *framework*.
+Not compatible with version 0. If you need to compile older project, change the following:
 
-- More Sass settings mainly on Responsive font.
+- In *_setting.scss* add `$version: 0;` at the top.
+- In *app.scss* change `@import "edje/helper";` to `@import "edje";`.
+- In *framework.scss* change `@import "edje";` to `@import "edje-framework";`.
+
+More Sass settings mainly on Responsive header font and column.
+
+- Default body font size is now 16px.
+
+- New variable for all headers. The `$h1-sizes` defines the list of H1 font sizes for various screens. For example if the value is `(base: 42px, small: 30px)`, it means by default it's 42px but below *Small* screen (767px) it become 30px.
+
+
 
 ## 0.3.2
 
