@@ -325,7 +325,7 @@ h-column { display: block; float: left; padding-right: 10px; padding-left: 10px;
   .small-tile-8 > li { width: 12.5%; }
   .small-tile-8 > li:nth-of-type(8n+1) { clear: both; } }
 
-button, .button, [type="submit"] { display: inline-block; background-color: #2196f3; }
+button, .button, [type="submit"] { display: inline-block; outline: none; background-color: #2196f3; }
 
 [type="text"], [type="number"], [type="tel"], [type="password"], [type="email"], [type="search"], [type="url"], textarea, select { display: block; width: 100%; border: 1px solid #e0e0e0; border-top-color: lightgray; }
 

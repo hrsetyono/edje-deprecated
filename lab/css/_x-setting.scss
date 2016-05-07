@@ -35,8 +35,8 @@ $color-link : $color-main;
 // $adaptive-breakpoints : large, medium, small, mini;
 
 // ----- Z INDEX -----
-// .sample {
-//   z-index: z(name);
+// .sample-usage {
+//   z-index: z(menu);
 // }
 
 $z-indexes: (
@@ -81,7 +81,7 @@ $h5 : 20px;
 $h6 : $font-size;
 
 // ----- RESPONSIVE HEADER -----
-// the header size below that media query
+// the header size below that screen
 
 // $h1-sizes: (base: $h1, small: 30px);
 // $h2-sizes: (base: $h2, small: 26px);

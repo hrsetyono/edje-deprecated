@@ -1,0 +1,3 @@
+.paragraph-row { max-width: 1140px; width: calc(100% - 20px); }
+
+.paragraph-col { width: 100%; }

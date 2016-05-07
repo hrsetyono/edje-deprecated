@@ -1,5 +1,5 @@
 // Put styles that you might reuse in other projects here
-@import "x-setting";
+@import "setting";
 @import "edje-framework";
 
 // ----- BUTTON -----
@@ -36,5 +36,38 @@ select {
   &:focus {
     border-color: $color-main;
     box-shadow: inset 0 1px 2px rgba(black, .2);
+  }
+}
+
+// ----- WORDPRESS -----
+
+// Fix admin bar on mobile
+@include below(medium) {
+  html #wpadminbar {
+    position: fixed !important;
+  }
+}
+
+// Contact Form 7
+.wpcf7-form {
+  span.wpcf7-not-valid-tip {
+    color: $color-main-light;
+    font-size: em(14px);
+  }
+
+  div.wpcf7-response-output {
+    text-align: center;
+    border-radius: $g-radius;
+  }
+
+  .wpcf7-validation-errors {
+    border-color: $color-error;
+    background-color: rgba($color-error, .5);
+  }
+
+  .wpcf7-mail-sent-ok,
+  .wpcf7-mail-sent-ng {
+    border-color: $color-success;
+    background-color: rgba($color-success, .5);
   }
 }

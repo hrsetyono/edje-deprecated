@@ -228,4 +228,17 @@ table {
 td, th { padding: 0; }
 
 .hide { display: none !important; visibility: hidden !important; }
+
+.flex-iframe {
+  overflow: hidden; position: relative;
+  height: 0; padding-bottom: 67.5%; padding-top: 1.38889rem;
+
+  iframe,
+  object,
+  embed,
+  video {
+    position: absolute; top: 0; left: 0;
+    height: 100%; width: 100%; }
+}
+
 } // include-normalize

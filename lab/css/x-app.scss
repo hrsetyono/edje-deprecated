@@ -1,3 +1,11 @@
 // Put styles that are unique for this project here
 @import "x-setting";
 @import "edje";
+
+.paragraph-row {
+  @include row($rim: 20px);
+}
+
+.paragraph-col {
+  @include column(12);
+}
