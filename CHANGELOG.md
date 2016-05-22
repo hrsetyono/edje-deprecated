@@ -1,3 +1,13 @@
+## 1.0.3
+
+- New WordPress plugin versions.
+- WordPress theme now follows more standard practices.
+- All SEO meta tags in theme are now handled by Edje-WP plugin.
+
+## 1.0.2
+
+- Fixed error when importing Sass version 0.
+
 ## 1.0.1
 
 - Added WordPress 4.5.2 and all latest default plugins.

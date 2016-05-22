@@ -3,6 +3,8 @@
 $version: 1.0 !default;
 
 @if $version < 1.0 {
+  $user-mode: true;
+
   @import "edje-v0/base";
   @import "edje-v0/utility";
   @import "edje-v0/component";
