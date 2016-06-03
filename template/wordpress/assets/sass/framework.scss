@@ -51,7 +51,7 @@ select {
 // Contact Form 7
 .wpcf7-form {
   span.wpcf7-not-valid-tip {
-    color: $color-main-light;
+    color: $color-main;
     font-size: em(14px);
   }
 
@@ -61,13 +61,13 @@ select {
   }
 
   .wpcf7-validation-errors {
-    border-color: $color-error;
-    background-color: rgba($color-error, .5);
+    border-color: $color-red;
+    background-color: rgba($color-red, .5);
   }
 
   .wpcf7-mail-sent-ok,
   .wpcf7-mail-sent-ng {
-    border-color: $color-success;
-    background-color: rgba($color-success, .5);
+    border-color: $color-green;
+    background-color: rgba($color-green, .5);
   }
 }
