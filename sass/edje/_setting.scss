@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 // ----- OUTPUT CONFIG -----
+$include-visibility : true !default;
 $include-animate  : false !default;
 $include-print    : false !default;
 $include-code     : false !default;
@@ -116,10 +117,10 @@ $_dir-fonts: "../fonts" !default;
 $z-indexes: ( menu: 1010 ) !default;
 
 // ----- c/GRID -----
-$grid-max-width : $size-large !default;
 $grid-columns : 12 !default;
 $grid-gutter  : 20px !default;
 $grid-rim     : $grid-gutter / 2 !default;
+$grid-max-width : $size-large !default; // TODO: confusing math, we want the $large to be +20px for easier @include below(large)
 
 // ----- c/TILE -----
 $tile-max    : 8 !default;

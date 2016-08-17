@@ -13,6 +13,10 @@ add_action('wp_enqueue_scripts', 'my_enqueue_script');
 //   acf_add_options_page();
 // }
 
+// Allow EDTIOR to edit Theme and Menu
+$role_object = get_role('editor');
+$role_object->add_cap('edit_theme_options');
+
 /////
 
 /*

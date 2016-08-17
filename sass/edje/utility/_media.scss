@@ -4,21 +4,25 @@
 
 // Map a keyword to the pixel size
 // @return the pixel size
-@function _getSize($size) {
+@function _getSize($name) {
+  $_size: 0;
+
   // if number, return it as it is
-  @if type-of($size) == number {
-    @return $size;
+  @if type-of($name) == number {
+    $_size: $name;
   }
   // if keyword, get from the map
   @else {
-    @return map-get($_media-sizes, $size);
+    $_size: map-get($_media-sizes, $name);
   }
+
+  @return $_size;
 }
 
 // Media query for below or equal the size
 @function below($size) {
-  $size: _getSize($size);
-  @return "(max-width: #{$size} )";
+  $_size: _getSize($size);
+  @return "(max-width: #{$_size} )";
 }
 
 @mixin below($size) {

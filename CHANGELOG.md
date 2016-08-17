@@ -1,3 +1,8 @@
+## 1.1.0
+
+- [Sass] New Visibility styling. Use `hide-for-small` to hide the element on small screen and below!
+- [Template] New WordPress and plugins version.
+
 ## 1.0.3
 
 - New WordPress plugin versions.

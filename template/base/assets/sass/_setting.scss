@@ -10,6 +10,9 @@ $font-family-header : Helvetica, Arial, "sans-serif";
 $color-main : #2196f3;
 $color-sub  : #607d8b;
 
+$color-main-dark : darken($color-main, 10%);
+$color-main-light : lighten($color-main, 10%);
+
 $color-link : $color-main;
 // $color-link-hover : lighten($color-main, 10%);
 
@@ -65,6 +68,7 @@ $z-indexes: (
 // $font-weight : 400;
 // $font-line : 1.65;
 $font-size : 16px;
+$font-size-small : 14px;
 
 // ----- HEADER -----
 // $header-color  : $font-color;

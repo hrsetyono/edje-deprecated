@@ -5,7 +5,7 @@ $context['sidebar'] = Timber::get_widgets('shop-sidebar');
 
 // SINGLE PRODUCT
 if (is_singular('product') ) {
-  $post = Hoo::get_post();
+  $post = Timber::get_post();
   $context['post'] = $post;
 
   $product = $context['post']->product;
@@ -16,7 +16,7 @@ if (is_singular('product') ) {
 
 // CATEGORY or SHOP
 else {
-  $context['posts'] = Hoo::get_posts();
+  $context['posts'] = Timber::get_posts();
 
   if (is_product_category() ) {
     $queried_object = get_queried_object();
