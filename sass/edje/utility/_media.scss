@@ -4,30 +4,30 @@
 
 // Map a keyword to the pixel size
 // @return the pixel size
-@function _getSize($size) {
+@function _getSize($name) {
+  $_size: 0;
+
   // if number, return it as it is
-  @if type-of($size) == number {
-    @return $size;
+  @if type-of($name) == number {
+    $_size: $name;
   }
   // if keyword, get from the map
   @else {
-    @return map-get($_media-sizes, $size);
+    $_size: map-get($_media-sizes, $name);
   }
+
+  @return $_size;
 }
 
 // Media query for below or equal the size
 @function below($size) {
-  $size: _getSize($size);
-  @return "(max-width: #{$size} )";
+  $_size: _getSize($size);
+  @return "(max-width: #{$_size} )";
 }
 
 @mixin below($size) {
   @if $responsive {
-    $in-media: true !global;
-
     @media only screen and #{ below($size) } { @content; }
-
-    $in-media: false !global;
   }
 }
 
@@ -38,23 +38,15 @@
 }
 
 @mixin above($size) {
-  $in-media: true !global;
-
   @media #{ above($size) } { @content; }
-
-  $in-media: false !global;
 }
 
 // Media query for between two sizes
 @mixin between($smaller-size, $larger-size) {
   @if $responsive {
-    $in-media: true !global;
-
     @media only screen and #{ above($smaller-size) } and #{ below($larger-size) } {
       @content;
     }
-
-    $in-media: false !global;
   }
 }
 

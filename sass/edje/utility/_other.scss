@@ -1,19 +1,16 @@
-// ----------------
-// URL SHORTCUT
-// ----------------
+// ----- URL SHORTCUT -----
 
 @function image-url($file) {
-  @return url("#{ $dir-images }/#{ $file }");
+  @return url("#{ $_dir-images }/#{ $file }");
 }
 
 @function font-url($file) {
-  @return url("#{ $dir-fonts }/#{ $file }");
+  @return url("#{ $_dir-fonts }/#{ $file }");
 }
 
-// ----------------------------------------------
-// CLEARING FLOAT
+// ----- CLEARING FLOAT -----
 // Make a container wraps floated element
-// ----------------------------------------------
+
 @mixin clearfix {
   &::before, &::after {
     content: " ";
@@ -24,29 +21,20 @@
   }
 }
 
-// --------------------------------
-// SELECTION
-// Change the text highlight color
-// --------------------------------
+// ----- MAP GET -----
 
-@mixin selection($background-color:lighten($main-color, 35%), $color:white) {
-  ::-moz-selection {
-    background: $background-color;
-    text-shadow: none !important;
-    color: $color !important;
-  }
-
-  ::selection {
-    background: $background-color;
-    text-shadow: none !important;
-    color: $color !important;
-  }
+// palette
+@function colors($name) {
+  @return map-get($colors, $name);
 }
 
-// -------------------------------
-// DISABLE SELECTION
+// z-index
+@function z($name) {
+  @return map-get($z-indexes, $name);
+}
+
+// ----- DISABLE SELECTION -----
 // Prevents highlighting
-// -------------------------------
 
 @mixin user-select($value) {
   -webkit-touch-callout: $value;

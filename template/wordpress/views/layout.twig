@@ -3,33 +3,12 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- WEBSITE DETAIL -->
-  <title>
-    {% if wp_title %} {{ wp_title }} | {% endif %}
-    {{ site.name }}
-  </title>
-  <meta name="description" content="{{ site.description }}">
+  <title>{{ wp_title }}</title>
   <meta name="theme-color" content=""> <!-- use Hex color -->
-
-  <!-- FAVICON -->
-  <link rel="icon" href="{{ images }}/favicon.png">
-  <link rel="apple-touch-icon-precomposed" href="{{ images }}/favicon-big.png">
-
-  <!-- STYLESHEET -->
-  <link rel="stylesheet" href="{{ css }}/framework.css">
-  <link rel="stylesheet" href="{{ css }}/app.css">
-
-  <!-- SOCIAL -->
-  <meta property="og:title" content="{{ wp_title }}">
-  <meta property="og:site_name" content="{{ site.name }}">
-  {% if post.content %}
-    <meta property="og:description" content="{{ post.get_preview(25, false, '') }}">
-  {% endif %}
-  {% if post.thumbnail %}
-    <meta property="og:image" content="{{ post.thumbnail.src }}">
-  {% endif %}
 
   {{ wp_head }}
 </head>
@@ -79,13 +58,6 @@
   <footer class="main-footer">
     {{ site.name }} &copy; {{ "now" | date("Y") }}
   </footer>
-
-  <!-- JAVASCRIPT LIBRARY -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-  <script src="{{ js }}/vendor/jquery.min.js"></script>
-
-  <script src="{{ js }}/vendor/fastclick.min.js"></script>
-  <script src="{{ js }}/app.js"></script>
 
   {{ wp_footer }}
 

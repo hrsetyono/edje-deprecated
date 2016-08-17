@@ -1,20 +1,19 @@
 // Put styles that you might reuse in other projects here
 @import "setting";
-@import "edje";
+@import "edje-framework";
 
-// ----------
-// BUTTON
-// ----------
+// ----- BUTTON -----
+
 button,
 .button,
 [type="submit"] {
   display: inline-block;
+  outline: none;
   background-color: $color-main;
 }
 
-// --------
-// INPUT
-// --------
+// ----- INPUT -----
+
 [type="text"],
 [type="number"],
 [type="tel"],

@@ -18,6 +18,7 @@
 
 .slick-list,
 .slick-track {
+  position: relative;
   height: 100%;
 }
 
@@ -61,7 +62,7 @@
 .slick-prev {
   left: -60px;
   background-image: image-url("slick/arrow-prev.png");
-  
+
   &:hover {
     @include transform(translateY(-50%) translateX(-5px) );
   }
@@ -70,7 +71,7 @@
 .slick-next {
   right: -60px;
   background-image: image-url("slick/arrow-next.png");
-  
+
   &:hover {
     @include transform(translateY(-50%) translateX(5px) );
   }

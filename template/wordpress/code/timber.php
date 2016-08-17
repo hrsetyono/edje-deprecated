@@ -71,6 +71,11 @@ class TimberH extends TimberSite {
       return $pd->text($text);
     }) );
 
+    // Show all methods available in the object
+    $twig->addFilter('methods', new Twig_Filter_Function(function($object) {
+      return get_class_methods($object);
+    }) );
+
     return $twig;
   }
 }

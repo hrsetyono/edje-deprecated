@@ -17,7 +17,7 @@ var PATH = {
 -------------------- */
 
 var template = {
-  MENU: ['html', 'email', 'wordpress'],
+  MENU: ['html', 'email', 'wordpress', 'woocommerce'],
   BASE_SRC: PATH.src + '/template/base',
   TYPE_SRC: PATH.src + '/template/{type}',
 

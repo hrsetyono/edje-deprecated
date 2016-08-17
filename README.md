@@ -65,3 +65,7 @@ Both has the same result, but the Grunt one has prettier debugging log.
 
 
 Visit our [**WIKI**](https://github.com/hrsetyono/edje/wiki/) for full documentation.
+
+## Pushing Update
+
+Run `npm publish` after updating the version number in package.json.

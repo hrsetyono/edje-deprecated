@@ -13,13 +13,13 @@
   $collapse : false,
   $for-base : false,
   $clear    : false) {
-  
+
   @if $for-base {
     padding-left: 0;
     list-style-type: none;
     @include clearfix;
   }
-  
+
   @if $gutter {
     margin-right: -($gutter / 2);
     margin-left: -($gutter / 2);
@@ -37,9 +37,9 @@
     @if $for-base {
       float: $default-float;
     }
-  
+
     @if $gutter {
-      padding-right: ($gutter / 2); 
+      padding-right: ($gutter / 2);
       padding-left: ($gutter / 2);
     }
 
@@ -47,11 +47,11 @@
       padding-right: 0;
       padding-left: 0;
     }
-  
+
     // Number of tiles per row
     @if $size > 0  {
       width: 100% / $size;
-      
+
       // clear floating
       @if $clear {
         &:nth-of-type(n) {
@@ -100,7 +100,7 @@
   }
 }
 
-@if $include-tile and not $user-mode {
+@if not $_user-mode {
 
 /* ------
   Tile

@@ -2,9 +2,7 @@
 // Edje Typography
 // ==================
 
-// ----------------------
-// Create Inline List
-// ----------------------
+// ----- INLINE LIST -----
 @mixin inline-list() {
   @include clearfix();
 
@@ -15,9 +13,49 @@
   }
 }
 
-@if $include-typography and not $user-mode {
+// ----- SELECTION -----
+// Change the text highlight color
 
-/* -----------
+@mixin _text-selection($bg: $text-highlight) {
+  @if $bg {
+
+    // determine text color
+    $color: white;
+    @if (lightness($bg) > 60) { $color: #222; }
+
+    ::-moz-selection {
+      background: $bg;
+      text-shadow: none !important;
+      color: $color !important;
+    }
+
+    ::selection {
+      background: $bg;
+      text-shadow: none !important;
+      color: $color !important;
+    }
+  }
+}
+
+// ----- DYNAMIC FONT SIZES -----
+@mixin _font-sizes($sizes) {
+  @each $media, $size in $sizes {
+    $size: em($size);
+
+    // if base, no need for media query
+    @if $media == base {
+      font-size: $size;
+    }
+    @else {
+      @include below($media) { font-size: $size; }
+    }
+  }
+}
+
+
+@if not $_user-mode {
+
+/* ----------
   Typography
 ----------- */
 
@@ -26,53 +64,56 @@ body {
   background: $body-background;
 
   @if not $responsive {
-    min-width: $size-medium;
+    min-width: $grid-max-width;
   }
-  
+
+  font-size: $font-size;
   font-family: $font-family;
   font-weight: $font-weight;
-  font-size: $font-size;
   line-height: $font-line;
   color: $font-color;
 }
 
-p { margin-top: 0; margin-bottom: 0; }
-a { color: $color-link; }
+p {
+  margin-top: 0; margin-bottom: 0;
+}
+
+a {
+  color: $color-link;
+  transition: $g-transition;
+
+  &:hover { color: $color-link-hover; }
+}
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-family-header;
   font-weight: $header-weight;
   line-height: $header-line;
   color: $header-color;
+
+  letter-spacing: $header-spacing;
+  text-transform: $header-transform;
 }
 
-h1 { font-size: em($h1); }
-h2 { font-size: em($h2); }
-h3 { font-size: em($h3); }
-h4 { font-size: em($h4); }
-h5 { font-size: em($h5); }
-h6 { font-size: em($h6); }
+h1 { @include _font-sizes($h1-sizes); }
+h2 { @include _font-sizes($h2-sizes); }
+h3 { @include _font-sizes($h3-sizes); }
+h4 { @include _font-sizes($h4-sizes); }
+h5 { @include _font-sizes($h5-sizes); }
+h6 { @include _font-sizes($h6-sizes); }
 
-// -----------
-// LIST
-// -----------
+// ----- LIST -----
 
 ul {
   list-style-type: $ul-parent;
-  padding-left: 20px;
 
-  ul {
-    list-style-type: $ul-child;
-  }
+  ul { list-style-type: $ul-child; }
 }
 
 ol {
   list-style-type: $ol-parent;
-  padding-left: 25px;
 
-  ol {
-    list-style-type: $ol-child;
-  }
+  ol { list-style-type: $ol-child; }
 }
 
 blockquote {
@@ -82,15 +123,6 @@ blockquote {
   }
 }
 
-@include below(small) {
-  body { font-size: $font-size-small ;}
+@include _text-selection();
 
-  h1 { font-size: em($h1-small, $font-size-small); }
-  h2 { font-size: em($h2-small, $font-size-small); }
-  h3 { font-size: em($h3-small, $font-size-small); }
-  h4 { font-size: em($h4-small, $font-size-small); }
-  h5 { font-size: em($h5-small, $font-size-small); }
-  h6 { font-size: em($h6-small, $font-size-small); }
-}
-
-} // include-typography 
+} // @if

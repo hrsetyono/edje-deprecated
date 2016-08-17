@@ -10,8 +10,8 @@ var string = {
     // string log
     success: 'Below are available commands:',
     command_all:
-        '\n    npm install : download dependencies.' +
-        '\n    npm run sass: compile Sass.',
+        '\n    npm run sass: compile Sass.' +
+        '\n    npm run sass-mac: compile Sass on MacOS.',
     command_email:
         '\n    grunt build : inline the CSS' +
         '\n    grunt send  : inline and send test email, configure it in Gruntfile first',

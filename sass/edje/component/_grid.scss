@@ -114,11 +114,12 @@
     @if $i == length($breakpoints) {
       $next-width: 100%;
     } @else {
-      $next-width : nth($breakpoints, $i + 1) - $gutter;
+      $size : _getSize( nth($breakpoints, $i + 1) );
+      $next-width : $size - $gutter; // TODO: inconsistency with default grid-max-width. In max-width, when I use 1120px, the grid become 1120. But here if I put 960, it become 940 due to rim offset.
     }
 
     @include below($bp) {
-      width: $next-width;
+      max-width: $next-width;
     }
   } //endfor
 }
@@ -321,7 +322,7 @@
   }
 }
 
-@if $include-grid and not $user-mode {
+@if not $_user-mode {
 
 /* --------
   Grid

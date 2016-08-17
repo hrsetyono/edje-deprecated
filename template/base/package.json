@@ -6,11 +6,7 @@
     "url": "git+https://github.com/username/my-app.git"
   },
   "dependencies": {},
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-sass": "^1.0.0"
-  },
+  "devDependencies": {},
   "scripts": {
     "sass": "FOR /f \"delims=\" %v IN ('node -p \"require('edje').includePaths()[0]\"') DO node-sass -w assets/sass -o assets/css --output-style compact --include-path \"%v\" ",
     "sass-mac": "node-sass -w assets/sass -o assets/css --include-paths $(node -p \"require('edje').includePaths()\")"

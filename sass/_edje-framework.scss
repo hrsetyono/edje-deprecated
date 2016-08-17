@@ -1,0 +1,29 @@
+// FRAMEWORK STYLE
+
+$_user-mode: false;
+$user-mode: false;
+
+$version: 1.0 !default;
+
+@if $version < 1.0 {
+/* --------------------
+- EDJE Framework
+- http://github.com/hrsetyono/edje
+- v0.3.0 (Icarus)
+--------------------- */
+
+  @import "edje-v0/base";
+  @import "edje-v0/utility";
+  @import "edje-v0/component";
+}
+@else {
+/* --------------------
+- EDJE Framework
+- http://github.com/hrsetyono/edje
+- v1.0.0 (Jakiro)
+--------------------- */
+
+  @import "edje/setting";
+  @import "edje/utility";
+  @import "edje/component";
+}
