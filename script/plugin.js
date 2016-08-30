@@ -77,7 +77,7 @@ var plugin = {
   _dependsOnEdje: function() {
     try {
       var pack = require(PATH.current + '/package.json');
-      return pack.dependencies.edje ? true : false;
+      return pack.edje;
     } catch(e) {
       return false
     }

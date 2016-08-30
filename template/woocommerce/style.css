@@ -7,6 +7,4 @@ Version: 1.0
 Template: wp-test
 */
 
-@import url("../wp-test/style.css");
-
 /* All stylesheets are located in /assets directory. This file is only for meta description */

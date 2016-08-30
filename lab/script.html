@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content=""> <!-- use Hex color -->
+
+  <!-- WEBSITE DETAIL -->
+  <title>Edje Script</title>
+  <meta name="description" content="This is a description of your website, only first 160 characters matters">
+
+  <!-- STYLESHEET -->
+  <link rel="stylesheet" href="css/x-framework.css">
+  <link rel="stylesheet" href="css/x-app.css">
+</head>
+<body>
+
+<h-row><h-column class="large-8 centered">
+  <h2>Slick</h2>
+  <section class="slider">
+    <div>
+      <img src="http://placehold.it/350x300?text=1">
+    </div>
+    <div>
+      <img src="http://placehold.it/350x300?text=2">
+    </div>
+    <div>
+      <img src="http://placehold.it/350x300?text=3">
+    </div>
+    <div>
+      <img src="http://placehold.it/350x300?text=4">
+    </div>
+    <div>
+      <img src="http://placehold.it/350x300?text=5">
+    </div>
+    <div>
+      <img src="http://placehold.it/350x300?text=6">
+    </div>
+  </section>
+
+  <h2>Fancybox</h2>
+
+  <section class="gallery">
+    <a class="fancybox" rel="gallery1" href="http://farm2.staticflickr.com/1617/24108587812_6c9825d0da_b.jpg" title="Morning Godafoss (Brads5)">
+    	<img src="http://farm2.staticflickr.com/1617/24108587812_6c9825d0da_m.jpg" alt="" />
+    </a>
+    <a class="fancybox" rel="gallery1" href="http://farm4.staticflickr.com/3691/10185053775_701272da37_b.jpg" title="Vertical - Special Edition! (cedarsphoto)">
+    	<img src="http://farm4.staticflickr.com/3691/10185053775_701272da37_m.jpg" alt="" />
+    </a>
+    <a class="fancybox" rel="gallery1" href="http://farm1.staticflickr.com/574/22407305427_69cc6e845f_b.jpg" title="Racing against the Protons (tom.leuzi)">
+    	<img src="http://farm1.staticflickr.com/574/22407305427_69cc6e845f_m.jpg" alt="" />
+    </a>
+    <a class="fancybox" rel="gallery1" href="http://farm1.staticflickr.com/291/18653638823_a86b58523c_b.jpg" title="Lupines (Kiddi Einars)">
+    	<img src="http://farm1.staticflickr.com/291/18653638823_a86b58523c_m.jpg" alt="" />
+    </a>
+  </section>
+</h-column></h-row>
+
+<script src="../template/base/assets/js/vendor/jquery.min.js"></script>
+<script src="../template/wordpress/assets/js/vendor/slick.min.js"></script>
+<script src="../template/wordpress/assets/js/vendor/fancybox.min.js"></script>
+<script>
+(function($) {
+  'use strict';
+
+  $(".slider").slick({
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 3
+  });
+
+  $('.gallery a').fancybox({
+    helpers: {
+      thumbs: { width: 70, height: 70 },
+      title: { type: 'inside' }
+    }
+  });
+})(jQuery);
+</script>
+
+</body>
+</html>

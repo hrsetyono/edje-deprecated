@@ -4,7 +4,7 @@ require_once 'code/timber.php';
 
 if(!has_required_plugins() ) { return false; }
 
-add_action('init', 'my_post_type');
+add_action('init', 'my_post_type', 1);
 add_action('after_setup_theme', 'my_theme_support');
 add_action('wp_enqueue_scripts', 'my_enqueue_script');
 
@@ -25,6 +25,8 @@ $role_object->add_cap('edit_theme_options');
 */
 function my_post_type() {
   // H::register_post_type('product');
+
+  // H::remove_menu(array('Comments', 'Media') );
 }
 
 /*
@@ -52,5 +54,7 @@ function my_enqueue_script() {
 
   // JavaScript
   wp_enqueue_script('my-fastclick', $js_dir . '/vendor/fastclick.min.js', array(), false, true);
+  wp_enqueue_script('my-fancybox', $js_dir . '/vendor/fancybox.min.js', array('jquery'), false, true);
+  wp_enqueue_script('my-slick', $js_dir . '/vendor/slick.min.js', array('jquery'), false, true);
   wp_enqueue_script('my-app', $js_dir . '/app.js', array('jquery'), false, true);
 }

@@ -38,12 +38,11 @@ $color-link : $color-main;
 // $adaptive-breakpoints : large, medium, small, mini;
 
 // ----- Z INDEX -----
-// .sample {
-//   z-index: z(name);
-// }
+//  z-index: z(menu);
 
 $z-indexes: (
   menu: 1010,
+  child_menu: 1020,
   banner: 1000
 );
 

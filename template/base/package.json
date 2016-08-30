@@ -1,6 +1,7 @@
 {
   "name": "my-app",
   "private": true,
+  "edje": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/username/my-app.git"
