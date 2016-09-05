@@ -4,6 +4,7 @@
 
 // @import "fancybox";
 // @import "slick";
+// @import "wordpress";
 // @import "woo";
 
 ///// FONT /////
@@ -235,8 +236,6 @@ body.menu-active {
     @include below(small) { top: 46px; }
   }
 }
-
-
 
 // MENU EXTRA
 

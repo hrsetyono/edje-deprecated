@@ -42,9 +42,13 @@
 }
 
 // Media query for between two sizes
+@function between($smaller-size, $larger-size) {
+  @return "#{ above($smaller-size) } and #{ below($larger-size) }";
+}
+
 @mixin between($smaller-size, $larger-size) {
   @if $responsive {
-    @media only screen and #{ above($smaller-size) } and #{ below($larger-size) } {
+    @media only screen and #{ between($smaller-size, $larger-size) } {
       @content;
     }
   }
