@@ -1,3 +1,6 @@
+## 1.2.0
+- [Template] Removed from CORE. Now available in Yeoman. Install it by running `npm install -g yo` and `npm install -g generator-edje`. To generate template, run `yo edje`.
+
 ## 1.1.0
 
 - [Sass] New Visibility styling. Use `hide-for-small` to hide the element on small screen and below!
