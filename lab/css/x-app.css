@@ -1,3 +1,5 @@
 .paragraph-row { max-width: 1140px; width: calc(100% - 20px); }
 
 .paragraph-col { width: 100%; }
+
+@media (min-width: 301px) and (max-width: 500px) { .paragraph-col { width: 75%; } }
