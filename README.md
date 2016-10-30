@@ -22,10 +22,10 @@ Template generator available as separate package [here](https://github.com/hrset
 **2.** There are 4 global packages required. Run these commands below one by one.
 
 ```
-npm publish -g node-sass@3.4.2
-npm publish -g edje
-npm publish -g yo
-npm publish -g generator-edje
+npm install -g node-sass@3.4.2
+npm install -g edje
+npm install -g yo
+npm install -g generator-edje
 ```
 
 **3.** If you are on Windows, add `NODE_PATH` to your System Variable and set it to the `npm` installation directory. By default it should be in `C:/Users/yourname/AppData/Roaming/npm/node_modules`
@@ -80,7 +80,3 @@ This only works in Edje's template. [Follow this guide](https://github.com/hrset
 
 
 Visit our [**WIKI**](https://github.com/hrsetyono/edje/wiki/) for full documentation.
-
-## Pushing Update
-
-Run `npm publish` after updating the version number in package.json.
