@@ -37,12 +37,23 @@
   }
 }
 
-// ----- DYNAMIC FONT SIZES -----
-@mixin _font-sizes($sizes) {
-  @each $media, $size in $sizes {
-    $size: em($size);
+// Create @font-face declaration
+@mixin font-faces($name, $files) {
+  @each $file, $weight, $style in $files {
+    @font-face {
+      src: font-url($file);
+      font-family: $name;
+      font-weight: $weight;
+      font-style: $style;
+    }
+  }
+}
 
-    // if base, no need for media query
+// Create font sizes in various media query
+@mixin font-sizes($sizes, $context: $font-size) {
+  @each $media, $s in $sizes {
+    $size: em($s, $context);
+
     @if $media == base {
       font-size: $size;
     }
@@ -95,12 +106,12 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: $header-transform;
 }
 
-h1 { @include _font-sizes($h1-sizes); }
-h2 { @include _font-sizes($h2-sizes); }
-h3 { @include _font-sizes($h3-sizes); }
-h4 { @include _font-sizes($h4-sizes); }
-h5 { @include _font-sizes($h5-sizes); }
-h6 { @include _font-sizes($h6-sizes); }
+h1 { @include font-sizes($h1-sizes); }
+h2 { @include font-sizes($h2-sizes); }
+h3 { @include font-sizes($h3-sizes); }
+h4 { @include font-sizes($h4-sizes); }
+h5 { @include font-sizes($h5-sizes); }
+h6 { @include font-sizes($h6-sizes); }
 
 // ----- LIST -----
 

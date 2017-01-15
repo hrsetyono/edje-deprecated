@@ -1,3 +1,12 @@
+## 1.2.2
+
+- Added [Typography mixin](https://github.com/hrsetyono/edje/wiki/Typography-Mixin).
+- Added [Browser prefixer](https://github.com/hrsetyono/edje/wiki/Generic-Mixin-and-Function#css3-prefixer).
+
+## 1.2.1
+
+- Fix error during installation due to missing binary
+
 ## 1.2.0
 - [Template] Removed from CORE. Now available in Yeoman. Install it by running `npm install -g yo` and `npm install -g generator-edje`. To generate template, run `yo edje`.
 
