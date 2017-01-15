@@ -1,6 +1,6 @@
 {
   "name": "edje",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Lightweight Sass framework for creating website from scratch",
   "main": "index.js",
   "dependencies": {},
@@ -23,5 +23,5 @@
   "bugs": {
     "url": "https://github.com/hrsetyono/edje/issues"
   },
-  "homepage": "https://github.com/hrsetyono/edje",
+  "homepage": "https://github.com/hrsetyono/edje"
 }
