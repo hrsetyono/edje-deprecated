@@ -1,3 +1,8 @@
+## 1.2.3
+
+- Update prefixer to latest browser compatibility.
+- Draft for v2.0 with CSS3 Grid
+
 ## 1.2.2
 
 - Added [Typography mixin](https://github.com/hrsetyono/edje/wiki/Typography-Mixin).

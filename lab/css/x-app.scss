@@ -2,10 +2,28 @@
 @import "x-setting";
 @import "edje";
 
-.paragraph-row {
-  @include row($rim: 20px);
-}
+.grid-demo {
+  margin: 3em 0;
 
-.paragraph-col {
-  @include column(12);
+  h2 {
+    max-width: $grid-max-width;
+    margin: 2rem auto 1rem;
+  }
+
+  h-row {
+    grid-row-gap: 10px;
+  }
+
+  h-column {
+    padding: 0.5em 0;
+    border: 1px solid rgba(black, .2);
+    background-color: rgba(black, .1);
+
+    text-align: center;
+    border-radius: $g-radius;
+  }
+
+  h-column:nth-child(even) {
+    background-color: rgba(black, .15);
+  }
 }

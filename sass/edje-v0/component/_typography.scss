@@ -15,6 +15,21 @@
   }
 }
 
+// Create font sizes in various media query
+@mixin font-sizes($sizes, $context: $font-size) {
+  @each $media, $s in $sizes {
+    $size: em($s, $context);
+
+    @if $media == base {
+      font-size: $size;
+    }
+    @else {
+      @include below($media) { font-size: $size; }
+    }
+  }
+}
+
+
 @if $include-typography and not $user-mode {
 
 /* -----------
@@ -28,7 +43,7 @@ body {
   @if not $responsive {
     min-width: $size-medium;
   }
-  
+
   font-family: $font-family;
   font-weight: $font-weight;
   font-size: $font-size;
@@ -93,4 +108,4 @@ blockquote {
   h6 { font-size: em($h6-small, $font-size-small); }
 }
 
-} // include-typography 
+} // include-typography

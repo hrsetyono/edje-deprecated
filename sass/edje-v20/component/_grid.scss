@@ -1,0 +1,91 @@
+// =============
+// EDJE GRID
+// =============
+
+@mixin row(
+  $gutter: false,
+  $rim: false ) {
+
+  @if $gutter {
+    grid-column-gap: $gutter;
+  }
+
+  @if $rim {
+    padding: 0 $rim;
+  }
+}
+
+
+@mixin column(
+  $size: false,
+  $small-size: false,
+  $mini-size: false ) {
+
+  @if $size {
+    grid-column: span #{ $size };
+  }
+
+  @if $small-size {
+    @include below(small) { grid-column: span #{ $small-size }; }
+  }
+
+  @if $mini-size {
+    @include below(mini) { grid-column: span #{ $mini-size }; }
+  }
+}
+
+
+/////
+
+@if not $_user-mode {
+
+// Row
+h-row {
+  @include display-grid;
+  grid-template-columns: repeat($grid-columns, 1fr);
+  grid-column-gap: $grid-gutter;
+  max-width: $grid-max-width;
+  margin: 0 auto;
+  padding: 0 $grid-rim;
+
+  &.collapsed {
+    grid-column-gap: 0;
+  }
+
+  &.centered {
+    justify-content: center;
+    align-content: space-between;
+    justify-content: center;
+  }
+
+  h-row {
+    padding: 0;
+  }
+}
+
+// Column
+h-column {
+  grid-column: span #{ $grid-columns };
+}
+
+@for $i from 1 through $grid-columns {
+  .large-#{$i} {
+    grid-column: span #{ $i };
+  }
+}
+
+// Small column
+@include below(small) {
+  [class*="large-"] {
+    grid-column: span #{ $grid-columns }; // reset
+  }
+
+  @for $i from 1 through $grid-columns {
+    .small-#{$i} {
+      grid-column: span #{ $i };
+    }
+  }
+}
+
+
+} // if not user_mode

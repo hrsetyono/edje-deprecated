@@ -2,21 +2,21 @@
 
 $_user-mode: false;
 $user-mode: false;
+$version: 2.0 !default;
 
-$version: 1.0 !default;
-
-@if $version < 1.0 {
+@if $version >= 2.0 {
 /* --------------------
 - EDJE Framework
 - http://github.com/hrsetyono/edje
-- v0.3.0 (Icarus)
+- v2.0.0 (Krobelus)
 --------------------- */
 
-  @import "edje-v0/base";
-  @import "edje-v0/utility";
-  @import "edje-v0/component";
+  @import "edje-v20/setting";
+  @import "edje-v20/utility";
+  @import "edje-v20/component";
 }
-@else {
+
+@else if $version >= 1.0 {
 /* --------------------
 - EDJE Framework
 - http://github.com/hrsetyono/edje
@@ -26,4 +26,15 @@ $version: 1.0 !default;
   @import "edje/setting";
   @import "edje/utility";
   @import "edje/component";
+}
+@else {
+/* --------------------
+- EDJE Framework
+- http://github.com/hrsetyono/edje
+- v0.3.0 (Icarus)
+--------------------- */
+
+  @import "edje-v0/base";
+  @import "edje-v0/utility";
+  @import "edje-v0/component";
 }

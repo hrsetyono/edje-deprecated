@@ -17,7 +17,7 @@ Template generator available as separate package [here](https://github.com/hrset
 
 ## Installation
 
-**1.** Install [Node JS](https://nodejs.org/download/).
+**1.** Install [Node JS v5.4.1](https://nodejs.org/download/release/v5.4.1/).
 
 **2.** There are 4 global packages required. Run these commands below one by one.
 
