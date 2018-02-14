@@ -1,0 +1,79 @@
+// -----------------
+// VENDOR PREFIXES
+// -----------------
+
+@mixin _webkit($prop, $value...) {
+  -webkit-#{ $prop }: $value;
+  #{ $prop }: $value;
+}
+
+// TRANSFORM
+
+@mixin transform( $value... ) {
+  @include _webkit("transform", $value...);
+}
+@mixin transform-origin($value...) {
+  @include _webkit("transform-origin", $value...);
+}
+
+
+@mixin perspective($value...) {
+  @include _webkit("perspective", $value...);
+}
+@mixin perspective-origin($value...) {
+  @include _webkit("perspective-origin", $value...);
+}
+
+// DISPLAY
+
+@mixin display-flex {
+  display: -webkit-flex;
+  display: flex;
+  @content;
+}
+
+@mixin display-grid {
+  display: -ms-grid;
+  display: grid;
+  @content;
+}
+
+// ANIMATION
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin animation($value...) {
+  @include _webkit("animation", $value...);
+}
+@mixin animation-name($value...) {
+  @include _webkit("animation-name", $value...);
+}
+@mixin animation-duration($value...) {
+  @include _webkit("animation-duration", $value...);
+}
+@mixin animation-timing-function($value...) {
+  @include _webkit("animation-timing-function", $value...);
+}
+@mixin animation-delay($value...) {
+  @include _webkit("animation-delay", $value...);
+}
+@mixin animation-direction($value...) {
+  @include _webkit("animation-direction", $value...);
+}
+@mixin animation-iteration-count($value...) {
+  @include _webkit("animation-iteration-count", $value...);
+}
+@mixin animation-fill-mode($value...) {
+  @include _webkit("animation-fill-mode", $value...);
+}
+@mixin animation-play-state($value...) {
+  @include _webkit("animation-play-state", $value...);
+}

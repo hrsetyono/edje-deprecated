@@ -21,6 +21,21 @@
   @include _prefixer("perspective-origin", $value...);
 }
 
+// PLACEHOLDER
+@mixin placeholder($base: false) {
+  @if $base {
+    ::-webkit-input-placeholder { @content; }
+    ::-moz-placeholder { @content; }
+    :-ms-input-placeholder { @content; }
+    :-moz-placeholder { @content; }
+  } @else {
+    &::-webkit-input-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &:-moz-placeholder { @content; }
+  }
+}
+
 // ANIMATION
 @mixin animation($value...) {
   @include _prefixer("animation", $value...);
