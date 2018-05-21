@@ -1,3 +1,42 @@
+## 1.5.0
+
+- Latest node-sass (4.9) and most-stable NodeJS (8.11) is now supported.
+- Version 1.4.0 is removed.
+
+BREAKING CHANGES:
+
+- `$version` variable is no longer needed.
+- The import path needs to include the version number.
+
+    The top of your **app.scss** should look like this:
+
+    ```
+    @import "setting";
+    @import "edje-v15";
+    ```
+
+    The top of your **framework.scss** should look like this:
+
+    ```
+    @import "setting";
+    $output-framework: true;
+    @import "edje-v15";
+    ```
+
+- Currently there are three versions available: edje-v0 (old), edje-v1 (stable), and edje-v15 (on development).
+
+## 1.4.0
+
+- To use this version, change `$version` variable in setting to `1.4`.
+
+Breaking changes:
+
+- Changes in default setting value to make it more like WordPress.com
+
+## 1.3.0
+
+- [Tile] Tile now uses Flexbox. Markup stays the same.
+
 ## 1.2.3
 
 - Update prefixer to latest browser compatibility.

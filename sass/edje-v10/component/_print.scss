@@ -2,7 +2,7 @@
 // EDGE PRINT
 // =============
 
-@if $include-print and not $_user-mode {
+@if $include-print and $output-framework {
 
 /* ---------------------
   EDGE Print

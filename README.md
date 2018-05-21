@@ -17,12 +17,12 @@ Template generator available as separate package [here](https://github.com/hrset
 
 ## Installation
 
-**1.** Install [Node JS v5.4.1](https://nodejs.org/download/release/v5.4.1/).
+**1.** Install [Node JS LTS version](https://nodejs.org/en/). At the time of writing, it's tested working on v8.11.2
 
 **2.** There are 4 global packages required. Run these commands below one by one.
 
 ```
-npm install -g node-sass@3.4.2
+npm install -g node-sass@4.9.0
 npm install -g edje
 npm install -g yo
 npm install -g generator-edje

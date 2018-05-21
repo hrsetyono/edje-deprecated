@@ -1,0 +1,14 @@
+// EDJE FRAMEWORK
+
+$output-framework: false !default;
+@if $output-framework {
+/* --------------------
+  EDJE Framework
+  http://github.com/hrsetyono/edje
+  v2.0.0 (Lyralei)
+--------------------- */
+}
+
+@import "edje-v20/setting";
+@import "edje-v20/utility";
+@import "edje-v20/component";

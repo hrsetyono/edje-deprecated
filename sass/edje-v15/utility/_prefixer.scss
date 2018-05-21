@@ -2,6 +2,12 @@
 // VENDOR PREFIXES
 // -----------------
 
+@mixin _prefixer($prop, $value...) {
+  -webkit-#{ $prop }: $value;
+  #{ $prop }: $value;
+}
+
+
 // DISPLAY
 @mixin display-flex() {
   display: -ms-flexbox;
@@ -9,23 +15,39 @@
   display: flex;
 }
 
-@mixin _prefixer($prop, $value...) {
-  -webkit-#{ $prop }: $value;
-  #{ $prop }: $value;
+@mixin flex() {
+  @include display-flex;
 }
+
+@mixin display-grid() {
+  display: -ms-grid;
+  display: grid;
+}
+
 
 // TRANSFORM
 @mixin transform-origin($value...) {
   @include _prefixer("transform-origin", $value...);
 }
+
 @mixin transform($value...) {
-  @include _prefixer("transform", $value...);
+  -webkit-transform: $value;
+  -ms-transform: $value;
+  transform: $value;
 }
+
 @mixin perspective($value...) {
   @include _prefixer("perspective", $value...);
 }
 @mixin perspective-origin($value...) {
   @include _prefixer("perspective-origin", $value...);
+}
+
+// APPEARANCE
+@mixin appearance( $value: none ) {
+  -webkit-appearance: $value;
+  -moz-appearance: $value;
+  appearance: $value;
 }
 
 // PLACEHOLDER
@@ -42,6 +64,7 @@
     &:-moz-placeholder { @content; }
   }
 }
+
 
 // ANIMATION
 @mixin animation($value...) {
@@ -80,4 +103,10 @@
   @keyframes #{$name} {
     @content;
   }
+}
+
+// FILTER
+@mixin filter( $value... ) {
+  -webkit-filter: $value;
+  filter: $value;
 }

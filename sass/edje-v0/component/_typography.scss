@@ -29,8 +29,20 @@
   }
 }
 
+// Create @font-face declaration
+@mixin font-faces($name, $files) {
+  @each $file, $weight, $style in $files {
+    @font-face {
+      src: font-url($file);
+      font-family: $name;
+      font-weight: $weight;
+      font-style: $style;
+    }
+  }
+}
 
-@if $include-typography and not $user-mode {
+
+@if $include-typography and $output-framework {
 
 /* -----------
   Typography

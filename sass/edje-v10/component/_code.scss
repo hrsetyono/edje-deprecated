@@ -46,7 +46,7 @@ $code-python-color  : #376a94; // dark-blue
   }
 }
 
-@if $include-code and not $_user-mode {
+@if $include-code and $output-framework {
 /* ----------------------
   EDGE CODE Highlighter
 ---------------------- */

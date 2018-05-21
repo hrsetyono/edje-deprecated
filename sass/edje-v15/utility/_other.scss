@@ -1,0 +1,44 @@
+// ----- URL SHORTCUT -----
+
+@function image-url($file) {
+  @return url("#{ $_dir-images }/#{ $file }");
+}
+
+@function font-url($file) {
+  @return url("#{ $_dir-fonts }/#{ $file }");
+}
+
+// ----- CLEARING FLOAT -----
+// Make a container wraps floated element
+
+@mixin clearfix {
+  &::before, &::after {
+    content: " ";
+    display: table;
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+// ----- MAP GET -----
+
+// palette
+@function colors($name) {
+  @return map-get($colors, $name);
+}
+
+// z-index
+@function z($name) {
+  @return map-get($z-indexes, $name);
+}
+
+// ----- DISABLE SELECTION -----
+// Prevents highlighting
+
+@mixin user-select($value) {
+  -webkit-touch-callout: $value;
+  -webkit-user-select: $value;
+  -moz-user-select: $value;
+  user-select: $value;
+}

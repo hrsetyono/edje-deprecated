@@ -1,0 +1,14 @@
+// EDJE FRAMEWORK
+
+$output-framework: false !default;
+@if $output-framework {
+/* --------------------
+- EDJE Framework
+- https://github.com/hrsetyono/edje
+- v1.5.0 (Krobelus)
+--------------------- */
+}
+
+@import "edje-v15/setting";
+@import "edje-v15/utility";
+@import "edje-v15/component";

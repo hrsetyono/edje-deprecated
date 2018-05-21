@@ -55,7 +55,7 @@
   }
 }
 
-@if $include-visibility and not $_user-mode {
+@if $include-visibility and $output-framework {
 
 /* -----------------
   EDGE Visibility
