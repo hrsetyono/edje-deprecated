@@ -63,10 +63,10 @@ code, kbd, samp {
 pre,
 code {
   @include code-block();
-  
+
   white-space: pre;
   word-spacing: normal;
-  
+
   -moz-tab-size: 2;
   tab-size: 2;
 
@@ -84,7 +84,7 @@ pre {
 
   @include code-decor($main-color);
   @include box-shadow(-1px 0px 0px 0px #ddd, 0px 0px 0px 1px #ddd);
-  
+
   &:hover {
     &:after {
       opacity: .2;
@@ -96,7 +96,7 @@ pre {
     position: absolute;
     top: .5em;
     right: .5em;
-    
+
     background: $passive-color;
     opacity: 0;
     padding: 0 10px;
@@ -106,7 +106,7 @@ pre {
 
     @include transition($g-transition);
   }
-  
+
   &[data-lang="html"],
   &[data-lang="markup"] {
     @include code-decor($code-markup-color, "HTML");
@@ -289,7 +289,7 @@ pre {
   .namespace {
     opacity: .7;
   }
-  
+
   // LINE HIGHLIGHTER
 
   .line-highlight {
@@ -300,7 +300,7 @@ pre {
     pointer-events: none;
     line-height: inherit;
     white-space: pre;
-    
+
     @if $code-theme == dark {
       @include background-image(linear-gradient(left, rgba(#e2e2e2, .1) 70%, rgba(#e2e2e2, 0) ) );
     } @else {
@@ -316,7 +316,7 @@ pre {
       left: 0;
       padding: 0 .5em;
       opacity: .5;
-      
+
       color: #f5f2f0;
       font-weight: 700;
       font-size: 1em;
@@ -329,7 +329,7 @@ pre {
       bottom: 0;
     }
   }
-  
+
   // LINE NUMBERS
 
   &.line-numbers {

@@ -1,0 +1,94 @@
+// ==================
+// EDGE VISIBILITY
+// ==================
+
+// -------------
+// VISIBLE ON
+// - Set the display of special element
+// ------------------------------------
+@mixin visibility($size, $display: inherit) {
+  @if $size == large {
+    &.hide-for-large,
+    &.show-for-small,
+    &.show-for-mini { display: none !important; }
+
+    &.hide-for-small,
+    &.hide-for-mini,
+    &.show-for-large { display: $display !important; }
+  }
+  @else if $size == small {
+    &.hide-for-small,
+    &.show-for-large { display: none !important; }
+
+    &.show-for-small,
+    &.hide-for-large { display: $display !important; }
+  }
+  @else if $size == mini {
+    &.hide-for-mini { display: none !important; }
+
+    &.show-for-mini { display: $display !important; }
+  }
+}
+
+// ---------------------------------
+// SPECIAL DISPLAY
+// - Elements that needs special display style
+// --------------------------------------------
+@mixin special-display($size) {
+  table {
+    @include visibility($size, table);
+  }
+  thead {
+    @include visibility($size, table-header-group);
+  }
+  tbody {
+    @include visibility($size, table-row-group);
+  }
+  tr {
+    @include visibility($size, table-row);
+  }
+  td, th {
+    @include visibility($size, table-cell);
+  }
+  img, span, em, strong, sub, sup, big, small {
+    @include visibility($size, inline-block);
+  }
+}
+
+@if $include-visibility and $output-framework {
+
+/* -----------------
+  EDGE Visibility
+----------------- */
+
+.hide-for-large,
+.show-for-small,
+.show-for-mini { display: none !important; }
+
+.hide-for-small,
+.hide-for-mini,
+.show-for-large { display: inherit !important; }
+
+@include special-display(large);
+
+@include below(small) {
+
+  .hide-for-small,
+  .show-for-large { display: none !important; }
+
+  .show-for-small,
+  .hide-for-large { display: inherit !important; }
+
+  @include special-display(small);
+}
+
+@include below(mini) {
+
+  .hide-for-mini { display: none !important; }
+
+  .show-for-mini { display: inherit !important; }
+
+  @include special-display(mini);
+}
+
+} // include-visibility

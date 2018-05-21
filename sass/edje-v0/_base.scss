@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 // Shouldn't be modified by user
-$user-mode   : false !default; // if mixin call came from framework or user
+$output-framework   : false !default; // if mixin call came from framework or user
 $in-media    : false !default; // if mixin call came from inside @media block
 
 // ----------------

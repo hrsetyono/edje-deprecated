@@ -3,7 +3,7 @@
 // =============
 
 @if $include-print and $output-framework {
-  
+
 /* ---------------------
   EDGE Print
   - HTML5 Boilerplate
@@ -12,7 +12,7 @@
 @include print {
   * {
     @if $override-color {
-      color: #000 !important;  
+      color: #000 !important;
     }
     box-shadow: none !important;
     text-shadow: none !important;
@@ -76,7 +76,7 @@
   h3 {
     page-break-after: avoid;
   }
-  
+
   // make most outer row the page size
   h-row {
     min-width: $grid-max-width + $grid-gutter;
@@ -88,4 +88,3 @@
 }
 
 }
-

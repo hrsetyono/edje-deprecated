@@ -1,0 +1,139 @@
+// ==================
+// Edje Typography
+// ==================
+
+// ----- INLINE LIST -----
+@mixin inline-list() {
+  @include clearfix();
+
+  > li {
+    display: inline-block;
+    float: left;
+    vertical-align: top;
+  }
+}
+
+// ----- SELECTION -----
+// Change the text highlight color
+
+@mixin _text-selection($bg: $text-highlight) {
+  @if $bg {
+
+    // determine text color
+    $color: white;
+    @if (lightness($bg) > 60) { $color: #222; }
+
+    ::-moz-selection {
+      background: $bg;
+      text-shadow: none !important;
+      color: $color !important;
+    }
+
+    ::selection {
+      background: $bg;
+      text-shadow: none !important;
+      color: $color !important;
+    }
+  }
+}
+
+// Create @font-face declaration
+@mixin font-faces($name, $files) {
+  @each $file, $weight, $style in $files {
+    @font-face {
+      src: font-url($file);
+      font-family: $name;
+      font-weight: $weight;
+      font-style: $style;
+    }
+  }
+}
+
+// Create font sizes in various media query
+@mixin font-sizes($sizes, $context: $font-size) {
+  @each $media, $s in $sizes {
+    $size: em($s, $context);
+
+    @if $media == base {
+      font-size: $size;
+    }
+    @else {
+      @include below($media) { font-size: $size; }
+    }
+  }
+}
+
+
+@if $output-framework {
+
+/* ----------
+  Typography
+----------- */
+
+body {
+  position: relative;
+  background: $body-background;
+
+  @if not $responsive {
+    min-width: $grid-max-width;
+  }
+
+  font-size: $font-size;
+  font-family: $font-family;
+  font-weight: $font-weight;
+  line-height: $font-line;
+  color: $font-color;
+}
+
+p {
+  margin-top: 0; margin-bottom: 0;
+}
+
+a {
+  color: $color-link;
+  transition: $g-transition;
+
+  &:hover { color: $color-link-hover; }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-header;
+  font-weight: $header-weight;
+  line-height: $header-line;
+  color: $header-color;
+
+  letter-spacing: $header-spacing;
+  text-transform: $header-transform;
+}
+
+h1 { @include font-sizes($h1-sizes); }
+h2 { @include font-sizes($h2-sizes); }
+h3 { @include font-sizes($h3-sizes); }
+h4 { @include font-sizes($h4-sizes); }
+h5 { @include font-sizes($h5-sizes); }
+h6 { @include font-sizes($h6-sizes); }
+
+// ----- LIST -----
+
+ul {
+  list-style-type: $ul-parent;
+
+  ul { list-style-type: $ul-child; }
+}
+
+ol {
+  list-style-type: $ol-parent;
+
+  ol { list-style-type: $ol-child; }
+}
+
+blockquote {
+  cite {
+    display: block;
+    font-style: italic;
+  }
+}
+
+@include _text-selection();
+
+} // @if

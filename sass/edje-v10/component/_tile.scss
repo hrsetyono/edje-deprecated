@@ -13,13 +13,15 @@
   $collapse : false,
   $for-base : false,
   $clear    : false) {
-  
+
   @if $for-base {
+    @include display-flex;
+    flex-wrap: wrap;
     padding-left: 0;
+    width: calc(100% + #{$gutter});
     list-style-type: none;
-    @include clearfix;
   }
-  
+
   @if $gutter {
     margin-right: -($gutter / 2);
     margin-left: -($gutter / 2);
@@ -34,12 +36,9 @@
   }
 
   > li {
-    @if $for-base {
-      float: $default-float;
-    }
-  
+
     @if $gutter {
-      padding-right: ($gutter / 2); 
+      padding-right: ($gutter / 2);
       padding-left: ($gutter / 2);
     }
 
@@ -47,23 +46,10 @@
       padding-right: 0;
       padding-left: 0;
     }
-  
+
     // Number of tiles per row
     @if $size > 0  {
-      width: 100% / $size;
-      
-      // clear floating
-      @if $clear {
-        &:nth-of-type(n) {
-          clear: none;
-        }
-      }
-    }
-
-    @if $size > 1 {
-      &:nth-of-type(#{$size}n+1) {
-        clear: both;
-      }
+      width: percentage( 1 / $size );
     }
   }
 }
@@ -100,13 +86,13 @@
   }
 }
 
-@if $include-tile and $output-framework {
+@if $output-framework {
 
 /* ------
   Tile
 ------ */
 
-[class*="tile"] {
+[class*="tile-"] {
   @include _base-tile($gutter:$tile-gutter, $for-base:true);
 
   &.collapse {
@@ -121,15 +107,13 @@
 }
 
 @include below(small) {
-  // reset large tile
-  %reset-tile { @include _base-tile(1, $clear:true); }
-  @for $i from 1 through $tile-max {
-    .tile-#{$i} { @extend %reset-tile; }
+  [class*="tile-"] > li {
+    width: 100%;
   }
 
   @for $i from 1 through $tile-max {
     .small-tile-#{$i} {
-      @include _base-tile($i);
+      @include _base-tile( $i );
     }
   }
 }

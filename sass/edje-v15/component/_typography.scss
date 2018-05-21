@@ -64,7 +64,7 @@
 }
 
 
-@if not $_user-mode {
+@if $output-framework {
 
 /* ----------
   Typography
@@ -91,7 +91,6 @@ p {
 
 a {
   color: $color-link;
-  transition: $g-transition;
 
   &:hover { color: $color-link-hover; }
 }
