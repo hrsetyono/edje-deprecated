@@ -1,3 +1,7 @@
+## 1.5.1
+
+- [Normalize] Removed the CSS that removes native Datepicker. Applied on all versions.
+
 ## 1.5.0
 
 - Latest node-sass (4.9) and most-stable NodeJS (8.11) is now supported.
