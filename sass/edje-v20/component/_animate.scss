@@ -1,118 +1,59 @@
 // ===============
-// EDGE ANIMATE
+// EDJE ANIMATE
 // ===============
-// Based on animate.css [http://daneden.me/animate]
-// Copyright (c) 2013 Daniel Eden
 
-// -----------
-// KEYFRAMES
-//   Create keyframe animation
-// ----------------------------
-@mixin keyframes($name) {
-  @-webkit-keyframes #{$name} {
-    @content;
+// Pair animate class with keyframes
+@mixin animate( $name ) {
+  .animate.#{$name} {
+    animation-name: $name;
   }
-  @keyframes #{$name} {
+
+  @keyframes( $name ) {
     @content;
   }
 }
 
-// ------------------------
-// ANIMATION NAME
-//   Assign the animation
-// ------------------------
-@mixin animation-name($name) {
-  -webkit-animation-name: $name;
-  animation-name: $name;
-}
-
-
-// -----------------------------------
-// ANIMATE
-//   Pair the animation and keyframes
-// -----------------------------------
-@mixin animate($name) {
-  .animated.#{$name} {
-    @include animation-name($name);
-  }
-  @include keyframes($name) {
-    @content;
-  }
-}
-
-@if $include-animate and not $_user-mode {
-/* ---------------
-  EDGE Animate
---------------- */
+@if $output-framework {
 
 [data-animate] {
   visibility: hidden !important;
 }
 
-.animated {
+.animate {
   visibility: visible !important;
 
-  @include animation-duration(1s);
-  @include animation-fill-mode(both);
+  animation-duration: $animation-duration;
+  animation-fill-mode: both;
 }
 
 // FADEIN
 
-@include animate(fadein) {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
+@include animate( fadeIn ) {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-  @include animate(fadein-down) {
+  @include animate( fadeInDown ) {
     0% {
       opacity: 0;
-      @include transform(translateY(-20px) );
+      @include transform( translateY(-20px) );
     }
 
     100% {
       opacity: 1;
-      @include transform(translateY(0) );
+      @include transform( translateY(0) );
     }
   }
 
-  @include animate(fadein-up) {
+  @include animate( fadeInUp ) {
     0% {
       opacity: 0;
-      @include transform(translateY(20px) );
+      @include transform( translateY(20px) );
     }
 
     100% {
       opacity: 1;
-      @include transform(translateY(0) );
-    }
-  }
-
-  @include animate(fadein-left) {
-    0% {
-      opacity: 0;
-      @include transform(translateX(-20px) );
-    }
-
-    100% {
-      opacity: 1;
-      @include transform(translateX(0) );
-    }
-  }
-
-  @include animate(fadein-right) {
-    0% {
-      opacity: 0;
-      @include transform(translateX(20px) );
-    }
-
-    100% {
-      opacity: 1;
-      @include transform(translateX(0) );
+      @include transform( translateY(0) );
     }
   }
 

@@ -9,7 +9,7 @@ Edje provides just the essential styles such as:
 - [Grid System](https://github.com/hrsetyono/edje/wiki/Grid-System)
 - [Tile System](https://github.com/hrsetyono/edje/wiki/Tile-System)
 - [Visibility](https://github.com/hrsetyono/edje/wiki/Visibility)
-- And few others. Visit our [WIKI](https://github.com/hrsetyono/edje/wiki/) for full documentation.
+- And few others.
 
 
 Template generator available as separate package [here](https://github.com/hrsetyono/generator-edje). The installation guide below already included this.
@@ -17,20 +17,21 @@ Template generator available as separate package [here](https://github.com/hrset
 
 ## Installation
 
-**1.** Install [Node JS LTS version](https://nodejs.org/en/). At the time of writing, it's tested working on v8.11.2
+1. Install [Node JS v5.4.1](https://github.com/hrsetyono/edje/wiki#installation).
 
-**2.** There are 4 global packages required. Run these commands below one by one.
+1. There are 4 global packages required. Run these commands below one by one.
 
-```
-npm install -g node-sass@4.9.0
-npm install -g edje
-npm install -g yo
-npm install -g generator-edje
-```
+    ```
+    npm install -g node-sass@3.4.2
+    npm install -g edje
+    npm install -g yo
+    npm install -g generator-edje
+    ```
 
-**3.** If you are on Windows, add `NODE_PATH` to your System Variable and set it to the `npm` installation directory. By default it should be in `C:/Users/yourname/AppData/Roaming/npm/node_modules`
+1. If you are on Windows, add **NODE_PATH** to your System Variable and set it to **%AppData%/npm/node_modules**.
 
-**4.** Test whether it's successfully installed by running the command `npm`. If not found, try restarting your PC and double-check your `NODE_PATH`.
+1. Test whether it's successfully installed by running the command `npm`. If not found, try restarting your PC and double-check your `NODE_PATH`. If still doesn't work, run these [4 commands](http://stackoverflow.com/a/9588052/1318622) one by one.
+
 
 ## Getting Started
 
@@ -55,10 +56,10 @@ This only works in Edje's template. [Follow this guide](https://github.com/hrset
 **GRID in HTML**
 
 ```html
-<h-row>
-  <h-column class="large-8 small-6"> </h-column>
-  <h-column class="large-4 small-6"> </h-column>
-</h-row>  
+<h-grid>
+  <div class="large-8 small-6"> </div>
+  <div class="large-4 small-6"> </div>
+</h-grid>  
 ```
 
 
@@ -77,6 +78,3 @@ This only works in Edje's template. [Follow this guide](https://github.com/hrset
   }
 }
 ```
-
-
-Visit our [**WIKI**](https://github.com/hrsetyono/edje/wiki/) for full documentation.

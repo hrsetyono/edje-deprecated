@@ -2,43 +2,98 @@
 // VENDOR PREFIXES
 // -----------------
 
-@mixin _webkit($prop, $value...) {
+@mixin _prefixer($prop, $value...) {
   -webkit-#{ $prop }: $value;
   #{ $prop }: $value;
 }
 
-// TRANSFORM
-
-@mixin transform( $value... ) {
-  @include _webkit("transform", $value...);
-}
-@mixin transform-origin($value...) {
-  @include _webkit("transform-origin", $value...);
-}
-
-
-@mixin perspective($value...) {
-  @include _webkit("perspective", $value...);
-}
-@mixin perspective-origin($value...) {
-  @include _webkit("perspective-origin", $value...);
-}
 
 // DISPLAY
-
-@mixin display-flex {
+@mixin display-flex() {
+  display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  @content;
 }
 
-@mixin display-grid {
+@mixin flex() {
+  @include display-flex;
+}
+
+@mixin display-grid() {
   display: -ms-grid;
   display: grid;
-  @content;
 }
 
+
+// TRANSFORM
+@mixin transform-origin($value...) {
+  @include _prefixer("transform-origin", $value...);
+}
+
+@mixin transform($value...) {
+  -webkit-transform: $value;
+  -ms-transform: $value;
+  transform: $value;
+}
+
+@mixin perspective($value...) {
+  @include _prefixer("perspective", $value...);
+}
+@mixin perspective-origin($value...) {
+  @include _prefixer("perspective-origin", $value...);
+}
+
+// APPEARANCE
+@mixin appearance( $value: none ) {
+  -webkit-appearance: $value;
+  -moz-appearance: $value;
+  appearance: $value;
+}
+
+// PLACEHOLDER
+@mixin placeholder($base: false) {
+  @if $base {
+    ::-webkit-input-placeholder { @content; }
+    ::-moz-placeholder { @content; }
+    :-ms-input-placeholder { @content; }
+    :-moz-placeholder { @content; }
+  } @else {
+    &::-webkit-input-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &:-moz-placeholder { @content; }
+  }
+}
+
+
 // ANIMATION
+@mixin animation($value...) {
+  @include _prefixer("animation", $value...);
+}
+@mixin animation-name($value...) {
+  @include _prefixer("animation-name", $value...);
+}
+@mixin animation-duration($value...) {
+  @include _prefixer("animation-duration", $value...);
+}
+@mixin animation-timing-function($value...) {
+  @include _prefixer("animation-timing-function", $value...);
+}
+@mixin animation-delay($value...) {
+  @include _prefixer("animation-delay", $value...);
+}
+@mixin animation-direction($value...) {
+  @include _prefixer("animation-direction", $value...);
+}
+@mixin animation-iteration-count($value...) {
+  @include _prefixer("animation-iteration-count", $value...);
+}
+@mixin animation-fill-mode($value...) {
+  @include _prefixer("animation-fill-mode", $value...);
+}
+@mixin animation-play-state($value...) {
+  @include _prefixer("animation-play-state", $value...);
+}
 
 @mixin keyframes($name) {
   @-webkit-keyframes #{$name} {
@@ -50,30 +105,8 @@
   }
 }
 
-@mixin animation($value...) {
-  @include _webkit("animation", $value...);
-}
-@mixin animation-name($value...) {
-  @include _webkit("animation-name", $value...);
-}
-@mixin animation-duration($value...) {
-  @include _webkit("animation-duration", $value...);
-}
-@mixin animation-timing-function($value...) {
-  @include _webkit("animation-timing-function", $value...);
-}
-@mixin animation-delay($value...) {
-  @include _webkit("animation-delay", $value...);
-}
-@mixin animation-direction($value...) {
-  @include _webkit("animation-direction", $value...);
-}
-@mixin animation-iteration-count($value...) {
-  @include _webkit("animation-iteration-count", $value...);
-}
-@mixin animation-fill-mode($value...) {
-  @include _webkit("animation-fill-mode", $value...);
-}
-@mixin animation-play-state($value...) {
-  @include _webkit("animation-play-state", $value...);
+// FILTER
+@mixin filter( $value... ) {
+  -webkit-filter: $value;
+  filter: $value;
 }

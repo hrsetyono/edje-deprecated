@@ -28,11 +28,6 @@
   @return map-get($colors, $name);
 }
 
-// z-index
-@function z($name) {
-  @return map-get($z-indexes, $name);
-}
-
 // ----- DISABLE SELECTION -----
 // Prevents highlighting
 

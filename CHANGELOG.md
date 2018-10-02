@@ -1,3 +1,11 @@
+## 2.0.0
+
+- Version 2 released!
+- [Grid] Now uses CSS3 grid. [Read More](https://github.com/hrsetyono/edje/wiki/Grid-System)
+- [Tile] Now uses <h-tile> element for the wrapper. [Read More](https://github.com/hrsetyono/edje/wiki/Tile-System)
+- [Animate] Out of beta, no longer need to set `$include-animate` variable to true.
+- [Animate] Removes vendor prefixes.
+
 ## 1.5.1
 
 - [Normalize] Removed the CSS that removes native Datepicker. Applied on all versions.

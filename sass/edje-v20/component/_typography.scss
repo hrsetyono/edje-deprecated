@@ -1,5 +1,5 @@
 // ==================
-// Edje Typography
+// EDJE TYPOGRAPHY
 // ==================
 
 // ----- INLINE LIST -----
@@ -64,7 +64,7 @@
 }
 
 
-@if not $_user-mode {
+@if $output-framework {
 
 /* ----------
   Typography

@@ -2,87 +2,98 @@
 // EDJE GRID
 // =============
 
-@mixin row(
-  $gutter: false,
-  $rim: false ) {
+@mixin grid(
+  $columns: false,
+  $gap: false,
+  $rim: false,
+  $width: false,
+  $collapse: false ) {
 
-  @if $gutter {
-    grid-column-gap: $gutter;
+  @if $columns {
+    grid-template-columns: repeat( $columns, 1fr );
   }
 
-  @if $rim {
+  @if $gap {
+    grid-column-gap: $gap;
+  }
+
+  @if $width and $rim {
+    max-width: $width + ($rim * 2);
     padding: 0 $rim;
+  } @elseif $width {
+    max-width: $width + ($grid-rim * 2);
+  } @elseif $rim {
+    padding: 0 $rim;
+  }
+
+  @if $collapse {
+    grid-column-gap: 0;
   }
 }
 
-
 @mixin column(
   $size: false,
-  $small-size: false,
-  $mini-size: false ) {
-
+  $size_small: false,
+  $size_mini: false,
+) {
   @if $size {
     grid-column: span #{ $size };
-  }
 
-  @if $small-size {
-    @include below(small) { grid-column: span #{ $small-size }; }
-  }
+    @if $size_small {
+      @include below(small) {
+        grid-column: span #{ $size_small };
+      }
+    }
 
-  @if $mini-size {
-    @include below(mini) { grid-column: span #{ $mini-size }; }
+    @if $size_mini {
+      @include below(mini) {
+        grid-column: span #{ $size_mini };
+      }
+    }
   }
 }
 
 
 /////
 
-@if not $_user-mode {
+@if $output-framework {
 
-// Row
-h-row {
+// Grid wrapper
+h-grid {
   @include display-grid;
-  grid-template-columns: repeat($grid-columns, 1fr);
-  grid-column-gap: $grid-gutter;
-  max-width: $grid-max-width;
+  @include grid( $grid-columns );
+  @include grid( $gap: $grid-gap );
+  @include grid( $width: $grid-max-width );
+  @include grid( $rim: $grid-rim );
   margin: 0 auto;
-  padding: 0 $grid-rim;
 
-  &.collapsed {
-    grid-column-gap: 0;
+  &.collapse {
+    @include grid( $collapse: true );
   }
 
-  &.centered {
-    justify-content: center;
-    align-content: space-between;
-    justify-content: center;
-  }
-
-  h-row {
+  h-grid {
+    margin: 0;
     padding: 0;
   }
 }
 
 // Column
-h-column {
-  grid-column: span #{ $grid-columns };
-}
-
 @for $i from 1 through $grid-columns {
   .large-#{$i} {
-    grid-column: span #{ $i };
+    @include column( $i );
   }
 }
 
 // Small column
 @include below(small) {
+  // reset
   [class*="large-"] {
-    grid-column: span #{ $grid-columns }; // reset
+    @include column( $grid-columns );
   }
 
   @for $i from 1 through $grid-columns {
     .small-#{$i} {
-      grid-column: span #{ $i };
+      @include column( $i );
     }
   }
 }

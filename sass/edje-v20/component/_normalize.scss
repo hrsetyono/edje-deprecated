@@ -1,9 +1,9 @@
 // =================
-// EDGE NORMALIZE
+// EDJE NORMALIZE
 // =================
 // Based on git.io/normalize v3.0.3
 
-@if not $_user-mode {
+@if $output-framework {
 
 /* ----------
   Normalize
