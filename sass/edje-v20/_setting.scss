@@ -39,7 +39,7 @@ $_media-sizes: (
 
 // ----- RESPONSIVE -----
 $responsive : true !default;
-$adaptive   : false !default;
+$adaptive   : false !default; // TODO: not implemented yet in v20
 $adaptive-breakpoints : large, medium, small, mini !default;
 
 $_user-mode   : true !default; // when importing component, output the style or just mixin?
@@ -117,6 +117,16 @@ $shadow-z3: 0 6px 12px rgba(black, .23), 0 10px 40px rgba(black, .19) !default;
 $_dir-images: "../images" !default;
 $_dir-fonts: "../fonts" !default;
 
+// ----- u/SUPPORT ------
+// http://browserhacks.com
+$supports: (
+  ie: '(-webkit-appearance:none)',
+  firefox: '(-moz-appearance:meterbar) and (background-blend-mode:difference,normal)',
+  webkit: '(-webkit-appearance:none)',
+  chrome: '(-webkit-appearance:none)',
+  opera: '(-webkit-appearance:none)',
+);
+
 // ----- c/GRID -----
 $grid-columns : 12 !default;
 $grid-gap     : 20px !default;
@@ -128,7 +138,7 @@ $tile-max : 8 !default;
 $tile-gap : 20px !default;
 
 // -----c/ANIMATE-----
-$animate-duration: 1s !default;
+$animation-duration: 1s !default;
 
 // ----- c/PRINT -----
 $override-color: true !default;

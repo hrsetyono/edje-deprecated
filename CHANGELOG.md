@@ -1,3 +1,9 @@
+## 2.0.1
+
+- New mixin `supports` is on beta. [Read More](https://github.com/hrsetyono/edje/wiki/Generic-Mixin-and-Function#supports-20)
+- [Prefixer] Remove animation prefixer because it's no longer needed.
+
+
 ## 2.0.0
 
 - Version 2 released!

@@ -8,11 +8,11 @@
 }
 
 // Convert the number to EM
-@function _convertToEm($value, $context: $font-size) {
+@function _convertToEm($value, $base: $font-size) {
   // if not number, return it as is
   @if type-of($value) != number { @return $value; }
-  
-  $value: _stripUnit($value) / _stripUnit($context) * 1em;
+
+  $value: _stripUnit($value) / _stripUnit($base) * 1em;
   // turn 0em into 0
   @if ($value == 0em) {
     $value: 0;
@@ -20,16 +20,16 @@
   @return $value;
 }
 
-@function em($values, $context: $font-size) {
+@function em($values, $base: $font-size) {
   // if only contain single number, convert it directly
   @if type-of($values) == number {
-    @return _convertToEm($values, $context);
+    @return _convertToEm($values, $base);
   }
-  
+
   // if contains multiple values, loop through it
   $emValues   : ();
   @each $val in $values {
-    $emValues: append($emValues, _convertToEm($val, $context) );
+    $emValues: append($emValues, _convertToEm($val, $base) );
   }
   @return join((), $emValues, space );
 }

@@ -172,7 +172,7 @@ blockquote cite { display: block; font-style: italic; }
 
 h-grid { display: -ms-grid; display: grid; grid-template-columns: repeat(12, 1fr); grid-column-gap: 20px; max-width: 1140px; padding: 0 10px; margin: 0 auto; }
 
-h-grid.collapsed { grid-column-gap: 0; }
+h-grid.collapse { grid-column-gap: 0; }
 
 h-grid h-grid { margin: 0; padding: 0; }
 
@@ -216,9 +216,9 @@ h-grid h-grid { margin: 0; padding: 0; }
 
 h-tile { display: -ms-grid; display: grid; grid-column-gap: 20px; grid-row-gap: 20px; }
 
-h-tile.collapsed { grid-column-gap: 0; }
+h-tile.collapse { grid-column-gap: 0; }
 
-h-tile > * { grid-column: span 1fr; }
+h-tile > * { grid-column: span 1; }
 
 .tile-1 { grid-template-columns: repeat(1, 1fr); }
 
@@ -306,6 +306,37 @@ img.hide-for-small, img.hide-for-mini, img.show-for-large, span.hide-for-small, 
   td.show-for-mini, th.show-for-mini { display: table-cell !important; }
   img.hide-for-mini, span.hide-for-mini, em.hide-for-mini, strong.hide-for-mini, sub.hide-for-mini, sup.hide-for-mini, big.hide-for-mini, small.hide-for-mini { display: none !important; }
   img.show-for-mini, span.show-for-mini, em.show-for-mini, strong.show-for-mini, sub.show-for-mini, sup.show-for-mini, big.show-for-mini, small.show-for-mini { display: inline-block !important; } }
+
+[data-animate] { visibility: hidden !important; }
+
+.animate { visibility: visible !important; animation-duration: 1s; animation-fill-mode: both; }
+
+.animate.fadeIn { animation-name: fadeIn; }
+
+@keyframes ( $name ) { 0% { opacity: 0; }
+  100% { opacity: 1; } }
+
+.animate.fadeInDown { animation-name: fadeInDown; }
+
+@keyframes ( $name ) { 0% { opacity: 0;
+    -webkit-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    transform: translateY(-20px); }
+  100% { opacity: 1;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0); } }
+
+.animate.fadeInUp { animation-name: fadeInUp; }
+
+@keyframes ( $name ) { 0% { opacity: 0;
+    -webkit-transform: translateY(20px);
+    -ms-transform: translateY(20px);
+    transform: translateY(20px); }
+  100% { opacity: 1;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0); } }
 
 /* ---------------------
   EDGE Print
