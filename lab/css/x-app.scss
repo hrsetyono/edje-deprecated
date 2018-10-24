@@ -47,3 +47,22 @@
     @include tile(4, 3, 2);
   }
 }
+
+.visibility-demo {
+  padding: 2em 0;
+
+  p {
+    margin-bottom: 1em;
+    
+  }
+
+  p, span {
+    padding: 0.5em 1em;
+    border: 1px solid rgba(black, .1);
+    background-color: rgba(black, .05);
+  }
+
+  span {
+    display: inline-block;
+  }
+}

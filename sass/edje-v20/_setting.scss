@@ -1,8 +1,7 @@
 @charset "UTF-8";
 
 // ----- OUTPUT CONFIG -----
-$include-visibility : true !default;
-$include-print : true !default;
+$include-print : false !default;
 
 // ----- COLOR -----
 $color-main : #2196f3 !default;

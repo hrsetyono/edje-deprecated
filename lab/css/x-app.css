@@ -17,3 +17,11 @@
 @media only screen and (max-width: 767px) { .tile-demo .custom-tile { grid-template-columns: repeat(3, 1fr); } }
 
 @media only screen and (max-width: 480px) { .tile-demo .custom-tile { grid-template-columns: repeat(2, 1fr); } }
+
+.visibility-demo { padding: 2em 0; }
+
+.visibility-demo p { margin-bottom: 1em; }
+
+.visibility-demo p, .visibility-demo span { padding: 0.5em 1em; border: 1px solid rgba(0, 0, 0, 0.1); background-color: rgba(0, 0, 0, 0.05); }
+
+.visibility-demo span { display: inline-block; }

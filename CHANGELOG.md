@@ -1,3 +1,8 @@
+## 2.0.2
+
+- Changed PRINT styling to not be included by default.
+- Fixed VISIBILITY messing up due to `display: inherit`.
+
 ## 2.0.1
 
 - New mixin `supports` is on beta. [Read More](https://github.com/hrsetyono/edje/wiki/Generic-Mixin-and-Function#supports-20)
