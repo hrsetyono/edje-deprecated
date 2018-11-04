@@ -1,0 +1,102 @@
+// =============
+// EDJE GRID
+// =============
+
+@mixin grid(
+  $columns: false,
+  $gap: false,
+  $rim: false,
+  $width: false,
+  $collapse: false ) {
+
+  @if $columns {
+    grid-template-columns: repeat( $columns, 1fr );
+  }
+
+  @if $gap {
+    grid-column-gap: $gap;
+  }
+
+  @if $width and $rim {
+    max-width: $width + ($rim * 2);
+    padding: 0 $rim;
+  } @elseif $width {
+    max-width: $width + ($grid-rim * 2);
+  } @elseif $rim {
+    padding: 0 $rim;
+  }
+
+  @if $collapse {
+    grid-column-gap: 0;
+  }
+}
+
+@mixin column(
+  $size: false,
+  $size_s: false,
+  $size_m: false,
+) {
+  @if $size {
+    grid-column: span #{ $size };
+
+    @if $size_s {
+      @include below(s) {
+        grid-column: span #{ $size_s };
+      }
+    }
+
+    @if $size_xs {
+      @include below(xs) {
+        grid-column: span #{ $size_xs };
+      }
+    }
+  }
+}
+
+
+/////
+
+@if $output-framework {
+
+// Grid wrapper
+h-grid {
+  @include display-grid;
+  @include grid( $grid-columns );
+  @include grid( $gap: $grid-gap );
+  @include grid( $width: $grid-max-width );
+  @include grid( $rim: $grid-rim );
+  margin: 0 auto;
+
+  &.grid-collapse {
+    @include grid( $collapse: true );
+  }
+
+  h-grid {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// Column
+@for $i from 1 through $grid-columns {
+  .col-#{$i} {
+    @include column( $i );
+  }
+}
+
+// Small column
+@include below(s) {
+  // reset
+  [class*="col-"] {
+    @include column( $grid-columns );
+  }
+
+  @for $i from 1 through $grid-columns {
+    .col-#{$i}-s {
+      @include column( $i );
+    }
+  }
+}
+
+
+} // if not user_mode

@@ -1,0 +1,72 @@
+// ==============
+// EDJE TILE
+// ==============
+
+@mixin tile(
+  $per_row: false,
+  $per_row_s: false,
+  $per_row_xs: false,
+  $gap: false,
+  $collapse: false ) {
+
+  @if $per_row {
+    grid-template-columns: repeat( $per_row, 1fr );
+
+    @if $per_row_s {
+      @include below(s) {
+        grid-template-columns: repeat( $per_row_s, 1fr );
+      }
+    }
+
+    @if $per_row_xs {
+      @include below(s) {
+        grid-template-columns: repeat( $per_row_xs, 1fr );
+      }
+    }
+  }
+
+  @if $gap {
+    grid-column-gap: $gap;
+    grid-row-gap: $gap;
+  }
+
+  @if $collapse {
+    grid-column-gap: 0;
+  }
+
+}
+
+
+@if $output-framework {
+
+h-tile {
+  @include display-grid;
+  @include tile( $gap: $tile-gap );
+
+  &.tile-collapse {
+    @include tile( $collapse: true );
+  }
+
+  > * {
+    grid-column: span 1;
+  }
+}
+
+@for $i from 1 through $tile-max {
+  .tile-#{$i} {
+    @include tile( $i );
+  }
+}
+
+@include below(s) {
+  // reset
+  [class*="tile-"] { @include tile(1); }
+
+  @for $i from 1 through $tile-max {
+    .tile-#{$i}-s {
+      @include tile( $i );
+    }
+  }
+}
+
+} // @if output

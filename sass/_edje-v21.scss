@@ -1,0 +1,14 @@
+// EDJE FRAMEWORK
+
+$output-framework: false !default;
+@if $output-framework {
+/* --------------------
+  EDJE Framework
+  http://github.com/hrsetyono/edje
+  v2.1.0 (Morphling)
+--------------------- */
+}
+
+@import "edje-v21/setting";
+@import "edje-v21/utility";
+@import "edje-v21/component";

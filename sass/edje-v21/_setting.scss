@@ -24,22 +24,28 @@ $text-highlight: null !default;
 
 
 // ----- MEDIA QUERIES -----
-$size-mini   : 480px !default;
-$size-small  : 767px !default;
-$size-medium : 960px !default;
-$size-large  : 1120px !default;
+$size-xs : 480px !default;
+$size-s  : 767px !default;
+$size-m  : 960px !default;
+$size-l  : 1120px !default;
 
 $_media-sizes: (
-  mini: $size-mini,
-  small: $size-small,
-  medium: $size-medium,
-  large: $size-large
+  xs: $size-xs,
+  s: $size-s,
+  m: $size-m,
+  l: $size-l,
+
+  // deprecated
+  mini: $size-xs,
+  small: $size-s,
+  medium: $size-m,
+  large: $size-l,
 );
 
 // ----- RESPONSIVE -----
 $responsive : true !default;
 $adaptive   : false !default; // TODO: not implemented yet in v20
-$adaptive-breakpoints : large, medium, small, mini !default;
+$adaptive-breakpoints : l, m, s, xs !default;
 
 $_user-mode   : true !default; // when importing component, output the style or just mixin?
 
@@ -59,7 +65,7 @@ $font-weight : 400 !default;
 $font-line   : 1.65 !default;
 
 $font-size : 16px !default;
-$font-size-small : 14px !default;
+$font-size-s : 14px !default;
 
 // HEADER
 $header-color   : $font-color !default;
@@ -68,22 +74,18 @@ $header-line    : 1.25 !default;
 $header-spacing : 0 !default;
 $header-transform : none !default;
 
-$h1 : 42px !default;
-$h2 : 36px !default;
-$h3 : 30px !default;
-$h4 : 24px !default;
-$h5 : 20px !default;
-$h6 : $font-size !default;
-
-// ----- RESPONSIVE HEADER -----
-// the header size below that media query
-
-$h1-sizes: (base: $h1, small: 30px) !default;
-$h2-sizes: (base: $h2, small: 26px) !default;
-$h3-sizes: (base: $h3, small: 22px) !default;
-$h4-sizes: (base: $h4, small: 20px) !default;
-$h5-sizes: (base: $h5, small: 18px) !default;
-$h6-sizes: (base: $h6, small: $h6) !default;
+// FONT SIZES f-x
+// Only accepts pixel
+$font-size-classes: (
+  h1: (base: 42px, s: 30px),
+  h2: (base: 36px, s: 26px),
+  h3: (base: 30px, s: 22px),
+  h4: (base: 24px, s: 20px),
+  h5: (base: 20px, s: 18px),
+  h6: (base: $font-size, s: $font-size),
+  body: $font-size,
+  body-s: $font-size-s,
+) !default;
 
 // LIST
 $ul-parent : disc !default;
@@ -130,7 +132,7 @@ $supports: (
 $grid-columns : 12 !default;
 $grid-gap     : 20px !default;
 $grid-rim     : 10px !default;
-$grid-max-width : $size-large !default; // TODO: confusing math, we want the $large to be +20px for easier @include below(large), so when we use adaptive, it breakdown as soon as it reached it
+$grid-max-width : $size-l !default; // TODO: confusing math, we want the $large to be +20px for easier @include below(l), so when we use adaptive, it breakdown as soon as it reached it
 
 // ----- c/TILE -----
 $tile-max : 8 !default;
@@ -141,3 +143,45 @@ $animation-duration: 1s !default;
 
 // ----- c/PRINT -----
 $override-color: true !default;
+
+
+// BACKGROUND bg-x
+$background-classes: (
+  main: $color-main,
+  sub: $color-sub,
+  main-dark: $color-main-dark,
+  main-light: $color-main-light,
+
+  red: $color-red,
+  blue: $color-blue,
+  yellow: $color-yellow,
+  green: $color-green,
+) !default;
+
+// BORDER WIDTH (b-x, b-top-x, b-left-x, b-right-x, b-bottom-x)
+// in pixel
+$border-width-classes: (
+  1: 1px,
+  2: 2px,
+) !default;
+
+// BORDER COLOR (b--x)
+$border-color-classes: (
+  main: $color-main,
+  sub: $color-sub,
+  transparent: transparent,
+
+  black-75: rgba(black, .75),
+  black-50: rgba(black, .50),
+  black-25: rgba(black, .25),
+  black-10: rgba(black, .10),
+  black-025: rgba(black, .025),
+  black-01: rgba(black, .01),
+
+  white-75: rgba(white, .75),
+  white-50: rgba(white, .50),
+  white-25: rgba(white, .25),
+  white-10: rgba(white, .10),
+  white-025: rgba(white, .025),
+  white-01: rgba(white, .01),
+) !default;
