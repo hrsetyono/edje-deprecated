@@ -1,3 +1,5 @@
+
+
 @if $output-framework {
 
 // BACKGROUND
@@ -26,6 +28,12 @@
 
 .ff-body { font-family: $font-family; }
 .ff-header { font-family: $font-family-header; }
+
+.ls-25 { letter-spacing: 0.025em; }
+.ls-50 { letter-spacing: 0.05em; }
+.ls-100 { letter-spacing: 0.1em; }
+.ls-125 { letter-spacing: 0.125em; }
+.ls-150 { letter-spacing: 0.15em; }
 
 .b, .fw-bold { font-weight: bold; }
 .i, .fw-italic { font-weight: italic; }
@@ -84,21 +92,45 @@
 .flex-4 { flex: 4; }
 .flex-5 { flex: 5; }
 
-@include below( m ) {
-  .flex-1- { flex: 1; }
-  .flex-2- { flex: 2; }
-  .flex-3- { flex: 3; }
-  .flex-4- { flex: 4; }
-  .flex-5- { flex: 5; }
+@include below( s ) {
+  .flex-1-s { flex: 1; }
+  .flex-2-s { flex: 2; }
+  .flex-3-s { flex: 3; }
+  .flex-4-s { flex: 4; }
+  .flex-5-s { flex: 5; }
 }
+
+.as-start { align-self: flex-start; }
+.as-end { align-self: flex-end; }
+.as-center { align-self: center; }
+.as-baseline { align-self: baseline; }
+.as-stretch { align-self: stretch; }
+
+.order-1 { order: 1; }
+.order-2 { order: 2; }
+.order-3 { order: 3; }
+.order-4 { order: 4; }
+.order-5 { order: 5; }
+.order-last { order: 9999; }
+
+@include below(s) {
+  .order-last-s { order: 9999; }
+  .order-1-s { order: 1; }
+  .order-2-s { order: 2; }
+  .order-3-s { order: 3; }
+  .order-4-s { order: 4; }
+  .order-5-s { order: 5; }
+}
+
+
 
 // BORDER
 @each $name, $value in $border-width-classes {
   .b-#{ $name } { border: $value solid; }
-  .b-top-#{ $name } { border-top: $value solid; }
-  .b-right-#{ $name } { border-right: $value solid; } 
-  .b-bottom-#{ $name } { border-bottom: $value solid; }
-  .b-left-#{ $name } { border-left: $value solid; }
+  .bt-#{ $name } { border-top: $value solid; }
+  .br-#{ $name } { border-right: $value solid; } 
+  .bb-#{ $name } { border-bottom: $value solid; }
+  .bl-#{ $name } { border-left: $value solid; }
 }
 
 .b--dashed { border-style: dashed; }
@@ -129,6 +161,74 @@
 .bottom-0 { bottom: 0; }
 .left-0 { left: 0; }
 
+// MARGIN
+@each $name, $size in $margin-classes {
+  @include _margin-classes( $name, '', $size );
+}
+
+@include below(m) {
+  @each $name, $size in $margin-classes {
+    @include _margin-classes( $name, '-m', $size );
+  }
+}
+
+@include below(s) {
+  @each $name, $size in $margin-classes {
+    @include _margin-classes( $name, '-s', $size );
+  }
+}
+
+@include below(xs) {
+  @each $name, $size in $margin-classes {
+    @include _margin-classes( $name, '-xs', $size );
+  }
+}
+
+
+// PADDING
+@each $name, $size in $padding-classes {
+  @include _padding-classes( $name, '', $size );
+}
+
+@include below(m) {
+  @each $name, $size in $padding-classes {
+    @include _padding-classes( $name, '-m', $size );
+  }
+}
+
+@include below(s) {
+  @each $name, $size in $padding-classes {
+    @include _padding-classes( $name, '-s', $size );
+  }
+}
+
+@include below(xs) {
+  @each $name, $size in $padding-classes {
+    @include _padding-classes( $name, '-xs', $size );
+  }
+}
+
+// HEIGHT
+@each $name, $size in $width-classes {
+  .h-#{ $name } { width: $size; }
+}
+
+@include below(s) {
+  @each $name, $size in $width-classes {
+    .h-#{ $name }-s { width: $size; }
+  }
+}
+
+// WIDTH
+@each $name, $size in $width-classes {
+  .w-#{ $name } { width: $size; }
+}
+
+@include below(s) {
+  @each $name, $size in $width-classes {
+    .w-#{ $name }-s { width: $size; }
+  }
+}
 
 // VISIBILITY
 @include above(s) {

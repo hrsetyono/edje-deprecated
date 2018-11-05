@@ -185,3 +185,101 @@ $border-color-classes: (
   white-025: rgba(white, .025),
   white-01: rgba(white, .01),
 ) !default;
+
+// HEIGHT (h-x)
+$height-classes: (
+  auto: auto,
+  25: 25%,
+  33: calc(100% / 3),
+  50: 50%,
+  66: calc(100% / 1.5),
+  75: 75%,
+  100: 100%,
+) !default;
+
+// WIDTH (w-x / w-x-s)
+$width-classes: (
+  auto: auto,
+  10: 10%,
+  20: 20%,
+  25: 25%,
+  30: 30%,
+  33: calc(100% / 3),
+  40: 40%,
+  50: 50%,
+  60: 60%,
+  66: calc(100% / 1.5),
+  70: 70%,
+  75: 75%,
+  80: 80%,
+  90: 90%,
+  100: 100%,
+) !default;
+
+// PADDING (p-x / pv-x / ph-x / pt-x / pr-x / pb-x / pl-x)
+// Default naming is in Octal (base8)
+$padding-classes: (
+  '01': 0.125rem,
+  '02': 0.25rem,
+  '03': 0.375rem,
+  '04': 0.5rem,
+  '06': 0.75rem,
+  1: 1rem,
+  12: 1.25rem,
+  14: 1.5rem,
+  16: 1.75rem,
+  2: 2rem,
+  24: 2.5rem,
+  3: 3rem,
+  4: 4rem,
+  5: 5rem,
+) !default;
+
+@mixin _padding-classes($name, $suffix, $size) {
+  .p-#{ $name }#{ $suffix } { padding: $size; }
+  .pv-#{ $name }#{ $suffix } {
+    padding-top: $size;
+    padding-bottom: $size;
+  }
+  .ph-#{ $name }#{ $suffix } {
+    padding-right: $size;
+    padding-left: $size;
+  }
+
+  .pt-#{ $name }#{ $suffix } { padding-top: $size; }
+  .pr-#{ $name }#{ $suffix } { padding-right: $size; }
+  .pb-#{ $name }#{ $suffix } { padding-bottom: $size; }
+  .pl-#{ $name }#{ $suffix } { padding-left: $size; }
+}
+
+// MARGIN (m-x / mv-x / mh-x / mt-x / mr-x / mb-x / ml-x)
+// Default naming is in Octal (base8)
+$margin-classes: (
+  '02': 0.25rem,
+  '04': 0.5rem,
+  '06': 0.75rem,
+  1: 1rem,
+  14: 1.5rem,
+  2: 2rem,
+  24: 2.5rem,
+  3: 3rem,
+  4: 4rem,
+  5: 5rem,
+) !default;
+
+@mixin _margin-classes($name, $suffix, $size) {
+  .m-#{ $name }#{ $suffix } { padding: $size; }
+  .mv-#{ $name }#{ $suffix } {
+    padding-top: $size;
+    padding-bottom: $size;
+  }
+  .mh-#{ $name }#{ $suffix } {
+    padding-right: $size;
+    padding-left: $size;
+  }
+
+  .mt-#{ $name }#{ $suffix } { padding-top: $size; }
+  .mr-#{ $name }#{ $suffix } { padding-right: $size; }
+  .mb-#{ $name }#{ $suffix } { padding-bottom: $size; }
+  .ml-#{ $name }#{ $suffix } { padding-left: $size; }
+}
