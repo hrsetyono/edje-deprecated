@@ -33,21 +33,21 @@
 
 @mixin column(
   $size: false,
-  $size_s: false,
-  $size_m: false,
+  $size_small: false,
+  $size_mini: false,
 ) {
   @if $size {
     grid-column: span #{ $size };
 
-    @if $size_s {
-      @include below(s) {
-        grid-column: span #{ $size_s };
+    @if $size_small {
+      @include below(small) {
+        grid-column: span #{ $size_small };
       }
     }
 
-    @if $size_xs {
-      @include below(xs) {
-        grid-column: span #{ $size_xs };
+    @if $size_mini {
+      @include below(mini) {
+        grid-column: span #{ $size_mini };
       }
     }
   }
@@ -67,7 +67,7 @@ h-grid {
   @include grid( $rim: $grid-rim );
   margin: 0 auto;
 
-  &.grid-collapse {
+  &.collapse {
     @include grid( $collapse: true );
   }
 
@@ -79,20 +79,20 @@ h-grid {
 
 // Column
 @for $i from 1 through $grid-columns {
-  .col-#{$i} {
+  .large-#{$i} {
     @include column( $i );
   }
 }
 
 // Small column
-@include below(s) {
+@include below(small) {
   // reset
-  [class*="col-"] {
+  [class*="large-"] {
     @include column( $grid-columns );
   }
 
   @for $i from 1 through $grid-columns {
-    .col-#{$i}-s {
+    .small-#{$i} {
       @include column( $i );
     }
   }

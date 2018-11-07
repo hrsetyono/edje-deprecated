@@ -102,6 +102,11 @@ hr {
   border-top: 1px solid #ccc;
 }
 
+blockquote cite {
+  display: block;
+  font-style: italic;
+}
+
 // Code block
 pre { overflow: auto; }
 code, kbd, pre, samp {

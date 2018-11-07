@@ -1,7 +1,7 @@
 {
   "name": "edje",
-  "version": "3.0.0",
-  "description": "Lightweight Sass framework for creating website from scratch",
+  "version": "2.1.0",
+  "description": "Functional Sass framework that is highly extensible",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {},

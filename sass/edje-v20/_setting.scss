@@ -24,22 +24,22 @@ $text-highlight: null !default;
 
 
 // ----- MEDIA QUERIES -----
-$size-mini   : 480px !default;
-$size-small  : 767px !default;
-$size-medium : 960px !default;
-$size-large  : 1120px !default;
+$size-xs : 480px !default;
+$size-s  : 767px !default;
+$size-m  : 960px !default;
+$size-l  : 1120px !default;
 
 $_media-sizes: (
-  mini: $size-mini,
-  small: $size-small,
-  medium: $size-medium,
-  large: $size-large
-);
+  xs: $size-xs,
+  s: $size-s,
+  m: $size-m,
+  l: $size-l,
+) !default;
 
 // ----- RESPONSIVE -----
 $responsive : true !default;
 $adaptive   : false !default; // TODO: not implemented yet in v20
-$adaptive-breakpoints : large, medium, small, mini !default;
+$adaptive-breakpoints : l, m, s, xs !default;
 
 $_user-mode   : true !default; // when importing component, output the style or just mixin?
 
@@ -59,7 +59,7 @@ $font-weight : 400 !default;
 $font-line   : 1.65 !default;
 
 $font-size : 16px !default;
-$font-size-small : 14px !default;
+$font-size-s : 14px !default;
 
 // HEADER
 $header-color   : $font-color !default;
@@ -68,22 +68,6 @@ $header-line    : 1.25 !default;
 $header-spacing : 0 !default;
 $header-transform : none !default;
 
-$h1 : 42px !default;
-$h2 : 36px !default;
-$h3 : 30px !default;
-$h4 : 24px !default;
-$h5 : 20px !default;
-$h6 : $font-size !default;
-
-// ----- RESPONSIVE HEADER -----
-// the header size below that media query
-
-$h1-sizes: (base: $h1, small: 30px) !default;
-$h2-sizes: (base: $h2, small: 26px) !default;
-$h3-sizes: (base: $h3, small: 22px) !default;
-$h4-sizes: (base: $h4, small: 20px) !default;
-$h5-sizes: (base: $h5, small: 18px) !default;
-$h6-sizes: (base: $h6, small: $h6) !default;
 
 // LIST
 $ul-parent : disc !default;
@@ -91,6 +75,7 @@ $ul-child  : circle !default;
 
 $ol-parent : decimal !default;
 $ol-child  : lower-alpha !default;
+
 
 // ----- TEXT DIRECTION -----
 $text-direction   : ltr !default; // Controls default global text direction, 'rtl' or 'ltr'
@@ -106,15 +91,18 @@ $default-opposite : right !default;
   $default-opposite : left;
 }
 
+
 // ----- SHADOW -----
 $shadow-z0: 0 0.5px 2px rgba(black, .18), 0 1.5px 6px rgba(black, .08) !default;
 $shadow-z1: 0 1.5px 4px rgba(black, .24), 0 1.5px 6px rgba(black, .12) !default;
 $shadow-z2: 0 3px 12px rgba(black, .23), 0 3px 12px rgba(black, .16) !default;
 $shadow-z3: 0 6px 12px rgba(black, .23), 0 10px 40px rgba(black, .19) !default;
 
+
 // ----- u/OTHER -----
 $_dir-images: "../images" !default;
 $_dir-fonts: "../fonts" !default;
+
 
 // ----- u/SUPPORT ------
 // http://browserhacks.com
@@ -126,18 +114,249 @@ $supports: (
   opera: '(-webkit-appearance:none)',
 );
 
+
 // ----- c/GRID -----
 $grid-columns : 12 !default;
 $grid-gap     : 20px !default;
 $grid-rim     : 10px !default;
-$grid-max-width : $size-large !default; // TODO: confusing math, we want the $large to be +20px for easier @include below(large), so when we use adaptive, it breakdown as soon as it reached it
+$grid-max-width : $size-l !default; // TODO: confusing math, we want the $large to be +20px for easier @include below(l), so when we use adaptive, it breakdown as soon as it reached it
+
 
 // ----- c/TILE -----
 $tile-max : 8 !default;
 $tile-gap : 20px !default;
 
+
 // -----c/ANIMATE-----
 $animation-duration: 1s !default;
 
+
 // ----- c/PRINT -----
 $override-color: true !default;
+
+
+// ------ FONT SIZES (fs-x) ------
+// Only accepts pixel
+$font-size-classes: (
+  h1: (base: 42px, s: 30px),
+  h2: (base: 36px, s: 26px),
+  h3: (base: 30px, s: 22px),
+  h4: (base: 24px, s: 20px),
+  h5: (base: 20px, s: 18px),
+  h6: (base: $font-size, s: $font-size),
+  body: $font-size,
+  small: $font-size-s,
+) !default;
+
+
+// ----- COLOR (c-x) -----
+$color-classes: (
+  body: $font-color,
+  passive: $font-color-passive,
+
+  main: $color-main,
+  main90: rgba($color-main, .9),
+  main80: rgba($color-main, .8),
+  main70: rgba($color-main, .7),
+  main60: rgba($color-main, .6),
+  main50: rgba($color-main, .5),
+
+  main-dark: $color-main-dark,
+  main-light: $color-main-light,
+  sub: $color-sub,
+
+  red: $color-red,
+  green: $color-green,
+  blue: $color-blue,
+  yellow: $color-yellow,
+
+  black: black,
+  black90: rgba(black, .9),
+  black80: rgba(black, .8),
+  black70: rgba(black, .7),
+  black60: rgba(black, .6),
+  black50: rgba(black, .5),
+
+  white: white,
+  white90: rgba(white, .9),
+  white80: rgba(white, .8),
+  white70: rgba(white, .7),
+  white60: rgba(white, .6),
+  white50: rgba(white, .5),
+) !default;
+
+
+// ----- LETTER SPACING -----
+
+$letter-spacing-classes: (
+  '-100': -0.1em,
+  '-50': -0.05em,
+  '-25': -0.025em,
+  0: 0,
+  25: 0.025em,
+  50: 0.05em,
+  100: 0.1em,
+  150: 0.15em
+) !default;
+
+// ----- FLEX (flex-x) -----
+$flex-classes: (
+  1: 1,
+  2: 2,
+  3: 3,
+  4: 4,
+  5: 5,
+
+  s: ()
+) !default;
+
+$order-classes: (
+  1: 1,
+  2: 2,
+  3: 3,
+  4: 4,
+  5: 5,
+  last: 9999,
+
+  s: ()
+) !default;
+
+
+// ----- BACKGROUND (bg-x) ------
+// Can accept linear gradient() and url()
+$background-classes: (
+  main: $color-main,
+  main75: rgba($color-main, .75),
+  main50: rgba($color-main, .50),
+  main25: rgba($color-main, .25),
+  main10: rgba($color-main, .10),
+  main05: rgba($color-main, .05),
+
+  main-dark: $color-main-dark,
+  main-light: $color-main-light,
+  sub: $color-sub,
+
+  red: $color-red,
+  blue: $color-blue,
+  yellow: $color-yellow,
+  green: $color-green,
+
+  black: black,
+  black75: rgba(black, .75),
+  black50: rgba(black, .50),
+  black25: rgba(black, .25),
+  black10: rgba(black, .10),
+  black05: rgba(black, .05),
+
+  white: white,
+  white75: rgba(white, .75),
+  white50: rgba(white, .50),
+  white25: rgba(white, .25),
+  white10: rgba(white, .10),
+  white05: rgba(white, .05),
+) !default;
+
+
+// ------ BORDER WIDTH ------
+// (b-x, b-top-x, b-left-x, b-right-x, b-bottom-x)
+$border-width-classes: (
+  1: 1px,
+  2: 2px,
+) !default;
+
+
+// ----- BORDER COLOR (b--x) -----
+$border-color-classes: (
+  main: $color-main,
+  sub: $color-sub,
+  transparent: transparent,
+
+  black75: rgba(black, .75),
+  black50: rgba(black, .50),
+  black25: rgba(black, .25),
+  black10: rgba(black, .10),
+  black05: rgba(black, .05),
+
+  white75: rgba(white, .75),
+  white50: rgba(white, .50),
+  white25: rgba(white, .25),
+  white10: rgba(white, .10),
+  white05: rgba(white, .05),
+) !default;
+
+
+// ----- HEIGHT (h-x) -----
+$height-classes: (
+  auto: auto,
+  25: 25%,
+  33: calc(100% / 3),
+  50: 50%,
+  66: calc(100% / 1.5),
+  75: 75%,
+  100: 100%,
+
+  s: (),
+) !default;
+
+
+// ----- WIDTH (w-x / w-x-s) -----
+$width-classes: (
+  auto: auto,
+  10: 10%,
+  20: 20%,
+  25: 25%,
+  30: 30%,
+  33: calc(100% / 3),
+  40: 40%,
+  50: 50%,
+  60: 60%,
+  66: calc(100% / 1.5),
+  70: 70%,
+  75: 75%,
+  80: 80%,
+  90: 90%,
+  100: 100%,
+
+  s: ()
+) !default;
+
+
+// ----- PADDING -----
+// (p-x / pv-x / ph-x / pt-x / pr-x / pb-x / pl-x)
+$padding-classes: (
+  '025': 0.25rem,
+  '05': 0.5rem,
+  '075': 0.75rem,
+  1: 1rem,
+  125: 1.25rem,
+  15: 1.5rem,
+  175: 1.75rem,
+  2: 2rem,
+  25: 2.5rem,
+  3: 3rem,
+  4: 4rem,
+  5: 5rem,
+
+  m: (),
+  s: (),
+  xs: ()
+) !default;
+
+// ----- MARGIN -----
+// (m-x / mv-x / mh-x / mt-x / mr-x / mb-x / ml-x)
+$margin-classes: (
+  '025': 0.25rem,
+  '05': 0.5rem,
+  '075': 0.75rem,
+  1: 1rem,
+  15: 1.5rem,
+  2: 2rem,
+  25: 2.5rem,
+  3: 3rem,
+  4: 4rem,
+  5: 5rem,
+
+  m: (),
+  s: (),
+  xs: ()
+) !default;

@@ -81,7 +81,8 @@ $h4 : 24px;
 $h5 : 20px;
 $h6 : $font-size;
 
-// FONT SIZES (f-x) -----
+
+// ----- FONT SIZES (f-x) ------
 // only pixel
 
 // $font-size-classes: (
@@ -92,7 +93,7 @@ $h6 : $font-size;
 //   h5: (base: 20px, s: 18px),
 //   h6: (base: $font-size, s: $font-size),
 //   body: $font-size,
-//   body-s: $font-size-s,
+//   small: $font-size-s,
 // );
 
 
@@ -103,8 +104,7 @@ $h6 : $font-size;
 // $shadow-z3: 0 6px 12px rgba(black, .23), 0 10px 40px rgba(black, .19);
 
 
-// -----------
-// BACKGROUND (bg-x)
+// ----- BACKGROUND (bg-x) ------
 // Can also accept url() and linear-gradient()
 
 // $background-classes: (
@@ -119,16 +119,16 @@ $h6 : $font-size;
 //   green: $color-green,
 // );
 
-// ---------------
-// BORDER WIDTH (b-x, b-top-x, b-left-x, b-right-x, b-bottom-x)
+
+// ----- BORDER WIDTH -----
+// (b-x, b-top-x, b-left-x, b-right-x, b-bottom-x)
 
 // $border-width-classes: (
 //   1: 1px,
 //   2: 2px,
 // );
 
-// -------------
-// BORDER COLOR (b--x)
+// ----- BORDER COLOR (b--x) ------
 
 // $border-color-classes: (
 //   main: $color-main,

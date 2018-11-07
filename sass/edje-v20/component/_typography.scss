@@ -2,17 +2,6 @@
 // EDJE TYPOGRAPHY
 // ==================
 
-// ----- INLINE LIST -----
-@mixin inline-list() {
-  @include clearfix();
-
-  > li {
-    display: inline-block;
-    float: left;
-    vertical-align: top;
-  }
-}
-
 // ----- SELECTION -----
 // Change the text highlight color
 
@@ -21,7 +10,7 @@
 
     // determine text color
     $color: white;
-    @if (lightness($bg) > 60) { $color: #222; }
+    @if lightness($bg) > 60 { $color: #222; }
 
     ::-moz-selection {
       background: $bg;
@@ -50,6 +39,7 @@
 }
 
 // Create font sizes in various media query
+// Format: ( base: 24px, m: 22px, s: 20px, xs: 18px )
 @mixin font-sizes($sizes, $context: $font-size) {
   @each $media, $s in $sizes {
     $size: em($s, $context);
@@ -86,7 +76,8 @@ body {
 }
 
 p {
-  margin-top: 0; margin-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 a {
@@ -106,12 +97,12 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: $header-transform;
 }
 
-h1 { @include font-sizes($h1-sizes); }
-h2 { @include font-sizes($h2-sizes); }
-h3 { @include font-sizes($h3-sizes); }
-h4 { @include font-sizes($h4-sizes); }
-h5 { @include font-sizes($h5-sizes); }
-h6 { @include font-sizes($h6-sizes); }
+h1 { @include font-sizes( map-get($font-size-classes, h1) ); }
+h2 { @include font-sizes( map-get($font-size-classes, h2) ); }
+h3 { @include font-sizes( map-get($font-size-classes, h3) ); }
+h4 { @include font-sizes( map-get($font-size-classes, h4) ); }
+h5 { @include font-sizes( map-get($font-size-classes, h5) ); }
+h6 { @include font-sizes( map-get($font-size-classes, h6) ); }
 
 // ----- LIST -----
 
@@ -127,13 +118,8 @@ ol {
   ol { list-style-type: $ol-child; }
 }
 
-blockquote {
-  cite {
-    display: block;
-    font-style: italic;
-  }
-}
-
 @include _text-selection();
 
-} // @if
+/////
+
+} // if output

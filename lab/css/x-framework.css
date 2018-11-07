@@ -1,7 +1,7 @@
 /* --------------------
   EDJE Framework
   http://github.com/hrsetyono/edje
-  v2.1.0 (Morphling)
+  v2.0.0 (Morphling)
 --------------------- */
 /* ----------
   Normalize
@@ -347,11 +347,21 @@ h-tile > * { grid-column: span 1; }
 
 .bg-main { background-color: #00aadc; }
 
-.bg-sub { background-color: #607d8b; }
+.bg-main75 { background-color: rgba(0, 170, 220, 0.75); }
+
+.bg-main50 { background-color: rgba(0, 170, 220, 0.5); }
+
+.bg-main25 { background-color: rgba(0, 170, 220, 0.25); }
+
+.bg-main10 { background-color: rgba(0, 170, 220, 0.1); }
+
+.bg-main05 { background-color: rgba(0, 170, 220, 0.05); }
 
 .bg-main-dark { background-color: #0083a9; }
 
 .bg-main-light { background-color: #10c9ff; }
+
+.bg-sub { background-color: #607d8b; }
 
 .bg-red { background-color: #f44336; }
 
@@ -360,6 +370,115 @@ h-tile > * { grid-column: span 1; }
 .bg-yellow { background-color: #ffeb3b; }
 
 .bg-green { background-color: #4caf50; }
+
+.bg-black { background-color: black; }
+
+.bg-black75 { background-color: rgba(0, 0, 0, 0.75); }
+
+.bg-black50 { background-color: rgba(0, 0, 0, 0.5); }
+
+.bg-black25 { background-color: rgba(0, 0, 0, 0.25); }
+
+.bg-black10 { background-color: rgba(0, 0, 0, 0.1); }
+
+.bg-black05 { background-color: rgba(0, 0, 0, 0.05); }
+
+.bg-white { background-color: white; }
+
+.bg-white75 { background-color: rgba(255, 255, 255, 0.75); }
+
+.bg-white50 { background-color: rgba(255, 255, 255, 0.5); }
+
+.bg-white25 { background-color: rgba(255, 255, 255, 0.25); }
+
+.bg-white10 { background-color: rgba(255, 255, 255, 0.1); }
+
+.bg-white05 { background-color: rgba(255, 255, 255, 0.05); }
+
+@media only screen and (max-width: 767px) { .s\:bg-red { background-color: #333; }
+  .s\:bg-black { background-color: #000; } }
+
+.fs-h1 { font-size: 2.625em; }
+
+@media only screen and (max-width: 767px) { .fs-h1 { font-size: 1.875em; } }
+
+.fs-h2 { font-size: 2.25em; }
+
+@media only screen and (max-width: 767px) { .fs-h2 { font-size: 1.625em; } }
+
+.fs-h3 { font-size: 1.875em; }
+
+@media only screen and (max-width: 767px) { .fs-h3 { font-size: 1.375em; } }
+
+.fs-h4 { font-size: 1.5em; }
+
+@media only screen and (max-width: 767px) { .fs-h4 { font-size: 1.25em; } }
+
+.fs-h5 { font-size: 1.25em; }
+
+@media only screen and (max-width: 767px) { .fs-h5 { font-size: 1.125em; } }
+
+.fs-h6 { font-size: 1em; }
+
+@media only screen and (max-width: 767px) { .fs-h6 { font-size: 1em; } }
+
+.fs-body { font-size: 1em; }
+
+.fs-small { font-size: 0.875em; }
+
+.c-body { color: #2e4453; }
+
+.c-passive { color: #888; }
+
+.c-main { color: #00aadc; }
+
+.c-main90 { color: rgba(0, 170, 220, 0.9); }
+
+.c-main80 { color: rgba(0, 170, 220, 0.8); }
+
+.c-main70 { color: rgba(0, 170, 220, 0.7); }
+
+.c-main60 { color: rgba(0, 170, 220, 0.6); }
+
+.c-main50 { color: rgba(0, 170, 220, 0.5); }
+
+.c-main-dark { color: #0083a9; }
+
+.c-main-light { color: #10c9ff; }
+
+.c-sub { color: #607d8b; }
+
+.c-red { color: #f44336; }
+
+.c-green { color: #4caf50; }
+
+.c-blue { color: #2196f3; }
+
+.c-yellow { color: #ffeb3b; }
+
+.c-black { color: black; }
+
+.c-black90 { color: rgba(0, 0, 0, 0.9); }
+
+.c-black80 { color: rgba(0, 0, 0, 0.8); }
+
+.c-black70 { color: rgba(0, 0, 0, 0.7); }
+
+.c-black60 { color: rgba(0, 0, 0, 0.6); }
+
+.c-black50 { color: rgba(0, 0, 0, 0.5); }
+
+.c-white { color: white; }
+
+.c-white90 { color: rgba(255, 255, 255, 0.9); }
+
+.c-white80 { color: rgba(255, 255, 255, 0.8); }
+
+.c-white70 { color: rgba(255, 255, 255, 0.7); }
+
+.c-white60 { color: rgba(255, 255, 255, 0.6); }
+
+.c-white50 { color: rgba(255, 255, 255, 0.5); }
 
 .tt-uppercase { text-transform: uppercase; }
 
@@ -377,49 +496,37 @@ h-tile > * { grid-column: span 1; }
 
 .ff-header { font-family: "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", "Times", "Source Serif Pro", serif; }
 
+.ls--100 { letter-spacing: -0.1em; }
+
+.ls--50 { letter-spacing: -0.05em; }
+
+.ls--25 { letter-spacing: -0.025em; }
+
+.ls-0 { letter-spacing: 0; }
+
 .ls-25 { letter-spacing: 0.025em; }
 
 .ls-50 { letter-spacing: 0.05em; }
 
 .ls-100 { letter-spacing: 0.1em; }
 
-.ls-125 { letter-spacing: 0.125em; }
-
 .ls-150 { letter-spacing: 0.15em; }
 
-.b, .fw-bold { font-weight: bold; }
+.fw-300 { font-weight: 300; }
 
-.i, .fw-italic { font-weight: italic; }
+.fw-400 { font-weight: 400; }
 
-.u, .underline { text-decoration: underline; }
+.fw-600 { font-weight: 600; }
 
-.f-h1 { font-size: 2.625em; }
+.b, .fw-700 { font-weight: 700; }
 
-@media only screen and (max-width: 767px) { .f-h1 { font-size: 1.875em; } }
+.fw-900 { font-weight: 900; }
 
-.f-h2 { font-size: 2.25em; }
+.i { font-style: italic; }
 
-@media only screen and (max-width: 767px) { .f-h2 { font-size: 1.625em; } }
+.u, .td-underline { text-decoration: underline; }
 
-.f-h3 { font-size: 1.875em; }
-
-@media only screen and (max-width: 767px) { .f-h3 { font-size: 1.375em; } }
-
-.f-h4 { font-size: 1.5em; }
-
-@media only screen and (max-width: 767px) { .f-h4 { font-size: 1.25em; } }
-
-.f-h5 { font-size: 1.25em; }
-
-@media only screen and (max-width: 767px) { .f-h5 { font-size: 1.125em; } }
-
-.f-h6 { font-size: 1em; }
-
-@media only screen and (max-width: 767px) { .f-h6 { font-size: 1em; } }
-
-.f-body { font-size: 1em; }
-
-.f-body-s { font-size: 0.875em; }
+.td-strike { text-decoration: line-through; }
 
 .d-inlineblock, .d-iblock, .d-inline-block { display: inline-block; }
 
@@ -532,29 +639,25 @@ h-tile > * { grid-column: span 1; }
 
 .b--transparent { border-color: transparent; }
 
-.b--black-75 { border-color: rgba(0, 0, 0, 0.75); }
+.b--black75 { border-color: rgba(0, 0, 0, 0.75); }
 
-.b--black-50 { border-color: rgba(0, 0, 0, 0.5); }
+.b--black50 { border-color: rgba(0, 0, 0, 0.5); }
 
-.b--black-25 { border-color: rgba(0, 0, 0, 0.25); }
+.b--black25 { border-color: rgba(0, 0, 0, 0.25); }
 
-.b--black-10 { border-color: rgba(0, 0, 0, 0.1); }
+.b--black10 { border-color: rgba(0, 0, 0, 0.1); }
 
-.b--black-025 { border-color: rgba(0, 0, 0, 0.025); }
+.b--black05 { border-color: rgba(0, 0, 0, 0.05); }
 
-.b--black-01 { border-color: rgba(0, 0, 0, 0.01); }
+.b--white75 { border-color: rgba(255, 255, 255, 0.75); }
 
-.b--white-75 { border-color: rgba(255, 255, 255, 0.75); }
+.b--white50 { border-color: rgba(255, 255, 255, 0.5); }
 
-.b--white-50 { border-color: rgba(255, 255, 255, 0.5); }
+.b--white25 { border-color: rgba(255, 255, 255, 0.25); }
 
-.b--white-25 { border-color: rgba(255, 255, 255, 0.25); }
+.b--white10 { border-color: rgba(255, 255, 255, 0.1); }
 
-.b--white-10 { border-color: rgba(255, 255, 255, 0.1); }
-
-.b--white-025 { border-color: rgba(255, 255, 255, 0.025); }
-
-.b--white-01 { border-color: rgba(255, 255, 255, 0.01); }
+.b--white05 { border-color: rgba(255, 255, 255, 0.05); }
 
 .br { border-radius: 4px; }
 

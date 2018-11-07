@@ -106,12 +106,12 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: $header-transform;
 }
 
-h1 { @include font-sizes( map-get($font-size-classes, h1) ); }
-h2 { @include font-sizes( map-get($font-size-classes, h2) ); }
-h3 { @include font-sizes( map-get($font-size-classes, h3) ); }
-h4 { @include font-sizes( map-get($font-size-classes, h4) ); }
-h5 { @include font-sizes( map-get($font-size-classes, h5) ); }
-h6 { @include font-sizes( map-get($font-size-classes, h6) ); }
+h1 { @include font-sizes($h1-sizes); }
+h2 { @include font-sizes($h2-sizes); }
+h3 { @include font-sizes($h3-sizes); }
+h4 { @include font-sizes($h4-sizes); }
+h5 { @include font-sizes($h5-sizes); }
+h6 { @include font-sizes($h6-sizes); }
 
 // ----- LIST -----
 
@@ -136,6 +136,4 @@ blockquote {
 
 @include _text-selection();
 
-/////
-
-} // if output
+} // @if

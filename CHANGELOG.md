@@ -2,7 +2,8 @@
 
 - Added functional CSS feature. [Read full doc here](https://hrsetyono.github.io/edje/) 
 - Changed screen sizing name from mini, small, medium, and large to: `xs`, `s`, `m`, and `l`.
-- Changed grid column name from large-x and small-x to: `col-x` and `col-x-s`
+- Changed grid column name from large-x and small-x to: `col-x` and `col-x-s`.
+- Changed old v2 to v1.8
 
 ## 2.0.2
 

@@ -5,10 +5,10 @@ $output-framework: false !default;
 /* --------------------
   EDJE Framework
   http://github.com/hrsetyono/edje
-  v2.1.0 (Morphling)
+  v1.8.0 (Lyralei)
 --------------------- */
 }
 
-@import "edje-v21/setting";
-@import "edje-v21/utility";
-@import "edje-v21/component";
+@import "edje-v18/setting";
+@import "edje-v18/utility";
+@import "edje-v18/component";
