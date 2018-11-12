@@ -3,13 +3,13 @@ $_name: null !global;
 $_value: null !global;
 
 // Custom loop to add responsiveness
-@mixin _loop( $list ) {
+@mixin _loop( $list, $responsive: true ) {
   @each $name, $value in $list {
     $_name: $name !global;
     $_value: $value !global;
 
     // if media query
-    @if( map_get( $_media-sizes, $name ) ) {
+    @if( map_get( $_media-sizes, $name ) and $responsive ) {
       $_prefix: #{ $name }\: !global;
 
       @include below( $name ) {
@@ -44,7 +44,7 @@ $_value: null !global;
 
 @if $output-framework {
 
-///// BACKGROUND /////
+///// THEME /////
 
 // Background color
 @include _loop( $background-classes ) {
@@ -66,17 +66,64 @@ $_value: null !global;
 
 // Opacity
 @include _loop( $opacity-classes ) {
-  .#{ $_prefix }o-#{ $_name } {
+  .#{ $_prefix }o#{ $_name } {
     opacity: #{ $_value }
   }
 }
 
-// Overflow (ov)
-@include _loop( $overflow-classes ) {
-  .#{ $_prefix }ov-#{ $_name } { overflow: $_value; }
-  .#{ $_prefix }ovy-#{ $_name } { overflow-y: $_value; }
-  .#{ $_prefix }ovx-#{ $_name } { overflow-x: $_value; }
+// Box Shadow
+@include _loop( $shadow-classes ) {
+  .#{ $_prefix }shadow-#{ $_name } {
+    box-shadow: #{ $_value }
+  }
 }
+
+
+// Hover
+[class*="hover-"] {
+  cursor: pointer;
+  transition: $g-transition;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  -moz-osx-font-smoothing: grayscale;
+  @include transform( translateZ(0) );
+}
+
+.hover-dim:hover { opacity: .5; }
+.hover-dim:active { opacity: .8; }
+
+.hover-grow:hover { @include transform( scale(1.05) ); }
+.hover-grow:active { @include transform( scale(1) ); }
+
+.hover-u:hover { text-decoration: underline; }
+
+// hover-shadow-x
+@include _loop( $shadow-classes, false ) {
+  .hover-shadow-#{ $_name }:hover {
+    box-shadow: $_value;
+  }
+}
+
+// hover-bg-x
+@include _loop( $background-classes, false ) {
+  .hover-bg-#{ $_name }:hover {
+    @if type-of( $_value ) == color {
+      background-color: $_value;
+    }
+    @else {
+      background-image: $_value;
+    }
+  }
+}
+
+// hover-c-x
+@include _loop( $color-classes, false ) {
+  .hover-c-#{ $_name }:hover {
+    color: #{ $_value };
+  }
+}
+
 
 
 ///// TYPOGRAPHY /////
@@ -108,11 +155,16 @@ $_value: null !global;
 .ta-right { text-align: right; }
 .ta-left { text-align: left; }
 
-.ff-body { font-family: $font-family; }
-.ff-header { font-family: $font-family-header; }
+// Font Family
+@include _loop( $font-family-classes ) {
+  .#{ $_prefix }ff-#{ $_name } {
+    font-family: $_value;
+  }
+}
 
+// Letter spacing
 @include _loop( $letter-spacing-classes ) {
-  .#{ $_prefix }ls-#{ $_name } {
+  .#{ $_prefix }ls#{ $_name } {
     letter-spacing: $_value;
   }
 }
@@ -129,9 +181,15 @@ $_value: null !global;
 .td-strike { text-decoration: line-through; }
 
 
+// List
+@include _loop( $_list-style-classes ) {
+  .#{ $_prefix }list-#{ $_name } {
+    list-style-type: #{ $_value };
+  }
+}
+
 ///// DISPLAY //////
 
-.d-inlineblock,
 .d-iblock,
 .d-inline-block { display: inline-block; }
 .d-block { display: block; }
@@ -213,43 +271,38 @@ $_value: null !global;
   }
 }
 
-
-///// BORDER & SHADOW /////
-
-// Border width
-@include _loop( $border-width-classes ) {
-  .#{ $_prefix }b-#{ $_name } { border: $_value solid; }
-  .#{ $_prefix }bt-#{ $_name } { border-top: $_value solid; }
-  .#{ $_prefix }br-#{ $_name } { border-right: $_value solid; } 
-  .#{ $_prefix }bb-#{ $_name } { border-bottom: $_value solid; }
-  .#{ $_prefix }bl-#{ $_name } { border-left: $_value solid; }
+// Overflow
+@include _loop( $overflow-classes ) {
+  .#{ $_prefix }ov-#{ $_name } { overflow: $_value; }
+  .#{ $_prefix }ovy-#{ $_name } { overflow-y: $_value; }
+  .#{ $_prefix }ovx-#{ $_name } { overflow-x: $_value; }
 }
 
-.b--dashed { border-style: dashed; }
-.b--dotted { border-style: dotted; }
-
-// Border color
-@include _loop( $border-color-classes ) {
-  .#{ $_prefix }b--#{ $_name } { border-color: $_value; }
+// Cursor
+@include _loop( $_cursor-classes ) {
+  .#{ $_prefix }cursor-#{ $_name } {
+    cursor: #{ $_value };
+  }
 }
 
-// Border radius
-.br { border-radius: $g-radius; }
-.br-circle { border-radius: 50%; }
-.br-pill { border-radius: 9999px; }
 
-// Box Shadow
-.shadow-0 { box-shadow: $shadow-z0; }
-.shadow-1 { box-shadow: $shadow-z1; }
-.shadow-2 { box-shadow: $shadow-z2; }
-.shadow-3 { box-shadow: $shadow-z3; }
+/////  /////
+
+
+
 
 
 ///// POSITION /////
 
-.relative { position: relative; }
-.absolute { position: absolute; }
+@include _loop( $position-classes ) {
+  .#{ $_prefix }#{ $_name } {
+    position: $_value;
+  }
+}
+
+// Absolute
 .absolute-fill { position: absolute; top: 0; right: 0; left: 0; bottom: 0; }
+
 .top-0 { top: 0; }
 .right-0 { right: 0; }
 .bottom-0 { bottom: 0; }
@@ -260,66 +313,93 @@ $_value: null !global;
 
 // Margin
 @include _loop( $margin-classes ) {
-  .#{ $_prefix }m-#{ $_name } {
+  .#{ $_prefix }m#{ $_name } {
     margin: $_value;
   }
   
-  .#{ $_prefix }mv-#{ $_name } {
+  .#{ $_prefix }mv#{ $_name } {
     margin-top: $_value;
     margin-bottom: $_value;
   }
 
-  .#{ $_prefix }mh-#{ $_name } {
+  .#{ $_prefix }mh#{ $_name } {
     margin-right: $_value;
     margin-left: $_value;
   }
 
-  .#{ $_prefix }mt-#{ $_name } { margin-top: $_value; }
-  .#{ $_prefix }mr-#{ $_name } { margin-right: $_value; }
-  .#{ $_prefix }mb-#{ $_name } { margin-bottom: $_value; }
-  .#{ $_prefix }ml-#{ $_name } { margin-left: $_value; }
+  .#{ $_prefix }mt#{ $_name } { margin-top: $_value; }
+  .#{ $_prefix }mr#{ $_name } { margin-right: $_value; }
+  .#{ $_prefix }mb#{ $_name } { margin-bottom: $_value; }
+  .#{ $_prefix }ml#{ $_name } { margin-left: $_value; }
 }
 
 // Padding
 @include _loop( $padding-classes ) {
-  .#{ $_prefix }p-#{ $_name } {
+  .#{ $_prefix }p#{ $_name } {
     padding: $_value;
   }
   
-  .#{ $_prefix }pv-#{ $_name } {
+  .#{ $_prefix }pv#{ $_name } {
     padding-top: $_value;
     padding-bottom: $_value;
   }
 
-  .#{ $_prefix }ph-#{ $_name } {
+  .#{ $_prefix }ph#{ $_name } {
     padding-right: $_value;
     padding-left: $_value;
   }
 
-  .#{ $_prefix }pt-#{ $_name } { padding-top: $_value; }
-  .#{ $_prefix }pr-#{ $_name } { padding-right: $_value; }
-  .#{ $_prefix }pb-#{ $_name } { padding-bottom: $_value; }
-  .#{ $_prefix }pl-#{ $_name } { padding-left: $_value; }
+  .#{ $_prefix }pt#{ $_name } { padding-top: $_value; }
+  .#{ $_prefix }pr#{ $_name } { padding-right: $_value; }
+  .#{ $_prefix }pb#{ $_name } { padding-bottom: $_value; }
+  .#{ $_prefix }pl#{ $_name } { padding-left: $_value; }
 }
+
+// Border width
+@include _loop( $border-width-classes ) {
+  .#{ $_prefix }b#{ $_name } { border: $_value solid; }
+  .#{ $_prefix }bt#{ $_name } { border-top: $_value solid; }
+  .#{ $_prefix }br#{ $_name } { border-right: $_value solid; } 
+  .#{ $_prefix }bb#{ $_name } { border-bottom: $_value solid; }
+  .#{ $_prefix }bl#{ $_name } { border-left: $_value solid; }
+}
+
+.b-dashed { border-style: dashed; }
+.b-dotted { border-style: dotted; }
+
+// Border color
+@include _loop( $border-color-classes ) {
+  .#{ $_prefix }b-#{ $_name } { border-color: $_value; }
+}
+
+// Border radius
+.br { border-radius: $g-radius; }
+.br-circle { border-radius: 50%; }
+.br-pill { border-radius: 9999px; }
+
+
+///// SIZING /////
 
 // Height
 @include _loop( $height-classes ) {
-  .#{ $_prefix }h-#{ $_name } { height: $_value; }
+  .#{ $_prefix }h#{ $_name } { height: $_value; }
 }
 
 // Width
 @include _loop( $width-classes ) {
-  .#{ $_prefix }w-#{ $_name } { width: $_value; }
+  .#{ $_prefix }w#{ $_name } { width: $_value; }
 }
 
 
+///// LAYOUT /////
 
 
-// FLOAT
-
+// Float
 .f-left { float: left; }
 .f-right { float: right; }
 .clearfix { @include clearfix; }
+
+
 
 
 } // if output
