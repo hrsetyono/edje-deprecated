@@ -1,0 +1,170 @@
+// Font Sizes  (fs-x) - only accepts pixel
+$font-size-classes: (
+  h1: (base: $h1, s: 30px),
+  h2: (base: $h2, s: 26px),
+  h3: (base: $h3, s: 22px),
+  h4: (base: $h4, s: 20px),
+  h5: (base: $h5, s: 18px),
+  h6: (base: $font-size, s: $font-size),
+  body: $font-size,
+  small: $font-size-s,
+) !default;
+
+
+// Color  (c-x)
+$color-classes: (
+  body: $font-color,
+  passive: $font-color-passive,
+  inherit: inherit,
+
+  main: $color-main,
+  main75: rgba($color-main, .75),
+  main50: rgba($color-main, .5),
+
+  main-dark: $color-main-dark,
+  main-light: $color-main-light,
+  sub: $color-sub,
+
+  red: $color-red,
+  green: $color-green,
+  blue: $color-blue,
+  yellow: $color-yellow,
+
+  black: black,
+  black75: rgba(black, .75),
+  black50: rgba(black, .5),
+
+  white: white,
+  white75: rgba(white, .75),
+  white50: rgba(white, .5),
+) !default;
+
+
+// Letter Spacing (lsx)
+$letter-spacing-classes: (
+  '-100': -0.1em,
+  '-50': -0.05em,
+  '-25': -0.025em,
+  0: 0,
+  25: 0.025em,
+  50: 0.05em,
+  100: 0.1em,
+  150: 0.15em
+) !default;
+
+
+// Font family (ff-x)
+$font-family-classes: (
+  body: $font-family,
+  header: $font-family-header
+) !default;
+
+
+// Line Height (lh-x)
+$line-height-classes: (
+  base: 1,
+  body: $font-line,
+  header: $header-line,
+) !default;
+
+
+// List style (list-x)
+$_list-style-classes: (
+  none: none,
+  disc: disc,
+  circle: circle,
+  square: square,
+
+  decimal: decimal,
+  decimal0: decimal-leading-zero,
+  alpha: lower-alpha,
+  roman: lower-roman,
+  upper-alpha: upper-alpha,
+  upper-roman: upper-roman,
+) !default;
+
+
+
+@if $output-functional {
+
+// Font Sizes
+@include _loop( $font-size-classes ) {
+  .#{ $_prefix }fs-#{ $_name } {
+    @if type-of( $_value ) == map {
+      @include font-sizes( $_value );
+    }
+    @else {
+      font-size: em( $_value );
+    }
+  }
+}
+
+// Color
+@include _loop( $color-classes ) {
+  .#{ $_prefix }c-#{ $_name } { color: $_value; }
+}
+
+// Font Misc
+.nowrap { white-space: nowrap; }
+
+.tt-uppercase { text-transform: uppercase; }
+.tt-lowercase { text-transform: lowercase; }
+.tt-capitalize { text-transform: capitalize; }
+.tt-none { text-transform: none; }
+
+.ta-center { text-align: center; }
+.ta-right { text-align: right; }
+.ta-left { text-align: left; }
+
+// Font Family
+@include _loop( $font-family-classes ) {
+  .#{ $_prefix }ff-#{ $_name } {
+    font-family: $_value;
+  }
+}
+
+// Letter spacing
+@include _loop( $letter-spacing-classes ) {
+  .#{ $_prefix }ls#{ $_name } {
+    letter-spacing: $_value;
+  }
+}
+
+// Font Weight & Style
+.fw-300 { font-weight: 300; }
+.fw-400 { font-weight: 400; }
+.fw-600 { font-weight: 600; }
+.b, .fw-700 { font-weight: 700; }
+.fw-900 { font-weight: 900; }
+
+.i { font-style: italic; }
+.u, .td-underline { text-decoration: underline; }
+.td-strike { text-decoration: line-through; }
+
+
+// List
+@include _loop( $_list-style-classes ) {
+  .#{ $_prefix }list-#{ $_name } {
+    list-style-type: #{ $_value };
+  }
+}
+
+
+// Vertical Align
+
+.va-baseline { vertical-align: baseline; }
+.va-top { vertical-align: top; }
+.va-middle { vertical-align: middle; }
+.va-bottom { vertical-align: bottom; }
+.va-sub { vertical-align: sub; }
+.va-super { vertical-align: super; }
+.va-text-top { vertical-align: text-top; }
+
+// Line Height
+@include _loop( $line-height-classes ) {
+  .#{ $_prefix }lh-#{ $_name } {
+    line-height: $_value;
+  }
+}
+
+}

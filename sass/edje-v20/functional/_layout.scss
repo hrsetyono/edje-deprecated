@@ -1,0 +1,60 @@
+// Position  (x)
+$_position-classes: (
+  static: static,
+  relative: relative,
+  absolute: absolute,
+  fixed: fixed,
+
+  s: (),
+) !default;
+
+$position-move-classes: (
+  0: 0,
+  100: 100%,
+
+  s: (),
+) !default
+
+// Z-Index (zx)
+$z-index-classes: (
+  '-1': -1,
+  2: 2,
+  5: 5,
+  10: 10,
+  100: 100,
+) !default;
+
+
+@if $output-functional {
+
+// Z Index
+@include _loop( $z-index-classes ) {
+  .#{ $_prefix }z#{ $_name } {
+    position: relative;
+    z-index: $_value;
+  }
+}
+
+// Position
+@include _loop( $_position-classes ) {
+  .#{ $_prefix }#{ $_name } {
+    position: $_value;
+  }
+}
+
+.absolute-fill { position: absolute; top: 0; right: 0; left: 0; bottom: 0; }
+
+// Position Move
+@include _loop( $position-move-classes ) {
+  .#{ $_prefix }top#{ $_name } { top: $_value; }
+  .#{ $_prefix }right#{ $_name } { right: $_value; }
+  .#{ $_prefix }bottom#{ $_name } { bottom: $_value; }
+  .#{ $_prefix }left#{ $_name } { left: $_value; }
+}
+
+// Float
+.f-left { float: left; }
+.f-right { float: right; }
+.clearfix { @include clearfix; }
+
+} // if

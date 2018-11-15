@@ -1,4 +1,5 @@
-// ----- URL SHORTCUT -----
+
+// URL SHORTCUT -----
 
 @function image-url($file) {
   @return url("#{ $_dir-images }/#{ $file }");
@@ -8,7 +9,7 @@
   @return url("#{ $_dir-fonts }/#{ $file }");
 }
 
-// ----- CLEARING FLOAT -----
+// CLEARING FLOAT -----
 // Make a container wraps floated element
 
 @mixin clearfix {
@@ -21,16 +22,60 @@
   }
 }
 
-// ----- MAP GET -----
 
-// palette
-@function colors($name) {
-  @return map-get($colors, $name);
+// ----- SELECTION -----
+// Change the text highlight color
+
+@mixin _text-selection($bg: $text-highlight) {
+  @if $bg {
+
+    // determine text color
+    $color: white;
+    @if lightness($bg) > 60 { $color: #222; }
+
+    ::-moz-selection {
+      background: $bg;
+      text-shadow: none !important;
+      color: $color !important;
+    }
+
+    ::selection {
+      background: $bg;
+      text-shadow: none !important;
+      color: $color !important;
+    }
+  }
 }
 
-// ----- DISABLE SELECTION -----
-// Prevents highlighting
+// Create @font-face declaration
+@mixin font-faces($name, $files) {
+  @each $file, $weight, $style in $files {
+    @font-face {
+      src: font-url($file);
+      font-family: $name;
+      font-weight: $weight;
+      font-style: $style;
+    }
+  }
+}
 
+// Create font sizes in various media query
+// Format: ( base: 24px, m: 22px, s: 20px, xs: 18px )
+@mixin font-sizes( $sizes, $context: $font-size ) {
+  @each $media, $s in $sizes {
+    $size: em($s, $context);
+
+    @if $media == base {
+      font-size: $size;
+    }
+    @else {
+      @include below($media) { font-size: $size; }
+    }
+  }
+}
+
+// Disable User Select
+// 
 @mixin user-select($value) {
   -webkit-touch-callout: $value;
   -webkit-user-select: $value;

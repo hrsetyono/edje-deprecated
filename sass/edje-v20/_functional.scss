@@ -1,0 +1,82 @@
+// FUNCTIONAL LOOP -----
+
+$_prefix: null !global;
+$_name: null !global;
+$_value: null !global;
+
+// Custom loop to add responsiveness
+@mixin _loop( $list, $responsive: true ) {
+  @each $name, $value in $list {
+    $_name: $name !global;
+    $_value: $value !global;
+
+    // if media query
+    @if( map_get( $_media-sizes, $name ) and $responsive ) {
+      $_prefix: #{ $name }\: !global;
+
+      @include below( $name ) {
+        // if given map, loop it
+        @if length( $value ) == 0 {
+          @each $n, $v in $list { @if type-of($v) != map {
+            $_name: $n !global;
+            $_value: $v !global;
+  
+            @content;
+          } }
+        } @else {
+          @each $n, $v in $value {
+            $_name: $n !global;
+            $_value: $v !global;
+  
+            @content;
+          }
+        }
+      } // below
+    } // if
+    @else {
+      @content;
+    }
+
+    $_prefix: null !global;
+    $_name: null !global;
+    $_value: null !global;
+  }
+}
+
+
+@import "functional/typography";
+
+@import "functional/display";
+@import "functional/layout";
+@import "functional/sizing";
+
+@import "functional/spacing";
+@import "functional/theme";
+
+
+$_all-classes: join(
+  join( $_display-classes, $_layout-classes ),
+  join( $_sizing-classes, $_spacing-classes ),
+);
+
+$_all-classes: join(
+  $_all-classes,
+  join( $_theme-classes, $_typography-classes ),
+);
+
+$_all-classes: (
+  p05: ( padding: 0.5em ),
+  bg-main10: ( background-color: rgba($color-main, .1) ),
+  b2: (border: 2px solid ),
+);
+
+// Apply styling with given classes
+//
+// @param $classes (string) - Space-separated list of functional classes
+@mixin h( $classes ) {
+  @each $c in $classes {
+    @each $name, $value in map-get( $_all-classes, $c ) {
+      #{ $name } : $value;
+    }
+  }
+}

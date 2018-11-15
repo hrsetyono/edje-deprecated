@@ -1,6 +1,8 @@
 // EDJE FRAMEWORK
 
 $output-framework: false !default;
+$output-functional: false !default;
+
 @if $output-framework {
 /* --------------------
   EDJE Framework
@@ -11,4 +13,5 @@ $output-framework: false !default;
 
 @import "edje-v20/setting";
 @import "edje-v20/utility";
+@import "edje-v20/functional";
 @import "edje-v20/component";
