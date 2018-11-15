@@ -1,52 +1,79 @@
-// Flexbox (flex-x)
+// Flexbox
 $flex-classes: (
-  1: 1,
-  2: 2,
-  3: 3,
-  4: 4,
-  5: 5,
+  flex: ( display: flex, width: 100% ),
+  flex-column: ( flex-direction: column ),
+  flex-column-reverse: ( flex-direction: column-reverse ),
+  flex-row-reverse: ( flex-direction: row-reverse ),
+  flex-wrap: ( flex-wrap: wrap ),
 
-  s: ()
+  ai-start: ( align-items: flex-start ),
+  ai-end: ( align-items: flex-end ),
+  ai-center: ( align-items: center ),
+  ai-baseline: ( align-items: baseline ),
+  ai-stretch: ( align-items: stretch ),
+
+  jc-start: ( justify-content: flex-start ),
+  jc-end: ( justify-content: flex-end ),
+  jc-center: ( justify-content: center ),
+  jc-between: ( justify-content: space-between ),
+  jc-around: ( justify-content: space-around ),
 ) !default;
 
-// Flex Order (orderx)
-$order-classes: (
-  1: 1,
-  2: 2,
-  3: 3,
-  4: 4,
-  5: 5,
-  '-last': 9999,
+// Flex Items
+$flex-item-classes: (
+  flex1: ( flex: 1 ),
+  flex2: ( flex: 2 ),
+  flex3: ( flex: 3 ),
+  flex4: ( flex: 4 ),
+  flex5: ( flex: 5 ),
 
-  s: ()
+  order1: ( order: 1 ),
+  order2: ( order: 2 ),
+  order3: ( order: 3 ),
+  order4: ( order: 4 ),
+  order5: ( order: 5 ),
+  order-last: ( order: 999 ),
+
+  as-start: ( align-self: flex-start ),
+  as-end: ( align-self: flex-end ),
+  as-center: ( align-self: center ),
+  as-baseline: ( align-self: baseline ),
+  as-stretch: ( align-self: stretch ),
 ) !default;
 
 
-// Overflow  (ov-x / ovy-x / ovx-x )
-$overflow-classes: (
+// Overflow
+$_overflow-names: (
+  ov-: overflow,
+  ovx-: overflow-x,
+  ovy-: overflow-y,
+);
+
+$_overflow-values: (
   auto: auto,
   hidden: hidden,
   scroll: scroll,
   visible: visible,
+);
 
-  s: ()
-) !default;
+$_overflow-classes: _format( $_overflow-names, $_overflow-values );
 
-// Cursor (cursor-x) {
+// Cursor
 $_cursor-classes: (
-  default: default,
-  pointer: pointer,
-  text: text,
-  move: move,
-  grab: grab,
-  progress: progress,
-  not-allowed: not-allowed,
-  zoom-in: zoom-in,
-  zoom-out: zoom-out,
+  cursor-default: ( cursor: default ),
+  cursor-pointer: ( cursor: pointer ),
+  cursor-text: ( cursor: text ),
+  cursor-move: ( cursor: move ),
+  cursor-grab: ( cursor: grab ),
+  cursor-progress: ( cursor: progress ),
+  cursor-not-allowed: ( cursor: not-allowed ),
+  cursor-zoom-in: ( cursor: zoom-in ),
+  cursor-zoom-out: ( cursor: zoom-out ),
 ) !default;
 
+$_display-classes: map-collect( $flex-classes, $flex-item-classes, $_overflow-classes, $_cursor-classes );
 
-
+/*
 @if $output-functional {
 
 // Display Type
@@ -55,54 +82,7 @@ $_cursor-classes: (
 .d-block { display: block; }
 .d-none { display: none; }
 
-// Flex wrapper
-.flex,
-.d-flex { @include display-flex; width: 100%; }
-.flex-column { @extend .flex; flex-direction: column; }
-.flex-column-r,
-.flex-column-reverse { @extend .flex; flex-direction: column-reverse; }
-.flex-row-r,
-.flex-row-reverse { @extend .flex; flex-direction: row-reverse; }
-.flex-wrap { flex-wrap: wrap; }
 
-.ai-start,
-.ai-flex-start { align-items: flex-start; }
-.ai-end,
-.ai-flex-end { align-items: flex-end; }
-.ai-center { align-items: center; }
-.ai-baseline { align-items: baseline; }
-.ai-stretch { align-items: stretch; }
-
-.jc-start,
-.jc-flex-start { justify-content: flex-start; }
-.jc-end,
-.jc-flex-end { justify-content: flex-end; }
-.jc-center { justify-content: center; }
-.jc-between,
-.jc-space-between { justify-content: space-between; }
-.jc-around,
-.jc-space-around { justify-content: space-around; }
-
-
-// Flex Items
-@include _loop( $flex-classes ) {
-  .#{ $_prefix }flex#{ $_name } {
-    flex: #{ $_value };
-  }
-}
-
-.as-start { align-self: flex-start; }
-.as-end { align-self: flex-end; }
-.as-center { align-self: center; }
-.as-baseline { align-self: baseline; }
-.as-stretch { align-self: stretch; }
-
-
-@include _loop( $order-classes ) {
-  .#{ $_prefix }order#{ $_name } {
-    order: $_value;
-  }
-}
 
 // Visibility
 @include above(s) {
@@ -146,3 +126,4 @@ $_cursor-classes: (
 }
 
 } // if
+*/

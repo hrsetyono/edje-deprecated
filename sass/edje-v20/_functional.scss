@@ -1,74 +1,47 @@
-// FUNCTIONAL LOOP -----
+// Format classes mapping by pairing each name to the values
+@function _format( $names, $values ) {
+  $classes: ();
 
-$_prefix: null !global;
-$_name: null !global;
-$_value: null !global;
+  // loop the name
+  @each $name, $style in $names {
+    
+    $_classes: (); // temporary map for the child loop
 
-// Custom loop to add responsiveness
-@mixin _loop( $list, $responsive: true ) {
-  @each $name, $value in $list {
-    $_name: $name !global;
-    $_value: $value !global;
+    @each $postfix, $value in $values {
+      $_name: #{ $name }#{ $postfix }; // format the name like "pt05"
+      $_value: "#{ $style }: #{ $value }"; // format the value like "padding-top: 0.5rem"
 
-    // if media query
-    @if( map_get( $_media-sizes, $name ) and $responsive ) {
-      $_prefix: #{ $name }\: !global;
-
-      @include below( $name ) {
-        // if given map, loop it
-        @if length( $value ) == 0 {
-          @each $n, $v in $list { @if type-of($v) != map {
-            $_name: $n !global;
-            $_value: $v !global;
-  
-            @content;
-          } }
-        } @else {
-          @each $n, $v in $value {
-            $_name: $n !global;
-            $_value: $v !global;
-  
-            @content;
-          }
-        }
-      } // below
-    } // if
-    @else {
-      @content;
+      $_classes: map-merge( $_classes, ( $name : $value ) );
     }
 
-    $_prefix: null !global;
-    $_name: null !global;
-    $_value: null !global;
+    $classes: map-merge( $classes, $_classes );
   }
+
+  @return $classes;
 }
 
 
 @import "functional/typography";
 
 @import "functional/display";
-@import "functional/layout";
-@import "functional/sizing";
+// @import "functional/layout";
+// @import "functional/sizing";
 
-@import "functional/spacing";
-@import "functional/theme";
+// @import "functional/spacing";
+// @import "functional/theme";
 
 
-$_all-classes: join(
-  join( $_display-classes, $_layout-classes ),
-  join( $_sizing-classes, $_spacing-classes ),
-);
+// $_all-classes: join(
+//   join( $_display-classes, $_layout-classes ),
+//   join( $_sizing-classes, $_spacing-classes ),
+// );
 
-$_all-classes: join(
-  $_all-classes,
-  join( $_theme-classes, $_typography-classes ),
-);
+// $_all-classes: join(
+//   $_all-classes,
+//   join( $_theme-classes, $_typography-classes ),
+// );
 
-$_all-classes: (
-  p05: ( padding: 0.5em ),
-  bg-main10: ( background-color: rgba($color-main, .1) ),
-  b2: (border: 2px solid ),
-);
+$_all-classes: $_display-classes;
 
 // Apply styling with given classes
 //
