@@ -1,129 +1,143 @@
+// Display Type
+$_h-display: (
+  d-iblock: ( display: inline-block ),
+  d-block: ( dsplay: block ),
+  d-none: ( display: none ),
+) !default;
+
+
 // Flexbox
-$flex-classes: (
+$_h-flex: (
   flex: ( display: flex, width: 100% ),
   flex-column: ( flex-direction: column ),
   flex-column-reverse: ( flex-direction: column-reverse ),
   flex-row-reverse: ( flex-direction: row-reverse ),
   flex-wrap: ( flex-wrap: wrap ),
-
-  ai-start: ( align-items: flex-start ),
-  ai-end: ( align-items: flex-end ),
-  ai-center: ( align-items: center ),
-  ai-baseline: ( align-items: baseline ),
-  ai-stretch: ( align-items: stretch ),
-
-  jc-start: ( justify-content: flex-start ),
-  jc-end: ( justify-content: flex-end ),
-  jc-center: ( justify-content: center ),
-  jc-between: ( justify-content: space-between ),
-  jc-around: ( justify-content: space-around ),
 ) !default;
 
-// Flex Items
-$flex-item-classes: (
-  flex1: ( flex: 1 ),
-  flex2: ( flex: 2 ),
-  flex3: ( flex: 3 ),
-  flex4: ( flex: 4 ),
-  flex5: ( flex: 5 ),
 
-  order1: ( order: 1 ),
-  order2: ( order: 2 ),
-  order3: ( order: 3 ),
-  order4: ( order: 4 ),
-  order5: ( order: 5 ),
-  order-last: ( order: 999 ),
+// Flex Wrapper - Align Items
+$_h-align-items: (
+  names: (
+    ai-: align-items,
+  ),
+  values: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    baseline: baseline,
+    stretch: stretch,
+  )
+) !default;
 
-  as-start: ( align-self: flex-start ),
-  as-end: ( align-self: flex-end ),
-  as-center: ( align-self: center ),
-  as-baseline: ( align-self: baseline ),
-  as-stretch: ( align-self: stretch ),
+
+// Flex wrapper - Justify content
+$_h-justify-content: (
+  namaes: (
+    jc-: justify-content,
+  ),
+  values: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    around: space-around,
+    between: space-between
+  )  
+) !default;
+
+
+// Flex portion
+$_h-flex-portion: (
+  names: (
+    flex: flex,
+  ),
+  values: (
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 5
+  )
+) !default;
+
+
+// Flex order
+$_h-flex-order: (
+  names: (
+    order: order,
+  ),
+  values: (
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 5,
+    '-last': 999
+  ),
+) !default;
+
+
+// Flex Align Self
+$_h-align-self: (
+  names: (
+    as-: align-self,
+  ),
+  values: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    baseline: baseline,
+    stretch: stretch,
+  )
 ) !default;
 
 
 // Overflow
-$_overflow-names: (
-  ov-: overflow,
-  ovx-: overflow-x,
-  ovy-: overflow-y,
-);
-
-$_overflow-values: (
-  auto: auto,
-  hidden: hidden,
-  scroll: scroll,
-  visible: visible,
-);
-
-$_overflow-classes: _format( $_overflow-names, $_overflow-values );
-
-// Cursor
-$_cursor-classes: (
-  cursor-default: ( cursor: default ),
-  cursor-pointer: ( cursor: pointer ),
-  cursor-text: ( cursor: text ),
-  cursor-move: ( cursor: move ),
-  cursor-grab: ( cursor: grab ),
-  cursor-progress: ( cursor: progress ),
-  cursor-not-allowed: ( cursor: not-allowed ),
-  cursor-zoom-in: ( cursor: zoom-in ),
-  cursor-zoom-out: ( cursor: zoom-out ),
+$_h-overflow: (
+  names: (
+    ov-: overflow,
+    ovx-: overflow-x,
+    ovy-: overflow-y,
+  ),
+  values: (
+    auto: auto,
+    hidden: hidden,
+    scroll: scroll,
+    visible: visible,
+  )
 ) !default;
 
-$_display-classes: map-collect( $flex-classes, $flex-item-classes, $_overflow-classes, $_cursor-classes );
-
-/*
-@if $output-functional {
-
-// Display Type
-.d-iblock,
-.d-inline-block { display: inline-block; }
-.d-block { display: block; }
-.d-none { display: none; }
-
-
-
-// Visibility
-@include above(s) {
-  .hide-for-l,
-  .show-for-s {
-    display: none !important;
-  }
-}
-
-@include below(s) {
-  .hide-for-s,
-  .show-for-l {
-    display: none !important;
-  }
-}
-
-@include above(xs) {
-  .show-for-xs {
-    display: none !important;
-  }
-}
-
-@include below(xs) {
-  .hide-for-xs {
-    display: none !important;
-  }
-}
-
-// Overflow
-@include _loop( $overflow-classes ) {
-  .#{ $_prefix }ov-#{ $_name } { overflow: $_value; }
-  .#{ $_prefix }ovy-#{ $_name } { overflow-y: $_value; }
-  .#{ $_prefix }ovx-#{ $_name } { overflow-x: $_value; }
-}
 
 // Cursor
-@include _loop( $_cursor-classes ) {
-  .#{ $_prefix }cursor-#{ $_name } {
-    cursor: #{ $_value };
-  }
-}
+$_h-cursor: (
+  names: (
+    cursor-: cursor,
+  ),
+  values: (
+    default: default,
+    pointer: pointer,
+    text: text,
+    move: move,
+    grab: grab,
+    progress: progress,
+    not-allowed: not-allowed,
+    zoom-in: zoom-in,
+    zoom-out: zoom-out,
+  )
+) !default;
 
-} // if
-*/
+
+
+$_h-all: map-merge( $_h-all, h-merge(
+  $_h-display,
+  $_h-flex,
+  $_h-align-items,
+  $_h-justify-content,
+
+  $_h-flex-order,
+  $_h-flex-portion,
+  $_h-align-self,
+
+  $_h-overflow,
+  $_h-cursor
+) );

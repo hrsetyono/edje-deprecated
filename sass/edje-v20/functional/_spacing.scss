@@ -1,130 +1,111 @@
-
-// Padding (px / pvx / phx / ptx / prx / pbx / plx)
-$padding-classes: (
-  '0': 0,
-  '025': 0.25rem,
-  '05': 0.5rem,
-  '075': 0.75rem,
-  1: 1rem,
-  15: 1.5rem,
-  2: 2rem,
-  3: 3rem,
-  4: 4rem,
-
-  s: (),
+// Padding
+$h-padding: (
+  names: (
+    p: padding,
+    pv: ( padding-top, padding-bottom ),
+    ph: ( padding-right, padding-left ),
+    pt: padding-top,
+    pr: padding-right,
+    pb: padding-bottom,
+    pl: padding-left,
+  ),
+  values: (
+    0: 0,
+    '025': 0.25rem,
+    '05': 0.5rem,
+    '075': 0.75rem,
+    1: 1rem,
+    15: 1.5rem,
+    2: 2rem,
+    3: 3rem,
+    4: 4rem,
+  ),
 ) !default;
 
-// Margin  (mx / mvx / mhx / mtx / mrx / mbx / mlx)
-$margin-classes: (
-  '-auto': auto,
-  '0': 0,
-  '025': 0.25rem,
-  '05': 0.5rem,
-  '075': 0.75rem,
-  1: 1rem,
-  15: 1.5rem,
-  2: 2rem,
-  3: 3rem,
-  4: 4rem,
-
-  s: (),
+// Margin
+$h-margin: (
+  names: (
+    m: margin,
+    mv: ( margin-top, margin-bottom ),
+    mh: ( margin-right, margin-left ),
+    mt: margin-top,
+    mr: margin-right,
+    mb: margin-bottom,
+    ml: margin-left,
+  ),
+  values: (
+    '-auto': auto,
+    0: 0,
+    '025': 0.25rem,
+    '05': 0.5rem,
+    '075': 0.75rem,
+    1: 1rem,
+    15: 1.5rem,
+    2: 2rem,
+    3: 3rem,
+    4: 4rem,
+  )
 ) !default;
 
 
 // Border width  (bx, btx, blx, brx, bbx)
-$border-width-classes: (
-  1: 1px,
-  2: 2px,
+$h-border-width: (
+  names: (
+    b: border,
+    bt: border-top,
+    bl: border-left,
+    br: border-right,
+    bb: border-bottom,
+  ),
+  values: (
+    1: 1px solid,
+    2: 2px solid,
+  )
 ) !default;
 
-
-// Border color  (b-x)
-$border-color-classes: (
-  main: $color-main,
-  sub: $color-sub,
-  transparent: transparent,
-
-  black75: rgba(black, .75),
-  black50: rgba(black, .50),
-  black25: rgba(black, .25),
-  black10: rgba(black, .10),
-  black05: rgba(black, .05),
-
-  white75: rgba(white, .75),
-  white50: rgba(white, .50),
-  white25: rgba(white, .25),
-  white10: rgba(white, .10),
-  white05: rgba(white, .05),
-) !default;
-
-
-
-@if $output-functional {
-
-// Margin
-@include _loop( $margin-classes ) {
-  .#{ $_prefix }m#{ $_name } {
-    margin: $_value;
-  }
-  
-  .#{ $_prefix }mv#{ $_name } {
-    margin-top: $_value;
-    margin-bottom: $_value;
-  }
-
-  .#{ $_prefix }mh#{ $_name } {
-    margin-right: $_value;
-    margin-left: $_value;
-  }
-
-  .#{ $_prefix }mt#{ $_name } { margin-top: $_value; }
-  .#{ $_prefix }mr#{ $_name } { margin-right: $_value; }
-  .#{ $_prefix }mb#{ $_name } { margin-bottom: $_value; }
-  .#{ $_prefix }ml#{ $_name } { margin-left: $_value; }
-}
-
-// Padding
-@include _loop( $padding-classes ) {
-  .#{ $_prefix }p#{ $_name } {
-    padding: $_value;
-  }
-  
-  .#{ $_prefix }pv#{ $_name } {
-    padding-top: $_value;
-    padding-bottom: $_value;
-  }
-
-  .#{ $_prefix }ph#{ $_name } {
-    padding-right: $_value;
-    padding-left: $_value;
-  }
-
-  .#{ $_prefix }pt#{ $_name } { padding-top: $_value; }
-  .#{ $_prefix }pr#{ $_name } { padding-right: $_value; }
-  .#{ $_prefix }pb#{ $_name } { padding-bottom: $_value; }
-  .#{ $_prefix }pl#{ $_name } { padding-left: $_value; }
-}
-
-// Border width
-@include _loop( $border-width-classes ) {
-  .#{ $_prefix }b#{ $_name } { border: $_value solid; }
-  .#{ $_prefix }bt#{ $_name } { border-top: $_value solid; }
-  .#{ $_prefix }br#{ $_name } { border-right: $_value solid; } 
-  .#{ $_prefix }bb#{ $_name } { border-bottom: $_value solid; }
-  .#{ $_prefix }bl#{ $_name } { border-left: $_value solid; }
-}
-
-.b-dashed { border-style: dashed; }
-.b-dotted { border-style: dotted; }
 
 // Border color
-@include _loop( $border-color-classes ) {
-  .#{ $_prefix }b-#{ $_name } { border-color: $_value; }
-}
+$h-border-color: (
+  names: (
+    b-: border-color
+  ),
+  values: (
+    main: $color-main,
+    sub: $color-sub,
+    transparent: transparent,
 
-// Border radius
-.br { border-radius: $g-radius; }
-.br-circle { border-radius: 50%; }
-.br-pill { border-radius: 9999px; }
+    black75: rgba(black, .75),
+    black50: rgba(black, .50),
+    black25: rgba(black, .25),
+    black10: rgba(black, .10),
+    black05: rgba(black, .05),
 
-} // if
+    white75: rgba(white, .75),
+    white50: rgba(white, .50),
+    white25: rgba(white, .25),
+    white10: rgba(white, .10),
+    white05: rgba(white, .05),
+  )
+) !default;
+
+
+$_h-border-misc: (
+  b-dashed: ( border-style: dashed ),
+  b-dotted: ( border-style: dotted ),
+
+  br: ( border-radius: $g-radius ),
+  br-circle: ( border-radius: 50% ),
+  br-pill: ( border-radius: 999px ),
+) !default;
+
+
+/////
+
+$_h-all: map-merge( $_h-all, h-merge(
+  $h-padding,
+  $h-margin,
+
+  $h-border-width,
+  $h-border-color,
+  $_h-border-misc,
+) );

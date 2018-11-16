@@ -1,0 +1,26 @@
+// Visibility
+@include above(s) {
+  .hide-for-l,
+  .show-for-s {
+    display: none !important;
+  }
+}
+
+@include below(s) {
+  .hide-for-s,
+  .show-for-l {
+    display: none !important;
+  }
+}
+
+@include above(xs) {
+  .show-for-xs {
+    display: none !important;
+  }
+}
+
+@include below(xs) {
+  .hide-for-xs {
+    display: none !important;
+  }
+}

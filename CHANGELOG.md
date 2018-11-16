@@ -1,6 +1,10 @@
+## 2.2.0
+
+- Removed Functional CSS feature, replacing it with Functional Sass. [Read full doc here](https://hrsetyono.github.io/edje/)
+
 ## 2.1.0
 
-- Added functional CSS feature. [Read full doc here](https://hrsetyono.github.io/edje/) 
+- Added functional CSS feature.  
 - Changed screen sizing name from mini, small, medium, and large to: `xs`, `s`, `m`, and `l`.
 - Changed grid column name from large-x and small-x to: `col-x` and `col-x-s`.
 - Changed old v2 to v1.8

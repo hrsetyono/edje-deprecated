@@ -1,60 +1,61 @@
-// Position  (x)
-$_position-classes: (
-  static: static,
-  relative: relative,
-  absolute: absolute,
-  fixed: fixed,
-
-  s: (),
-) !default;
-
-$position-move-classes: (
-  0: 0,
-  100: 100%,
-
-  s: (),
-) !default
-
-// Z-Index (zx)
-$z-index-classes: (
-  '-1': -1,
-  2: 2,
-  5: 5,
-  10: 10,
-  100: 100,
-) !default;
-
-
-@if $output-functional {
-
-// Z Index
-@include _loop( $z-index-classes ) {
-  .#{ $_prefix }z#{ $_name } {
-    position: relative;
-    z-index: $_value;
-  }
-}
-
 // Position
-@include _loop( $_position-classes ) {
-  .#{ $_prefix }#{ $_name } {
-    position: $_value;
-  }
-}
+$_h-position: (
+  static: ( position: static ),
+  relative: ( position: relative ),
+  absolute: ( position: absolute ),
+  fixed: ( position: fixed ),
 
-.absolute-fill { position: absolute; top: 0; right: 0; left: 0; bottom: 0; }
+  absolute-fill: ( position: absolute, top: 0, right: 0, left: 0, bottom: 0 ),
+) !default;
+
 
 // Position Move
-@include _loop( $position-move-classes ) {
-  .#{ $_prefix }top#{ $_name } { top: $_value; }
-  .#{ $_prefix }right#{ $_name } { right: $_value; }
-  .#{ $_prefix }bottom#{ $_name } { bottom: $_value; }
-  .#{ $_prefix }left#{ $_name } { left: $_value; }
-}
+$h-position-move: (
+  names: (
+    top: top,
+    right: right,
+    bottom: bottom,
+    left: left 
+  ),
+  values: (
+    0: 0,
+    100: 100%,
+  )
+) !default;
 
-// Float
-.f-left { float: left; }
-.f-right { float: right; }
-.clearfix { @include clearfix; }
 
-} // if
+// Z-Index (zx)
+$h-z-index: (
+  names: (
+    z: z-index
+  ),
+  values: (
+    '-1': -1,
+    2: 2,
+    5: 5,
+    10: 10,
+    100: 100,
+  )
+) !default;
+
+
+// Position Misc
+$_h-position-misc: (
+  f-left: ( float: left ),
+  f-right: ( float: right ),
+  clearfix: (
+    '::before': ( content: " ", display: table ),
+    '::after': ( content: " ", display: table, clear: both )
+  )
+) !default;
+
+
+/////
+
+
+$_h-all: map-merge( $_h-all, h-merge(
+  $_h-position,
+  $h-position-move,
+  $h-z-index,
+  $_h-position-misc
+) );

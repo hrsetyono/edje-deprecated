@@ -1,55 +1,104 @@
-// Format classes mapping by pairing each name to the values
-@function _format( $names, $values ) {
-  $classes: ();
+$_h-all: (); // will be populated within each component
 
-  // loop the name
-  @each $name, $style in $names {
-    
-    $_classes: (); // temporary map for the child loop
-
-    @each $postfix, $value in $values {
-      $_name: #{ $name }#{ $postfix }; // format the name like "pt05"
-      $_value: "#{ $style }: #{ $value }"; // format the value like "padding-top: 0.5rem"
-
-      $_classes: map-merge( $_classes, ( $name : $value ) );
-    }
-
-    $classes: map-merge( $classes, $_classes );
-  }
-
-  @return $classes;
-}
-
-
-@import "functional/typography";
-
-@import "functional/display";
-// @import "functional/layout";
-// @import "functional/sizing";
-
-// @import "functional/spacing";
-// @import "functional/theme";
-
-
-// $_all-classes: join(
-//   join( $_display-classes, $_layout-classes ),
-//   join( $_sizing-classes, $_spacing-classes ),
-// );
-
-// $_all-classes: join(
-//   $_all-classes,
-//   join( $_theme-classes, $_typography-classes ),
-// );
-
-$_all-classes: $_display-classes;
 
 // Apply styling with given classes
 //
 // @param $classes (string) - Space-separated list of functional classes
 @mixin h( $classes ) {
   @each $c in $classes {
-    @each $name, $value in map-get( $_all-classes, $c ) {
-      #{ $name } : $value;
+    @each $prop, $value in map-get( $_h-all, $c ) {
+      // if extend
+      @if type-of( $value ) == string and str-index( $value, '%') == 1 {
+        @extend #{ $value };
+      }
+      // if pseudoselector
+      @if type-of( $prop ) == string and str-index( $prop, ':' ) == 1 {
+        &#{ $prop } {
+          @each $p, $v in $value {
+            #{ $p } : $v;
+          }
+        }
+      }
+      // if normal
+      @else {
+        #{ $prop } : $value;
+      }
     }
   }
 }
+
+
+// Merge multiple Functional maps into one
+@function h-merge( $maps... ) {
+  $collection: ();
+
+  @each $map in $maps {
+    @if map-get( $map, names ) {
+      $collection: map-merge( $collection, _format-classes( $map ) );
+    } @else {
+      $collection: map-merge( $collection, $map );
+    }
+  }
+
+  @return $collection;
+}
+
+
+// Format classes mapping by pairing each name to the values
+//
+// @param $raw (map) - Containing two items: names and values. Each will be paired against each other to create classes
+@function _format-classes( $raw ) {
+  $classes: ();
+
+  // loop the name
+  @each $name, $props in map-get( $raw, 'names' ) {
+    @each $postfix, $value in map-get( $raw, 'values' ) {
+
+      $_name: #{ $name }#{ $postfix }; // format the name like "pt05"
+      $new-item: ( $_name: _format-values( $props, $value ) );
+
+      // add the new item
+      $classes: map-merge( $classes, $new-item );
+    }
+  }
+
+  @return $classes;
+}
+
+
+// Format the values of an Item
+//   Expected format: ( padding-top: 0.5em )
+// 
+// If $styles is a list, pair each with the value
+//   Example: ( padding-top: 0.5em, padding-bottom: 0.5em )
+@function _format-values( $props, $value ) {
+  $values: ();
+
+  // If has multiple styles, combine them
+  @if type-of( $props ) == 'list' {
+
+    // combine the multiple styles
+    @each $p in $props {
+      $values: map-merge( $values, ( #{ $p }: #{ $value } ) );
+    }
+  }
+  // If single style, just format it normally
+  @else {
+    $values: ( #{ $props }: #{ $value } );
+  }
+
+  @return $values;
+}
+
+
+
+/////
+
+
+@import "functional/typography";
+@import "functional/display";
+@import "functional/layout";
+@import "functional/sizing";
+
+@import "functional/spacing";
+@import "functional/theme";

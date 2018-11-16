@@ -68,6 +68,13 @@ $header-line    : 1.25 !default;
 $header-spacing : 0 !default;
 $header-transform : none !default;
 
+$h1: (base: $h1, s: 30px);
+$h2: (base: $h2, s: 26px);
+$h3: (base: $h3, s: 22px);
+$h4: (base: $h4, s: 20px);
+$h5: (base: $h5, s: 18px);
+$h6: (base: $font-size, s: $font-size);
+
 
 // LIST
 $ul-parent : disc !default;
@@ -90,14 +97,6 @@ $default-opposite : right !default;
   $default-float    : right;
   $default-opposite : left;
 }
-
-
-// ----- SHADOW -----
-$shadow-z0: 0 0.5px 2px rgba(black, .18), 0 1.5px 6px rgba(black, .08) !default;
-$shadow-z1: 0 1.5px 4px rgba(black, .24), 0 1.5px 6px rgba(black, .12) !default;
-$shadow-z2: 0 3px 12px rgba(black, .23), 0 3px 12px rgba(black, .16) !default;
-$shadow-z3: 0 6px 12px rgba(black, .23), 0 10px 40px rgba(black, .19) !default;
-
 
 // ----- u/OTHER -----
 $_dir-images: "../images" !default;

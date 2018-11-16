@@ -6,24 +6,3 @@
 
 @import "utility/prefixer";
 @import "utility/sticky-footer";
-
-// Merge multiple maps
-@function map-collect($maps...) {
-  $collection: ();
-
-  @each $map in $maps {
-    $collection: map-merge($collection, $map);
-  }
-  @return $collection;
-}
-
-// Search for substring and replace it
-@function str-replace( $string, $search, $replace: '' ) {
-  $index: str-index($string, $search);
-  
-  @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
-  }
-  
-  @return $string;
-}
