@@ -1,7 +1,7 @@
 // Display Type
 $_h-display: (
   d-iblock: ( display: inline-block ),
-  d-block: ( dsplay: block ),
+  d-block: ( display: block ),
   d-none: ( display: none ),
 ) !default;
 
@@ -9,10 +9,10 @@ $_h-display: (
 // Flexbox
 $_h-flex: (
   flex: ( display: flex, width: 100% ),
-  flex-column: ( flex-direction: column ),
-  flex-column-reverse: ( flex-direction: column-reverse ),
-  flex-row-reverse: ( flex-direction: row-reverse ),
-  flex-wrap: ( flex-wrap: wrap ),
+  flex--column: ( flex-direction: column ),
+  flex--column-reverse: ( flex-direction: column-reverse ),
+  flex--row-reverse: ( flex-direction: row-reverse ),
+  flex--wrap: ( flex-wrap: wrap ),
 ) !default;
 
 
@@ -33,7 +33,7 @@ $_h-align-items: (
 
 // Flex wrapper - Justify content
 $_h-justify-content: (
-  namaes: (
+  names: (
     jc-: justify-content,
   ),
   values: (

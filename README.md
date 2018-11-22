@@ -1,80 +1,50 @@
 # Edje Framework
+Edje is a **Functional Sass framework**. Basically we provide many shorthand styles, so instead of writing `padding: 1em`, we just write `p1`.
 
-A lightweight Sass framework for creating website from scratch.
+To make it clearer, here's an example of a class definition:
 
-Other frameworks offers ready-to-use UI kits, which is a good thing. But when you got someone who designed the mock-up for you, all those shiny blings won't be used.
+```sass
+.page-thumbnail {
+  background-color: red;
+  border: 2px solid rgba(black, 0.5);
+  padding: 1em;
+}
+```
 
-Edje provides just the essential styles such as:
+Using **Edje framework**, we wrote it like this:
 
-- [Grid System](https://github.com/hrsetyono/edje/wiki/Grid-System)
-- [Tile System](https://github.com/hrsetyono/edje/wiki/Tile-System)
-- [Visibility](https://github.com/hrsetyono/edje/wiki/Visibility)
-- And few others.
+```sass
+.page-thumbnail {
+  @include h( bg-red  b2  b-black50  p1 );
+}
+```
 
+Those mini styles are defined by Edje and easily customizable by overriding a Sass variable.
 
-Template generator available as separate package [here](https://github.com/hrsetyono/generator-edje). The installation guide below already included this.
+Some benefits based on our team's experience are:
 
+- **Compact Codebase** - Easier to skim through the code.
+
+- **Instant Styleguide** - All variables are stored in `_settings.scss`, that automatically become a styleguide to your team.
+
+- **Faster development** - You might say using full-fledged framework like Bootstrap is faster. But we actually spent longer time trying to override or customize their default styling.
+
+- **Fun**. Yeah I know that this is subjective. But for us, combining a bunch of small things to create larger entity is enjoyable.
+
+-----
 
 ## Installation
 
-1. Install [Node JS v5.4.1](https://github.com/hrsetyono/edje/wiki#installation).
+1. Install [Node JS](https://nodejs.org/en/download/).
 
-1. There are 4 global packages required. Run these commands below one by one.
-
-    ```
-    npm install -g node-sass@3.4.2
-    npm install -g edje
-    npm install -g yo
-    npm install -g generator-edje
-    ```
+1. Run the command `npm install -g node-sass` and `npm install -g edje`.
 
 1. If you are on Windows, add **NODE_PATH** to your System Variable and set it to **%AppData%/npm/node_modules**.
 
 1. Test whether it's successfully installed by running the command `npm`. If not found, try restarting your PC and double-check your `NODE_PATH`. If still doesn't work, run these [4 commands](http://stackoverflow.com/a/9588052/1318622) one by one.
 
+-----
 
-## Getting Started
+## Documentation
 
-**CREATING TEMPLATE**
-
-1. Create an empty project directory, then open command prompt inside. [(How?)](https://github.com/hrsetyono/generator-edje#opening-terminal-in-directory)
-
-1. Type in `yo edje` and choose the template you want from the menu.
-
-Read more at our [Generator's repo](https://github.com/hrsetyono/generator-edje).
-
-
-**COMPILING SASS**
-
-Simply type in `npm run sass` (on Windows) or `npm run sass-mac` (on Mac, Linux) inside your project directory.
-
-This only works in Edje's template. [Follow this guide](https://github.com/hrsetyono/edje/wiki/use-in-existing-project) if you want to run it in your existing project.
-
-## Sample Usage
-
-
-**GRID in HTML**
-
-```html
-<h-grid>
-  <div class="large-8 small-6"> </div>
-  <div class="large-4 small-6"> </div>
-</h-grid>  
-```
-
-
-**SASS Media Query**
-
-```sass
-.container {
-  padding: 50px;
-
-  @include below(800px) {
-    padding: 30px;  
-  }
-
-  @include below(480px) {
-    padding: 10px;
-  }
-}
-```
+Visit [https://hrsetyono.github.io/edje](https://hrsetyono.github.io/edje) for full documentation.

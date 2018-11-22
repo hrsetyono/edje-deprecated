@@ -1,7 +1,5 @@
 $h-font-size: (
-  names: (
-    fs-: font-size,
-  ),
+  names: ( fs-: font-size ),
   values: (
     h1: '%h1',
     h2: '%h2',
@@ -16,9 +14,7 @@ $h-font-size: (
 
 
 $h-color: (
-  names: (
-    c-: color,
-  ),
+  names: ( c-: color ),
   values: (
     body: $font-color,
     passive: $font-color-passive,
@@ -50,9 +46,7 @@ $h-color: (
 
 // Letter Spacing
 $h-letter-spacing: (
-  names: (
-    ls: letter-spacing,
-  ),
+  names: ( ls: letter-spacing ),
   values: (
     '-100': -0.1em,
     '-50': -0.05em,
@@ -68,9 +62,7 @@ $h-letter-spacing: (
 
 // Font Family
 $h-font-family: (
-  names: (
-    ff-: font-family
-  ),
+  names: ( ff-: font-family ),
   values: (
     body: $font-family,
     header: $font-family-header
@@ -80,9 +72,7 @@ $h-font-family: (
 
 // Line Height
 $h-line-height: (
-  names: (
-    lh-: line-height
-  ),
+  names: ( lh-: line-height ),
   values: (
     base: 1,
     body: $font-line,
@@ -93,9 +83,7 @@ $h-line-height: (
 
 // List style (list-x)
 $_h-list-style: (
-  names: (
-    list-: list-style-type
-  ),
+  names: ( list-: list-style-type ),
   values: (
     none: none,
     disc: disc,
@@ -123,15 +111,14 @@ $_h-font-misc: (
 
   ta-center: ( text-align: center ),
   ta-right: ( text-align: right ),
-  ta-left: ( text-align: left )
+  ta-left: ( text-align: left ),
+  ta-justify: ( text-align: justify ),
 ) !default;
 
 
 // Font Weight
 $_h-font-weight: (
-  names: (
-    fw-: font-weight,
-  ),
+  names: ( fw: font-weight ),
   values: (
     300: 300,
     400: 400,
@@ -152,9 +139,7 @@ $_h-font-style: (
 
 // Vertical Align
 $_h-vertical-align: (
-  names: (
-    va-: vertical-align
-  ),
+  names: ( va-: vertical-align ),
   values: (    
     baseline: baseline,
     top: top,

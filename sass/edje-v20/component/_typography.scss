@@ -2,12 +2,12 @@
 // EDJE TYPOGRAPHY
 // ==================
 
-%h1 { @include font-sizes( $h1); }
-%h2 { @include font-sizes( $h2); }
-%h3 { @include font-sizes( $h3); }
-%h4 { @include font-sizes( $h4); }
-%h5 { @include font-sizes( $h5); }
-%h6 { @include font-sizes( $h6); }
+%h1 { @include font-sizes( $h1 ); }
+%h2 { @include font-sizes( $h2 ); }
+%h3 { @include font-sizes( $h3 ); }
+%h4 { @include font-sizes( $h4 ); }
+%h5 { @include font-sizes( $h5 ); }
+%h6 { @include font-sizes( $h6 ); }
 
 
 @if $output-framework {

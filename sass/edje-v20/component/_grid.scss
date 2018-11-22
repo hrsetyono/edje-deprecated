@@ -20,9 +20,11 @@
   @if $width and $rim {
     max-width: $width + ($rim * 2);
     padding: 0 $rim;
-  } @elseif $width {
+  }
+  @else if $width {
     max-width: $width + ($grid-rim * 2);
-  } @elseif $rim {
+  }
+  @else if $rim {
     padding: 0 $rim;
   }
 
@@ -67,7 +69,7 @@ h-grid {
   @include grid( $rim: $grid-rim );
   margin: 0 auto;
 
-  &.grid-collapse {
+  &.collapse {
     @include grid( $collapse: true );
   }
 
@@ -79,7 +81,7 @@ h-grid {
 
 // Column
 @for $i from 1 through $grid-columns {
-  .col-#{$i} {
+  .large-#{$i} {
     @include column( $i );
   }
 }
@@ -87,12 +89,12 @@ h-grid {
 // Small column
 @include below(s) {
   // reset
-  [class*="col-"] {
+  [class*="large-"] {
     @include column( $grid-columns );
   }
 
   @for $i from 1 through $grid-columns {
-    .s\:col-#{$i} {
+    .small-#{$i} {
       @include column( $i );
     }
   }

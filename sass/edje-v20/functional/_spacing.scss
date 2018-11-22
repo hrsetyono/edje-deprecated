@@ -66,20 +66,20 @@ $h-border-width: (
 
 // Border color
 $h-border-color: (
-  names: (
-    b-: border-color
-  ),
+  names: ( b-: border-color ),
   values: (
     main: $color-main,
     sub: $color-sub,
     transparent: transparent,
 
+    black: black,
     black75: rgba(black, .75),
     black50: rgba(black, .50),
     black25: rgba(black, .25),
     black10: rgba(black, .10),
     black05: rgba(black, .05),
 
+    white: white,
     white75: rgba(white, .75),
     white50: rgba(white, .50),
     white25: rgba(white, .25),
@@ -92,7 +92,10 @@ $h-border-color: (
 $_h-border-misc: (
   b-dashed: ( border-style: dashed ),
   b-dotted: ( border-style: dotted ),
+) !default;
 
+
+$h-border-radius: (
   br: ( border-radius: $g-radius ),
   br-circle: ( border-radius: 50% ),
   br-pill: ( border-radius: 999px ),
@@ -108,4 +111,5 @@ $_h-all: map-merge( $_h-all, h-merge(
   $h-border-width,
   $h-border-color,
   $_h-border-misc,
+  $h-border-radius,
 ) );

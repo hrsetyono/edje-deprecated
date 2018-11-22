@@ -43,7 +43,7 @@ h-tile {
   @include display-grid;
   @include tile( $gap: $tile-gap );
 
-  &.tile-collapse {
+  &.collapse {
     @include tile( $collapse: true );
   }
 
@@ -63,7 +63,7 @@ h-tile {
   [class*="tile-"] { @include tile(1); }
 
   @for $i from 1 through $tile-max {
-    .s\:tile-#{$i} {
+    .small-tile-#{$i} {
       @include tile( $i );
     }
   }

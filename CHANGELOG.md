@@ -1,6 +1,7 @@
 ## 2.2.0
 
 - Removed Functional CSS feature, replacing it with Functional Sass. [Read full doc here](https://hrsetyono.github.io/edje/)
+- Revert back Grid naming to `large-x` and `small-x`.
 
 ## 2.1.0
 

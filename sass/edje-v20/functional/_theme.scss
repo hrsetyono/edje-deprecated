@@ -1,9 +1,7 @@
 
 // Background Color
 $h-background-color: (
-  names: (
-    bg-: background-color
-  ),
+  names: ( bg-: background-color ),
   values: (
     main: $color-main,
     main75: rgba($color-main, .75),
@@ -18,6 +16,7 @@ $h-background-color: (
 
     body: $body-background,
     passive: $color-passive,
+    transparent: transparent,
 
     red: $color-red,
     blue: $color-blue,
@@ -43,9 +42,7 @@ $h-background-color: (
 
 // Background Image - Can contain gradient too, name can't be duplicate with BG Color
 $h-background-image: (
-  names: (
-    bg-: background-image,
-  ),
+  names: ( bg-: background-image ),
   values: ()
 ) !default;
 
@@ -60,9 +57,7 @@ $_h-background-misc: (
 
 // Opacity
 $h-opacity: (
-  names: (
-    o: opacity
-  ),
+  names: ( o: opacity ),
   values: (
     100: 1,
     90: .9,
@@ -77,9 +72,7 @@ $h-opacity: (
 
 // Shadow
 $h-shadow: (
-  names: (
-    shadow: box-shadow,
-  ),
+  names: ( shadow: box-shadow ),
   values: (
     0: ( 0 0.5px 2px rgba(black, .18), 0 1.5px 6px rgba(black, .08) ),
     1: ( 0 1.5px 4px rgba(black, .24), 0 1.5px 6px rgba(black, .12) ),
@@ -91,8 +84,14 @@ $h-shadow: (
 
 // Common Hover effect
 $h-hover: (
-  hover-dim: ( ':hover': ( opacity: .6 ) ),
-  hover-grow: ( ':hover': ( '-webkit-transform': scale(1.05), transform: scale(1.05) ) ),
+  hover-dim: (
+    ':hover': ( opacity: .6 ),
+    ':active': ( opacity: .8 ),
+  ),
+  hover-grow: (
+    ':hover': ( '-webkit-transform': scale(1.05), transform: scale(1.05) ),
+    ':active': ( '-webkit-transform': scale(1), transform: scale(1) ),
+  ),
   hover-u: ( ':hover': ( text-decoration: underline ) ),
 ) !default;
 
@@ -103,6 +102,11 @@ $_h-theme-misc: (
   transition: $g-transition,
 ) !default;
 
+
+// Transition
+$h-transition: (
+  transition: ( transition: $g-transition ),
+) !default;
 
 /////
 
@@ -117,4 +121,5 @@ $_h-all: map-merge( $_h-all, h-merge(
   $h-hover,
 
   $_h-theme-misc,
+  $h-transition,
 ) );

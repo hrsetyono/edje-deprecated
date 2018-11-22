@@ -7,12 +7,15 @@ $_h-all: (); // will be populated within each component
 @mixin h( $classes ) {
   @each $c in $classes {
     @each $prop, $value in map-get( $_h-all, $c ) {
+      @if $prop == null {
+        @warn "The class '#{ $c }' doesn't exist";
+      }
       // if extend
-      @if type-of( $value ) == string and str-index( $value, '%') == 1 {
+      @else if type-of( $value ) == string and str-index( $value, '%') == 1 {
         @extend #{ $value };
       }
       // if pseudoselector
-      @if type-of( $prop ) == string and str-index( $prop, ':' ) == 1 {
+      @else if type-of( $prop ) == string and str-index( $prop, ':' ) == 1 {
         &#{ $prop } {
           @each $p, $v in $value {
             #{ $p } : $v;
@@ -98,7 +101,5 @@ $_h-all: (); // will be populated within each component
 @import "functional/typography";
 @import "functional/display";
 @import "functional/layout";
-@import "functional/sizing";
-
 @import "functional/spacing";
 @import "functional/theme";
