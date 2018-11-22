@@ -2,8 +2,26 @@
 
 .grid-demo h2 { max-width: 1120px; margin: 2rem auto 1rem; }
 
-.grid-demo h-row { grid-row-gap: 10px; }
+.grid-demo h-grid { grid-row-gap: 10px; }
 
-.grid-demo h-column { padding: 0.5em 0; border: 1px solid rgba(0, 0, 0, 0.2); background-color: rgba(0, 0, 0, 0.1); text-align: center; border-radius: 2px; }
+.grid-demo div { padding: 0.5em 0; border: 1px solid rgba(0, 0, 0, 0.2); background-color: rgba(0, 0, 0, 0.1); text-align: center; border-radius: 4px; }
 
-.grid-demo h-column:nth-child(even) { background-color: rgba(0, 0, 0, 0.15); }
+.grid-demo div:nth-child(even) { background-color: rgba(0, 0, 0, 0.15); }
+
+.tile-demo li { margin-bottom: 20px; }
+
+.tile-demo span { display: block; padding: 0.25em 0.5em; background-color: rgba(0, 0, 0, 0.1); }
+
+.tile-demo .custom-tile { grid-template-columns: repeat(4, 1fr); }
+
+@media only screen and (max-width: 767px) { .tile-demo .custom-tile { grid-template-columns: repeat(3, 1fr); } }
+
+@media only screen and (max-width: 767px) { .tile-demo .custom-tile { grid-template-columns: repeat(2, 1fr); } }
+
+.visibility-demo { padding: 2em 0; }
+
+.visibility-demo p { margin-bottom: 1em; }
+
+.visibility-demo p, .visibility-demo span { display: block; padding: 0.25em 0.5em; background-color: rgba(0, 0, 0, 0.1); }
+
+.visibility-demo span { display: inline-block; }

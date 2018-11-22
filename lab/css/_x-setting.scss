@@ -1,24 +1,24 @@
 // Customize the framework by changing these variables
 // Put your custom variables and mixins here too
-$version: 2.0;
 
 // ----- FONT -----
-$font-family : Helvetica, Arial, "sans-serif";
-$font-family-header : Helvetica, Arial, "sans-serif";
-$font-family-icon : "Material Icons";
+$font-family : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-family-header : "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", "Times","Source Serif Pro", serif;
 
 // ----- COLORS -----
-$color-main : #2196f3;
+$color-main : #00aadc;
 $color-sub  : #607d8b;
 
-$color-main-dark : darken($color-main, 10%);
-$color-main-light : lighten($color-main, 10%);
+// $color-main-dark : #008ab3;
+// $color-main-light : #78dcfa;
 
 $color-link : $color-main;
 // $color-link-hover : lighten($color-main, 10%);
 
-// $color-passive : #e0e0e0;
-// $color-red : #f44336;
+$color-passive : #c8d7e1;
+$color-passive-light: #f3f6f8;
+
+// $color-red : #f45b4f;
 // $color-yellow : #ffeb3b;
 // $color-green : #4caf50;
 // $color-blue: #2196f3;
@@ -26,49 +26,46 @@ $color-link : $color-main;
 // $body-background: #fff;
 // $text-highlight: null;
 
-
 // ----- SIZING -----
-// $size-mini   : 480px;
-// $size-small  : 767px;
-// $size-medium : 960px;
-// $size-large  : 1120px;
+// $size-xs : 480px;
+// $size-s  : 767px;
+// $size-m  : 960px;
+// $size-l  : 1120px;
+
 
 // ----- RESPONSIVE -----
 // $responsive : true;
 // $adaptive   : false;
-// $adaptive-breakpoints : large, medium, small, mini;
+// $adaptive-breakpoints : l, m, s, xs;
 
 // ----- Z INDEX -----
-//  z-index: z(menu);
-
-$z-indexes: (
-  menu: 1010,
-  child_menu: 1020,
-  banner: 1000
-);
+$z-nav: 1000;
 
 // ----- GLOBAL VALUE -----
-// $g-radius     : 2px;
+$g-radius     : 4px;
 // $g-transition : all .25s ease-in-out;
 
 
 // ----- GRID -----
-// $grid-max-width : $size-large;
-// $grid-columns : 12;
-// $grid-gutter  : 20px; // distance between columns
-// $grid-rim     : $grid-gutter / 2; // min distance from edge of screen
+// $grid-max-width : $size-l;
+// $grid-columns   : 12;
+// $grid-gap       : 20px; // distance between columns
+// $grid-rim       : 10px; // min distance from edge of screen
 
 // ----- TILE -----
 // $tile-max    : 8;
-// $tile-gutter : 20px;
+// $tile-gap : 20px;
 
 
 // ----- TYPOGRAPHY -----
-// $font-color  : #222;
+$font-color  : #2e4453;
+// $font-color-passive : #888;
+
 // $font-weight : 400;
 // $font-line : 1.65;
 $font-size : 16px;
-$font-size-small : 14px;
+// $font-size-s : 14px;
+
 
 // ----- HEADER -----
 // $header-color  : $font-color;
@@ -77,22 +74,27 @@ $font-size-small : 14px;
 // $header-spacing : 0;
 // $header-transform : none;
 
-$h1 : 44px;
+$h1 : 42px;
 $h2 : 36px;
 $h3 : 30px;
 $h4 : 24px;
 $h5 : 20px;
 $h6 : $font-size;
 
-// ----- RESPONSIVE HEADER -----
-// the header size below that media query
 
-// $h1-sizes: (base: $h1, small: 30px);
-// $h2-sizes: (base: $h2, small: 26px);
-// $h3-sizes: (base: $h3, small: 22px);
-// $h4-sizes: (base: $h4, small: 20px);
-// $h5-sizes: (base: $h5, small: 18px);
-// $h6-sizes: (base: $h6, small: $h6);
+// ----- FONT SIZES (f-x) ------
+// only pixel
+
+// $font-size-classes: (
+//   h1: (base: 42px, s: 30px),
+//   h2: (base: 36px, s: 26px),
+//   h3: (base: 30px, s: 22px),
+//   h4: (base: 24px, s: 20px),
+//   h5: (base: 20px, s: 18px),
+//   h6: (base: $font-size, s: $font-size),
+//   body: $font-size,
+//   small: $font-size-s,
+// );
 
 
 // ----- SHADOW -----
@@ -102,15 +104,56 @@ $h6 : $font-size;
 // $shadow-z3: 0 6px 12px rgba(black, .23), 0 10px 40px rgba(black, .19);
 
 
-// ----- PRINT -----
-// $include-print  : false;
-// $override-color : true;   // Override all text color to #000 black
+// ----- BACKGROUND (bg-x) ------
+// Can also accept url() and linear-gradient()
+
+// $background-classes: (
+//   main: $color-main,
+//   sub: $color-sub,
+//   main-dark: $color-main-dark,
+//   main-light: $color-main-light,
+
+//   red: $color-red,
+//   blue: $color-blue,
+//   yellow: $color-yellow,
+//   green: $color-green,
+// );
 
 
-// ----- TEXT DIRECTION -----
-// $text-direction   : ltr;  // Global text direction, 'rtl' or 'ltr'
+// ----- BORDER WIDTH -----
+// (b-x, b-top-x, b-left-x, b-right-x, b-bottom-x)
+
+// $border-width-classes: (
+//   1: 1px,
+//   2: 2px,
+// );
+
+// ----- BORDER COLOR (b--x) ------
+
+// $border-color-classes: (
+//   main: $color-main,
+//   sub: $color-sub,
+//   transparent: transparent,
+
+//   black-75: rgba(black, .75),
+//   black-50: rgba(black, .50),
+//   black-25: rgba(black, .25),
+//   black-10: rgba(black, .10),
+//   black-025: rgba(black, .025),
+//   black-01: rgba(black, .01),
+
+//   white-75: rgba(white, .75),
+//   white-50: rgba(white, .50),
+//   white-25: rgba(white, .25),
+//   white-10: rgba(white, .10),
+//   white-025: rgba(white, .025),
+//   white-01: rgba(white, .01),
+// );
 
 
-// ----- CUSTOM MIXIN -----
+$spinner_path: '../../../../../wp-admin/images/spinner.gif';
+
+
+///// CUSTOM MIXIN
 
 @mixin your-custom-mixin() { }

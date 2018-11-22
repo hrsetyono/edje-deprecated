@@ -1,3 +1,38 @@
+## 2.2.0
+
+- Removed Functional CSS feature, replacing it with Functional Sass. [Read full doc here](https://hrsetyono.github.io/edje/)
+- Revert back Grid naming to `large-x` and `small-x`.
+
+## 2.1.0
+
+- Added functional CSS feature.  
+- Changed screen sizing name from mini, small, medium, and large to: `xs`, `s`, `m`, and `l`.
+- Changed grid column name from large-x and small-x to: `col-x` and `col-x-s`.
+- Changed old v2 to v1.8
+
+## 2.0.2
+
+- Changed PRINT styling to not be included by default.
+- Fixed VISIBILITY messing up due to `display: inherit`.
+
+## 2.0.1
+
+- New mixin `supports` is on beta. [Read More](https://github.com/hrsetyono/edje/wiki/Generic-Mixin-and-Function#supports-20)
+- [Prefixer] Remove animation prefixer because it's no longer needed.
+
+
+## 2.0.0
+
+- Version 2 released!
+- [Grid] Now uses CSS3 grid. [Read More](https://github.com/hrsetyono/edje/wiki/Grid-System)
+- [Tile] Now uses <h-tile> element for the wrapper. [Read More](https://github.com/hrsetyono/edje/wiki/Tile-System)
+- [Animate] Out of beta, no longer need to set `$include-animate` variable to true.
+- [Animate] Removes vendor prefixes.
+
+## 1.5.1
+
+- [Normalize] Removed the CSS that removes native Datepicker. Applied on all versions.
+
 ## 1.5.0
 
 - Latest node-sass (4.9) and most-stable NodeJS (8.11) is now supported.

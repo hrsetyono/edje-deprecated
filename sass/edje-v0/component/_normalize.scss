@@ -4,7 +4,7 @@
 // Based on git.io/normalize v3.0.3
 
 @if $include-normalize and $output-framework {
-  
+
 /* ----------
   Normalize
 ---------- */
@@ -60,7 +60,7 @@ audio:not([controls]) {
 
 // Webkit sibling selector fix
 body { -webkit-animation: bugfix infinite 1s; }
-@-webkit-keyframes bugfix { 
+@-webkit-keyframes bugfix {
   from { padding: 0; }
   to { padding: 0; }
 }
@@ -85,7 +85,7 @@ img {
   border: 0;
   display: inline-block;
   vertical-align: middle;
-  -ms-interpolation-mode: bicubic; 
+  -ms-interpolation-mode: bicubic;
 }
 svg:not(:root) { overflow: hidden; }
 figure { margin: 0; }
@@ -200,10 +200,6 @@ input[type="search"] {
     -webkit-appearance: none;
   }
 }
-
-// Disable Chrome's datepicker
-input::-webkit-calendar-picker-indicator{ display: none; }
-input[type="date"]::-webkit-input-placeholder{ visibility: hidden !important; }
 
 textarea {
   overflow: auto;

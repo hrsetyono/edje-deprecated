@@ -1,6 +1,12 @@
 // Put styles that are unique for this project here
 @import "x-setting";
-@import "edje";
+@import "edje-v20";
+
+@mixin highlight {
+  display: block;
+  padding: 0.25em 0.5em;
+  background-color: rgba(black, .1);
+}
 
 .grid-demo {
   margin: 3em 0;
@@ -10,11 +16,11 @@
     margin: 2rem auto 1rem;
   }
 
-  h-row {
+  h-grid {
     grid-row-gap: 10px;
   }
 
-  h-column {
+  div {
     padding: 0.5em 0;
     border: 1px solid rgba(black, .2);
     background-color: rgba(black, .1);
@@ -23,7 +29,38 @@
     border-radius: $g-radius;
   }
 
-  h-column:nth-child(even) {
+  div:nth-child(even) {
     background-color: rgba(black, .15);
+  }
+}
+
+.tile-demo {
+  li {
+    margin-bottom: 20px;
+  }
+
+  span {
+    @include highlight;
+  }
+
+  .custom-tile {
+    @include tile(4, 3, 2);
+  }
+}
+
+.visibility-demo {
+  padding: 2em 0;
+
+  p {
+    margin-bottom: 1em;
+    
+  }
+
+  p, span {
+    @include highlight;
+  }
+
+  span {
+    display: inline-block;
   }
 }

@@ -20,11 +20,9 @@
   @if $width and $rim {
     max-width: $width + ($rim * 2);
     padding: 0 $rim;
-  }
-  @else if $width {
+  } @elseif $width {
     max-width: $width + ($grid-rim * 2);
-  }
-  @else if $rim {
+  } @elseif $rim {
     padding: 0 $rim;
   }
 
@@ -35,21 +33,21 @@
 
 @mixin column(
   $size: false,
-  $size_s: false,
-  $size_m: false,
+  $size_small: false,
+  $size_mini: false,
 ) {
   @if $size {
     grid-column: span #{ $size };
 
-    @if $size_s {
-      @include below(s) {
-        grid-column: span #{ $size_s };
+    @if $size_small {
+      @include below(small) {
+        grid-column: span #{ $size_small };
       }
     }
 
-    @if $size_xs {
-      @include below(xs) {
-        grid-column: span #{ $size_xs };
+    @if $size_mini {
+      @include below(mini) {
+        grid-column: span #{ $size_mini };
       }
     }
   }
@@ -87,7 +85,7 @@ h-grid {
 }
 
 // Small column
-@include below(s) {
+@include below(small) {
   // reset
   [class*="large-"] {
     @include column( $grid-columns );

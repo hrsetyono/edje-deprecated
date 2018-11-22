@@ -1,0 +1,171 @@
+$h-font-size: (
+  names: ( fs-: font-size ),
+  values: (
+    h1: '%h1',
+    h2: '%h2',
+    h3: '%h3',
+    h4: '%h4',
+    h5: '%h5',
+    h6: '%h6',
+    body: $font-size,
+    small: $font-size-s,
+  ),
+) !default;
+
+
+$h-color: (
+  names: ( c-: color ),
+  values: (
+    body: $font-color,
+    passive: $font-color-passive,
+    inherit: inherit,
+
+    main: $color-main,
+    main75: rgba($color-main, .75),
+    main50: rgba($color-main, .5),
+
+    main-dark: $color-main-dark,
+    main-light: $color-main-light,
+    sub: $color-sub,
+
+    red: $color-red,
+    green: $color-green,
+    blue: $color-blue,
+    yellow: $color-yellow,
+
+    black: black,
+    black75: rgba(black, .75),
+    black50: rgba(black, .5),
+
+    white: white,
+    white75: rgba(white, .75),
+    white50: rgba(white, .5),
+  ),
+) !default;
+
+
+// Letter Spacing
+$h-letter-spacing: (
+  names: ( ls: letter-spacing ),
+  values: (
+    '-100': -0.1em,
+    '-50': -0.05em,
+    '-25': -0.025em,
+    0: 0,
+    25: 0.025em,
+    50: 0.05em,
+    100: 0.1em,
+    150: 0.15em
+  )
+) !default;
+
+
+// Font Family
+$h-font-family: (
+  names: ( ff-: font-family ),
+  values: (
+    body: $font-family,
+    header: $font-family-header
+  )
+) !default;
+
+
+// Line Height
+$h-line-height: (
+  names: ( lh-: line-height ),
+  values: (
+    base: 1,
+    body: $font-line,
+    header: $header-line,
+  )
+) !default;
+
+
+// List style (list-x)
+$_h-list-style: (
+  names: ( list-: list-style-type ),
+  values: (
+    none: none,
+    disc: disc,
+    circle: circle,
+    square: square,
+  
+    decimal: decimal,
+    decimal0: decimal-leading-zero,
+    alpha: lower-alpha,
+    roman: lower-roman,
+    upper-alpha: upper-alpha,
+    upper-roman: upper-roman,
+  )
+) !default;
+
+
+// Font Misc
+$_h-font-misc: (
+  nowrap: ( white-space: nowrap ),
+  
+  tt-uppercase: ( text-transform: uppercase ),
+  tt-lowercase: ( text-transform: lowercase ),
+  tt-capitalize: ( text-transform: capitalize ),
+  tt-none: ( text-transform: none ),
+
+  ta-center: ( text-align: center ),
+  ta-right: ( text-align: right ),
+  ta-left: ( text-align: left ),
+  ta-justify: ( text-align: justify ),
+) !default;
+
+
+// Font Weight
+$_h-font-weight: (
+  names: ( fw: font-weight ),
+  values: (
+    300: 300,
+    400: 400,
+    600: 600,
+    700: 700,
+    900: 900
+  )
+) !default;
+
+// Font Styles
+$_h-font-style: (
+  b: ( font-weight: 700 ),
+  i: ( font-style: italic ),
+  u: ( text-decoration: underline ),
+  strike: ( text-decoration: line-through ),
+) !default;
+
+
+// Vertical Align
+$_h-vertical-align: (
+  names: ( va-: vertical-align ),
+  values: (    
+    baseline: baseline,
+    top: top,
+    middle: middle,
+    bottom: bottom,
+    sub: sub,
+    super: super,
+    text-top: text-top
+  )
+) !default;
+
+
+/////
+
+$_h-all: map-merge( $_h-all, h-merge(
+  $h-font-size,
+  $h-color,
+  $h-letter-spacing,
+
+  $h-font-family,
+  $h-line-height,
+
+  $_h-list-style,
+  $_h-font-misc,
+  $_h-font-weight,
+  $_h-font-style,
+
+  $_h-vertical-align,
+) );

@@ -1,16 +1,14 @@
 // EDJE FRAMEWORK
 
 $output-framework: false !default;
-
 @if $output-framework {
 /* --------------------
   EDJE Framework
   http://github.com/hrsetyono/edje
-  v2.0.0 (Morphling)
+  v1.8.0 (Lyralei)
 --------------------- */
 }
 
-@import "edje-v20/setting";
-@import "edje-v20/utility";
-@import "edje-v20/functional";
-@import "edje-v20/component";
+@import "edje-v18/setting";
+@import "edje-v18/utility";
+@import "edje-v18/component";

@@ -1,5 +1,5 @@
 // =================
-// EDGE NORMALIZE
+// EDJE NORMALIZE
 // =================
 // Based on git.io/normalize v3.0.3
 
@@ -128,11 +128,7 @@ object, embed { height: 100%; }
 address, cite { font-style: normal; }
 abbr[title] { border-bottom: 1px dotted; }
 dfn { font-style: italic; }
-
-mark {
-  background: rgba($color-main, .3);
-  padding: 0 0.25em;
-}
+mark { background: #ff0; color: #000; }
 
 // Misc inline elements
 q { quotes: "\201C" "\201D" "\2018" "\2019"; }
@@ -204,6 +200,10 @@ input[type="search"] {
     -webkit-appearance: none;
   }
 }
+
+// Disable Chrome's datepicker
+input::-webkit-calendar-picker-indicator{ display: none; }
+input[type="date"]::-webkit-input-placeholder{ visibility: hidden !important; }
 
 textarea {
   overflow: auto;

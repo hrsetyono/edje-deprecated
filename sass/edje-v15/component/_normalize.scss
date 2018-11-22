@@ -205,10 +205,6 @@ input[type="search"] {
   }
 }
 
-// Disable Chrome's datepicker
-input::-webkit-calendar-picker-indicator{ display: none; }
-input[type="date"]::-webkit-input-placeholder{ visibility: hidden !important; }
-
 textarea {
   overflow: auto;
   vertical-align: top;

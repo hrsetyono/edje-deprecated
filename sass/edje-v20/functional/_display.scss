@@ -1,0 +1,143 @@
+// Display Type
+$_h-display: (
+  d-iblock: ( display: inline-block ),
+  d-block: ( display: block ),
+  d-none: ( display: none ),
+) !default;
+
+
+// Flexbox
+$_h-flex: (
+  flex: ( display: flex, width: 100% ),
+  flex--column: ( flex-direction: column ),
+  flex--column-reverse: ( flex-direction: column-reverse ),
+  flex--row-reverse: ( flex-direction: row-reverse ),
+  flex--wrap: ( flex-wrap: wrap ),
+) !default;
+
+
+// Flex Wrapper - Align Items
+$_h-align-items: (
+  names: (
+    ai-: align-items,
+  ),
+  values: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    baseline: baseline,
+    stretch: stretch,
+  )
+) !default;
+
+
+// Flex wrapper - Justify content
+$_h-justify-content: (
+  names: (
+    jc-: justify-content,
+  ),
+  values: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    around: space-around,
+    between: space-between
+  )  
+) !default;
+
+
+// Flex portion
+$_h-flex-portion: (
+  names: (
+    flex: flex,
+  ),
+  values: (
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 5
+  )
+) !default;
+
+
+// Flex order
+$_h-flex-order: (
+  names: (
+    order: order,
+  ),
+  values: (
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 5,
+    '-last': 999
+  ),
+) !default;
+
+
+// Flex Align Self
+$_h-align-self: (
+  names: (
+    as-: align-self,
+  ),
+  values: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    baseline: baseline,
+    stretch: stretch,
+  )
+) !default;
+
+
+// Overflow
+$_h-overflow: (
+  names: (
+    ov-: overflow,
+    ovx-: overflow-x,
+    ovy-: overflow-y,
+  ),
+  values: (
+    auto: auto,
+    hidden: hidden,
+    scroll: scroll,
+    visible: visible,
+  )
+) !default;
+
+
+// Cursor
+$_h-cursor: (
+  names: (
+    cursor-: cursor,
+  ),
+  values: (
+    default: default,
+    pointer: pointer,
+    text: text,
+    move: move,
+    grab: grab,
+    progress: progress,
+    not-allowed: not-allowed,
+    zoom-in: zoom-in,
+    zoom-out: zoom-out,
+  )
+) !default;
+
+
+
+$_h-all: map-merge( $_h-all, h-merge(
+  $_h-display,
+  $_h-flex,
+  $_h-align-items,
+  $_h-justify-content,
+
+  $_h-flex-order,
+  $_h-flex-portion,
+  $_h-align-self,
+
+  $_h-overflow,
+  $_h-cursor
+) );

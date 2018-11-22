@@ -1,0 +1,115 @@
+// Padding
+$h-padding: (
+  names: (
+    p: padding,
+    pv: ( padding-top, padding-bottom ),
+    ph: ( padding-right, padding-left ),
+    pt: padding-top,
+    pr: padding-right,
+    pb: padding-bottom,
+    pl: padding-left,
+  ),
+  values: (
+    0: 0,
+    '025': 0.25rem,
+    '05': 0.5rem,
+    '075': 0.75rem,
+    1: 1rem,
+    15: 1.5rem,
+    2: 2rem,
+    3: 3rem,
+    4: 4rem,
+  ),
+) !default;
+
+// Margin
+$h-margin: (
+  names: (
+    m: margin,
+    mv: ( margin-top, margin-bottom ),
+    mh: ( margin-right, margin-left ),
+    mt: margin-top,
+    mr: margin-right,
+    mb: margin-bottom,
+    ml: margin-left,
+  ),
+  values: (
+    '-auto': auto,
+    0: 0,
+    '025': 0.25rem,
+    '05': 0.5rem,
+    '075': 0.75rem,
+    1: 1rem,
+    15: 1.5rem,
+    2: 2rem,
+    3: 3rem,
+    4: 4rem,
+  )
+) !default;
+
+
+// Border width  (bx, btx, blx, brx, bbx)
+$h-border-width: (
+  names: (
+    b: border,
+    bt: border-top,
+    bl: border-left,
+    br: border-right,
+    bb: border-bottom,
+  ),
+  values: (
+    1: 1px solid,
+    2: 2px solid,
+  )
+) !default;
+
+
+// Border color
+$h-border-color: (
+  names: ( b-: border-color ),
+  values: (
+    main: $color-main,
+    sub: $color-sub,
+    transparent: transparent,
+
+    black: black,
+    black75: rgba(black, .75),
+    black50: rgba(black, .50),
+    black25: rgba(black, .25),
+    black10: rgba(black, .10),
+    black05: rgba(black, .05),
+
+    white: white,
+    white75: rgba(white, .75),
+    white50: rgba(white, .50),
+    white25: rgba(white, .25),
+    white10: rgba(white, .10),
+    white05: rgba(white, .05),
+  )
+) !default;
+
+
+$_h-border-misc: (
+  b-dashed: ( border-style: dashed ),
+  b-dotted: ( border-style: dotted ),
+) !default;
+
+
+$h-border-radius: (
+  br: ( border-radius: $g-radius ),
+  br-circle: ( border-radius: 50% ),
+  br-pill: ( border-radius: 999px ),
+) !default;
+
+
+/////
+
+$_h-all: map-merge( $_h-all, h-merge(
+  $h-padding,
+  $h-margin,
+
+  $h-border-width,
+  $h-border-color,
+  $_h-border-misc,
+  $h-border-radius,
+) );

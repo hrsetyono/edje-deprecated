@@ -10,8 +10,8 @@ $color-sub  : #607d8b !default;
 $color-main-dark : darken($color-main, 10%) !default;
 $color-main-light : lighten($color-main, 10%) !default;
 
-$color-link : #0366d6 !default;
-$color-link-hover : lighten($color-link, 10%) !default;
+$color-link : $color-main !default;
+$color-link-hover : lighten($color-main, 10%) !default;
 
 $color-passive : #e0e0e0 !default;
 $color-red : #f44336 !default;
@@ -24,22 +24,22 @@ $text-highlight: null !default;
 
 
 // ----- MEDIA QUERIES -----
-$size-xs : 480px !default;
-$size-s  : 767px !default;
-$size-m  : 960px !default;
-$size-l  : 1120px !default;
+$size-mini   : 480px !default;
+$size-small  : 767px !default;
+$size-medium : 960px !default;
+$size-large  : 1120px !default;
 
 $_media-sizes: (
-  xs: $size-xs,
-  s: $size-s,
-  m: $size-m,
-  l: $size-l,
-) !default;
+  mini: $size-mini,
+  small: $size-small,
+  medium: $size-medium,
+  large: $size-large
+);
 
 // ----- RESPONSIVE -----
 $responsive : true !default;
 $adaptive   : false !default; // TODO: not implemented yet in v20
-$adaptive-breakpoints : l, m, s, xs !default;
+$adaptive-breakpoints : large, medium, small, mini !default;
 
 $_user-mode   : true !default; // when importing component, output the style or just mixin?
 
@@ -59,7 +59,7 @@ $font-weight : 400 !default;
 $font-line   : 1.65 !default;
 
 $font-size : 16px !default;
-$font-size-s : 14px !default;
+$font-size-small : 14px !default;
 
 // HEADER
 $header-color   : $font-color !default;
@@ -68,13 +68,22 @@ $header-line    : 1.25 !default;
 $header-spacing : 0 !default;
 $header-transform : none !default;
 
-$h1: (base: $h1, s: 30px);
-$h2: (base: $h2, s: 26px);
-$h3: (base: $h3, s: 22px);
-$h4: (base: $h4, s: 20px);
-$h5: (base: $h5, s: 18px);
-$h6: (base: $font-size, s: $font-size);
+$h1 : 42px !default;
+$h2 : 36px !default;
+$h3 : 30px !default;
+$h4 : 24px !default;
+$h5 : 20px !default;
+$h6 : $font-size !default;
 
+// ----- RESPONSIVE HEADER -----
+// the header size below that media query
+
+$h1-sizes: (base: $h1, small: 30px) !default;
+$h2-sizes: (base: $h2, small: 26px) !default;
+$h3-sizes: (base: $h3, small: 22px) !default;
+$h4-sizes: (base: $h4, small: 20px) !default;
+$h5-sizes: (base: $h5, small: 18px) !default;
+$h6-sizes: (base: $h6, small: $h6) !default;
 
 // LIST
 $ul-parent : disc !default;
@@ -82,7 +91,6 @@ $ul-child  : circle !default;
 
 $ol-parent : decimal !default;
 $ol-child  : lower-alpha !default;
-
 
 // ----- TEXT DIRECTION -----
 $text-direction   : ltr !default; // Controls default global text direction, 'rtl' or 'ltr'
@@ -98,10 +106,15 @@ $default-opposite : right !default;
   $default-opposite : left;
 }
 
+// ----- SHADOW -----
+$shadow-z0: 0 0.5px 2px rgba(black, .18), 0 1.5px 6px rgba(black, .08) !default;
+$shadow-z1: 0 1.5px 4px rgba(black, .24), 0 1.5px 6px rgba(black, .12) !default;
+$shadow-z2: 0 3px 12px rgba(black, .23), 0 3px 12px rgba(black, .16) !default;
+$shadow-z3: 0 6px 12px rgba(black, .23), 0 10px 40px rgba(black, .19) !default;
+
 // ----- u/OTHER -----
 $_dir-images: "../images" !default;
 $_dir-fonts: "../fonts" !default;
-
 
 // ----- u/SUPPORT ------
 // http://browserhacks.com
@@ -113,22 +126,18 @@ $supports: (
   opera: '(-webkit-appearance:none)',
 );
 
-
 // ----- c/GRID -----
 $grid-columns : 12 !default;
 $grid-gap     : 20px !default;
 $grid-rim     : 10px !default;
-$grid-max-width : $size-l !default; // TODO: confusing math, we want the $large to be +20px for easier @include below(l), so when we use adaptive, it breakdown as soon as it reached it
-
+$grid-max-width : $size-large !default; // TODO: confusing math, we want the $large to be +20px for easier @include below(large), so when we use adaptive, it breakdown as soon as it reached it
 
 // ----- c/TILE -----
 $tile-max : 8 !default;
 $tile-gap : 20px !default;
 
-
 // -----c/ANIMATE-----
 $animation-duration: 1s !default;
-
 
 // ----- c/PRINT -----
 $override-color: true !default;

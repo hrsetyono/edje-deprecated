@@ -1,0 +1,8 @@
+// BROWSER SUPPORT
+// Unfinished due to Safari has the same supports with Chrome
+
+@mixin supports( $name ) {
+  @supports #{ map-get( $supports, $name ) } {
+    @content;
+  }
+}

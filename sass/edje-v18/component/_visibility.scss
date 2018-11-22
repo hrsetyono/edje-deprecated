@@ -1,0 +1,38 @@
+// ==================
+// EDJE VISIBILITY
+// ==================
+
+
+@if $output-framework {
+
+/* -----------------
+  EDJE Visibility
+----------------- */
+
+@include above(small) {
+  .hide-for-large,
+  .show-for-small {
+    display: none !important;
+  }
+}
+
+@include below(small) {
+  .hide-for-small,
+  .show-for-large {
+    display: none !important;
+  }
+}
+
+@include above(mini) {
+  .show-for-mini {
+    display: none !important;
+  }
+}
+
+@include below(mini) {
+  .hide-for-mini {
+    display: none !important;
+  }
+}
+
+} // include-visibility

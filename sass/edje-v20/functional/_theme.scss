@@ -1,0 +1,125 @@
+
+// Background Color
+$h-background-color: (
+  names: ( bg-: background-color ),
+  values: (
+    main: $color-main,
+    main75: rgba($color-main, .75),
+    main50: rgba($color-main, .50),
+    main25: rgba($color-main, .25),
+    main10: rgba($color-main, .10),
+    main05: rgba($color-main, .05),
+
+    main-dark: $color-main-dark,
+    main-light: $color-main-light,
+    sub: $color-sub,
+
+    body: $body-background,
+    passive: $color-passive,
+    transparent: transparent,
+
+    red: $color-red,
+    blue: $color-blue,
+    yellow: $color-yellow,
+    green: $color-green,
+
+    black: black,
+    black75: rgba(black, .75),
+    black50: rgba(black, .50),
+    black25: rgba(black, .25),
+    black10: rgba(black, .10),
+    black05: rgba(black, .05),
+
+    white: white,
+    white75: rgba(white, .75),
+    white50: rgba(white, .50),
+    white25: rgba(white, .25),
+    white10: rgba(white, .10),
+    white05: rgba(white, .05),
+  )
+) !default;
+
+
+// Background Image - Can contain gradient too, name can't be duplicate with BG Color
+$h-background-image: (
+  names: ( bg-: background-image ),
+  values: ()
+) !default;
+
+
+// Background Misc
+$_h-background-misc: (
+  bg-cover: ( background-size: cover ),
+  bg-contain: ( background-size: contain ),
+  bg-center: ( background-position: center center )
+) !default;
+
+
+// Opacity
+$h-opacity: (
+  names: ( o: opacity ),
+  values: (
+    100: 1,
+    90: .9,
+    80: .8,
+    70: .7,
+    60: .6,
+    50: .5,
+    0: 0,
+  )
+) !default;
+
+
+// Shadow
+$h-shadow: (
+  names: ( shadow: box-shadow ),
+  values: (
+    0: ( 0 0.5px 2px rgba(black, .18), 0 1.5px 6px rgba(black, .08) ),
+    1: ( 0 1.5px 4px rgba(black, .24), 0 1.5px 6px rgba(black, .12) ),
+    2: ( 0 3px 12px rgba(black, .23), 0 3px 12px rgba(black, .16) ),
+    3: ( 0 6px 12px rgba(black, .23), 0 10px 40px rgba(black, .19) ),
+  )
+) !default;
+
+
+// Common Hover effect
+$h-hover: (
+  hover-dim: (
+    ':hover': ( opacity: .6 ),
+    ':active': ( opacity: .8 ),
+  ),
+  hover-grow: (
+    ':hover': ( '-webkit-transform': scale(1.05), transform: scale(1.05) ),
+    ':active': ( '-webkit-transform': scale(1), transform: scale(1) ),
+  ),
+  hover-u: ( ':hover': ( text-decoration: underline ) ),
+) !default;
+
+
+// Theme Misc
+$_h-theme-misc: (
+  backface: ( '-webkit-backface-visibility': hidden, backface-visibility: hidden ),
+  transition: $g-transition,
+) !default;
+
+
+// Transition
+$h-transition: (
+  transition: ( transition: $g-transition ),
+) !default;
+
+/////
+
+
+$_h-all: map-merge( $_h-all, h-merge(
+  $h-background-color,
+  $h-background-image,
+  $_h-background-misc,
+
+  $h-shadow,
+  $h-opacity,
+  $h-hover,
+
+  $_h-theme-misc,
+  $h-transition,
+) );
