@@ -31,6 +31,28 @@ Some benefits based on our team's experience are:
 
 - **Fun**. Yeah I know that this is subjective. But for us, combining a bunch of small things to create larger entity is enjoyable.
 
+[Read full documentation here](https://hrsetyono.github.io/edje/)
+
+-----
+
+## Media Query
+
+We used intuitive naming to make it easy to know the target size for the media query block.
+
+```sass
+.button {
+  @include h( p1 );
+
+  @media ($below-s) {
+    @include h( p05 );
+  }
+}
+```
+
+There are 4 default breakpoint: Extra Small (`xs`) is 480px, Small (`s`) is 767px, Medium (`m`) is 960px, and Large (`l`) is 1120px. You can use those sizes with the combination of word "below-" and "above-".
+
+[Read media query documentation here](https://hrsetyono.github.io/edje/#/helper/media-query)
+
 -----
 
 ## Installation

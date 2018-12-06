@@ -5,7 +5,7 @@
 @mixin triangle(
   $width,
   $direction : top,
-  $color     : $color-main,
+  $color     : $main,
   $height    : false) {
   // If height is not specified, make the triangle equalateral
   @if not $height {

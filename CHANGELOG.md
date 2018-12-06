@@ -1,3 +1,10 @@
+## 2.3.0
+
+- Changed how media query should be written. [Read more here](https://hrsetyono.github.io/edje/#/helper/media-query)
+- Added Visibility to functional Sass.
+- Removed the prefix `color-` in some variables. For example `$color-main` is now shortened to `$main`.
+- Changed the variable containing the word `passive` to `gray`. For example `$color-passive` is now just `$gray`.
+
 ## 2.2.0
 
 - Removed Functional CSS feature, replacing it with Functional Sass. [Read full doc here](https://hrsetyono.github.io/edje/)

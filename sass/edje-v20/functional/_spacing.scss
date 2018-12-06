@@ -66,11 +66,18 @@ $h-border-width: (
 
 // Border color
 $h-border-color: (
-  names: ( b-: border-color ),
+  names: ( bc-: border-color ),
   values: (
-    main: $color-main,
-    sub: $color-sub,
+    main: $main,
+    main-dark: $main-dark,
+    main-light: $main-light,
+    
+    sub: $sub,
     transparent: transparent,
+
+    gray: $gray,
+    gray-dark: $gray-dark,
+    gray-light: $gray-light,
 
     black: black,
     black75: rgba(black, .75),
@@ -90,6 +97,7 @@ $h-border-color: (
 
 
 $_h-border-misc: (
+  b-solid: ( border-style: solid ),
   b-dashed: ( border-style: dashed ),
   b-dotted: ( border-style: dotted ),
 ) !default;

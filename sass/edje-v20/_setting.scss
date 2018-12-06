@@ -4,20 +4,23 @@
 $include-print : false !default;
 
 // ----- COLOR -----
-$color-main : #2196f3 !default;
-$color-sub  : #607d8b !default;
+$main : #2196f3 !default;
+$sub  : #607d8b !default;
 
-$color-main-dark : darken($color-main, 10%) !default;
-$color-main-light : lighten($color-main, 10%) !default;
+$main-dark : darken($main, 10%) !default;
+$main-light : lighten($main, 10%) !default;
 
 $color-link : #0366d6 !default;
 $color-link-hover : lighten($color-link, 10%) !default;
 
-$color-passive : #e0e0e0 !default;
-$color-red : #f44336 !default;
-$color-yellow : #ffeb3b !default;
-$color-green : #4caf50 !default;
-$color-blue: #2196f3 !default;
+$gray : #e0e0e0 !default;
+$gray-light: #f3f6f8 !default;
+$gray-dark: #b0bcc4 !default;
+
+$red : #f44336 !default;
+$yellow : #ffeb3b !default;
+$green : #4caf50 !default;
+$blue: #2196f3 !default;
 
 $body-background: #fff !default;
 $text-highlight: null !default;
@@ -45,16 +48,17 @@ $_user-mode   : true !default; // when importing component, output the style or 
 
 
 // ----- GLOBAL VALUE -----
-$g-radius : 2px !default;
+$g-radius : 4px !default;
 $g-transition : all .25s ease-out !default;
 
 
 // ----- c/TYPOGRAPHY -----
 $font-family : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
-$font-family-header : $font-family !default;
+
+$font-family-header : "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", "Times","Source Serif Pro", serif !default;
 
 $font-color  : #222 !default;
-$font-color-passive : #888 !default;
+$font-gray : #888 !default;
 $font-weight : 400 !default;
 $font-line   : 1.65 !default;
 
@@ -68,12 +72,12 @@ $header-line    : 1.25 !default;
 $header-spacing : 0 !default;
 $header-transform : none !default;
 
-$h1: (base: $h1, s: 30px);
-$h2: (base: $h2, s: 26px);
-$h3: (base: $h3, s: 22px);
-$h4: (base: $h4, s: 20px);
-$h5: (base: $h5, s: 18px);
-$h6: (base: $font-size, s: $font-size);
+$h1: (base: 42px, s: 30px) !default;
+$h2: (base: 36px, s: 26px) !default;
+$h3: (base: 30px, s: 22px) !default;
+$h4: (base: 24px, s: 20px) !default;
+$h5: (base: 20px, s: 18px) !default;
+$h6: (base: $font-size, s: $font-size) !default;
 
 
 // LIST
@@ -84,19 +88,6 @@ $ol-parent : decimal !default;
 $ol-child  : lower-alpha !default;
 
 
-// ----- TEXT DIRECTION -----
-$text-direction   : ltr !default; // Controls default global text direction, 'rtl' or 'ltr'
-$default-float    : left !default;
-$default-opposite : right !default;
-
-// No need to change this conditional statement, $text-direction variable controls it all.
-@if $text-direction == ltr {
-  $default-float    : left;
-  $default-opposite : right;
-} @else {
-  $default-float    : right;
-  $default-opposite : left;
-}
 
 // ----- u/OTHER -----
 $_dir-images: "../images" !default;
@@ -124,6 +115,13 @@ $grid-max-width : $size-l !default; // TODO: confusing math, we want the $large 
 // ----- c/TILE -----
 $tile-max : 8 !default;
 $tile-gap : 20px !default;
+
+
+///// SHADOW
+$shadow-z0: 0 0.5px 2px rgba(black, .18), 0 1.5px 6px rgba(black, .08) !default;
+$shadow-z1: 0 1.5px 4px rgba(black, .24), 0 1.5px 6px rgba(black, .12) !default;
+$shadow-z2: 0 3px 12px rgba(black, .23), 0 3px 12px rgba(black, .16) !default;
+$shadow-z3: 0 6px 12px rgba(black, .23), 0 10px 40px rgba(black, .19) !default;
 
 
 // -----c/ANIMATE-----

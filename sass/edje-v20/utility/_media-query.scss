@@ -4,7 +4,7 @@
 
 // Map a keyword to the pixel size
 // @return the pixel size
-@function _getSize($name) {
+@function _getSize( $name ) {
   $_size: 0;
 
   // if number, return it as it is
@@ -20,35 +20,36 @@
 }
 
 // Media query for below or equal the size
-@function below($size) {
+@function below( $size ) {
   $_size: _getSize($size);
-  @return "(max-width: #{$_size} )";
+  @return "max-width: #{$_size}";
 }
 
-@mixin below($size) {
+@mixin below( $size ) {
   @if $responsive {
-    @media only screen and #{ below($size) } { @content; }
+    @media only screen and (#{ below($size) }) { @content; }
   }
 }
 
 // Media query for above the size
-@function above($size) {
+@function above( $size ) {
   $size: _getSize($size) + 1px;
-  @return "(min-width: #{$size} )";
+  @return "min-width: #{$size}";
 }
 
-@mixin above($size) {
-  @media #{ above($size) } { @content; }
+@mixin above( $size ) {
+  @media (#{ above($size) }) { @content; }
 }
+
 
 // Media query for between two sizes
-@function between($smaller-size, $larger-size) {
-  @return "#{ above($smaller-size) } and #{ below($larger-size) }";
+@function between( $smaller-size, $larger-size ) {
+  @return "(#{ above($smaller-size) }) and (#{ below($larger-size) })";
 }
 
-@mixin between($smaller-size, $larger-size) {
+@mixin between( $smaller-size, $larger-size ) {
   @if $responsive {
-    @media only screen and #{ between($smaller-size, $larger-size) } {
+    @media only screen and (#{ between($smaller-size, $larger-size) }) {
       @content;
     }
   }
@@ -60,3 +61,18 @@
     @content;
   }
 }
+
+$below-xs: below(xs);
+$above-xs: above(xs);
+$below-s: below(s);
+$above-s: above(s);
+$below-m: below(m);
+$above-m: above(m);
+$below-l: below(l);
+$above-l: above(l);
+
+$between-s-m: between(s, m);
+$between-xs-s: between(xs, s);
+$between-m-l: between(m, l);
+$portrait: "orientation: portrait";
+$landscape: "orientation: landscape";
