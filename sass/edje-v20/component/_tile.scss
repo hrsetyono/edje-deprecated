@@ -19,7 +19,7 @@
     }
 
     @if $per_row_xs {
-      @include below(s) {
+      @include below(xs) {
         grid-template-columns: repeat( $per_row_xs, 1fr );
       }
     }

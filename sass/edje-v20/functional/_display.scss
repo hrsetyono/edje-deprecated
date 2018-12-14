@@ -8,11 +8,13 @@ $_h-display: (
 
 // Flexbox
 $_h-flex: (
-  flex: ( display: flex ),
-  flex--column: ( flex-direction: column ),
-  flex--column-reverse: ( flex-direction: column-reverse ),
-  flex--row-reverse: ( flex-direction: row-reverse ),
-  flex--wrap: ( flex-wrap: wrap ),
+  d-flex: ( display: flex ),
+  f: ( display: flex ),
+  fd-row: ( flex-direction: row ),
+  fd-column: ( flex-direction: column ),
+  fd-column-reverse: ( flex-direction: column-reverse ),
+  fd-row-reverse: ( flex-direction: row-reverse ),
+  fw-wrap: ( flex-wrap: wrap ),
 ) !default;
 
 
@@ -129,7 +131,22 @@ $_h-cursor: (
 // Other Display
 $_h-display-misc: (
   v-visible: ( visibility: visible ),
-  v-hidden: ( visibility: hidden ),  
+  v-hidden: ( visibility: hidden ),
+  no-select: (
+    '-webkit-touch-callout': none,
+    '-webkit-user-select': none,
+    '-moz-user-select': none,
+    'user-select': none
+  ),
+  appearance-none: (
+    '-moz-appearance': none,
+    '-webkit-appearance': none,
+    'appearance': none
+  ),
+  backface-hidden: (
+    '-webkit-backface-visibility': hidden,
+    'backface-visibility': hidden
+  ),
 ) !default;
 
 

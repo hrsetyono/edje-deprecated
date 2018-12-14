@@ -1,0 +1,96 @@
+// Utility to generate Functional map
+
+
+// Apply styling with given classes
+//
+// @param $classes (string) - Space-separated list of functional classes
+@mixin h( $classes ) {
+  @each $c in $classes {
+    @each $prop, $value in map-get( $_h-all, $c ) {
+
+      @if $prop == null {
+        @warn "The class '#{ $c }' doesn't exist";
+      }
+      // if extend
+      @else if type-of( $value ) == string and str-index( $value, '%') == 1 {
+        @extend #{ $value };
+      }
+      // if pseudoselector
+      @else if type-of( $prop ) == string and str-index( $prop, ':' ) == 1 {
+        &#{ $prop} {
+          @each $p, $v in $value {
+            #{ $p } : $v;
+          }
+        }
+      }
+      // if normal
+      @else {
+        
+        #{ $prop } : $value;
+      }
+    }
+  }
+}
+
+
+// Merge multiple Functional maps into one
+@function h-merge( $maps... ) {
+  $collection: ();
+
+  @each $map in $maps {
+    @if map-get( $map, names ) {
+      $collection: map-merge( $collection, _format-classes( $map ) );
+    } @else {
+      $collection: map-merge( $collection, $map );
+    }
+  }
+
+  @return $collection;
+}
+
+
+// Format classes mapping by pairing each name to the values
+//
+// @param $raw (map) - Containing two items: names and values. Each will be paired against each other to create classes
+@function _format-classes( $raw ) {
+  $classes: ();
+
+  // loop the name
+  @each $name, $props in map-get( $raw, 'names' ) {
+    @each $postfix, $value in map-get( $raw, 'values' ) {
+
+      $_name: #{ $name }#{ $postfix }; // format the name like "pt05"
+      $new-item: ( $_name: _format-values( $props, $value ) );
+
+      // add the new item
+      $classes: map-merge( $classes, $new-item );
+    }
+  }
+
+  @return $classes;
+}
+
+
+// Format the values of an Item
+//   Expected format: ( padding-top: 0.5em )
+// 
+// If $styles is a list, pair each with the value
+//   Example: ( padding-top: 0.5em, padding-bottom: 0.5em )
+@function _format-values( $props, $value ) {
+  $values: ();
+
+  // If has multiple styles, combine them
+  @if type-of( $props ) == 'list' {
+
+    // combine the multiple styles
+    @each $p in $props {
+      $values: map-merge( $values, ( #{ $p }: #{ $value } ) );
+    }
+  }
+  // If single style, just format it normally
+  @else {
+    $values: ( #{ $props }: #{ $value } );
+  }
+
+  @return $values;
+}

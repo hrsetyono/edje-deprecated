@@ -1,32 +1,115 @@
-
-// URL SHORTCUT -----
-
-@function image-url($file) {
-  @return url("#{ $_dir-images }/#{ $file }");
-}
-
-@function font-url($file) {
-  @return url("#{ $_dir-fonts }/#{ $file }");
-}
-
-// CLEARING FLOAT -----
-// Make a container wraps floated element
-
 @mixin clearfix {
-  &::before, &::after {
-    content: " ";
+  &::before,
+  &::after {
+    content: "";
     display: table;
   }
+
   &::after {
     clear: both;
   }
 }
 
 
-// ----- SELECTION -----
-// Change the text highlight color
+// ASSETS ------
 
-@mixin _text-selection($bg: $text-highlight) {
+@function image-url( $file ) {
+  @return url("#{ $_dir-images }/#{ $file }");
+}
+
+@function font-url(  $file ) {
+  @return url("#{ $_dir-fonts }/#{ $file }");
+}
+
+
+///// Create @font-face declaration
+// Usage:
+//   @include font-faces( 'Proxima Nova', (
+//     ( 'proximanova-reg.woff', 400 ),
+//     ( 'proximanova-italic.woff', 400, italic ),
+//     ( 'proximanova-bold.woff', 700 ),
+//   ) );
+//
+// NOTE: Always add trailing comma at the end of the font list to prevent bug
+//
+@mixin font-faces( $name, $files ) {
+  @each $file, $weight, $style in $files {
+    @font-face {
+      src: font-url($file);
+      font-family: $name;
+      font-weight: $weight;
+      font-style: $style;
+    }
+  }
+}
+
+///// Create font sizes in various media query
+// Usage:
+//   @include font-sizes( ( base:20px, s: 18px ) );
+//
+// Result:
+//   font-size: 20px;
+//   @media (max-width:767px) { font-size: 18px; }
+//
+@mixin font-sizes( $sizes, $context: $font-size ) {
+  @each $media, $s in $sizes {
+    $size: em( $s, $context );
+
+    @if $media == base {
+      font-size: $size;
+    }
+    @else {
+      @media ( below($media) ) { font-size: $size; }
+    }
+  }
+}
+
+
+///// SVG Encoding
+// Usage:
+//   background-image: svg-uri('<svg xmlns="http://www.w3.org/2000/svg"> ... </svg>');
+// 
+// Result:
+//   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E% ... %3C/svg%3E");
+
+@function svg-uri( $svg ) {
+  $encoded: '';
+  $slice: 2000;
+  $index: 0;
+  $loops: ceil(str-length($svg) / $slice);
+
+  @for $i from 1 through $loops {
+    $chunk: str-slice($svg, $index, $index + $slice - 1);
+    $chunk: str-replace($chunk, '"', "'");
+    $chunk: str-replace($chunk, '<', '%3C');
+    $chunk: str-replace($chunk, '>', '%3E');
+    $chunk: str-replace($chunk, '&', '%26');
+    $chunk: str-replace($chunk, '#', '%23');
+    $encoded: #{$encoded}#{$chunk};
+    $index: $index + $slice;
+  }
+
+  @return url("data:image/svg+xml;charset=utf8,#{$encoded}");
+}
+
+/// Replace `$search` with `$replace` in `$string`
+@function str-replace( $string, $search, $replace: '' ) {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+
+//
+
+
+///// SELECTION -----
+// Change the text highlight color
+@mixin _text-selection( $bg: $text-highlight ) {
   @if $bg {
 
     // determine text color
@@ -45,40 +128,4 @@
       color: $color !important;
     }
   }
-}
-
-// Create @font-face declaration
-@mixin font-faces($name, $files) {
-  @each $file, $weight, $style in $files {
-    @font-face {
-      src: font-url($file);
-      font-family: $name;
-      font-weight: $weight;
-      font-style: $style;
-    }
-  }
-}
-
-// Create font sizes in various media query
-// Format: ( base: 24px, m: 22px, s: 20px, xs: 18px )
-@mixin font-sizes( $sizes, $context: $font-size ) {
-  @each $media, $s in $sizes {
-    $size: em($s, $context);
-
-    @if $media == base {
-      font-size: $size;
-    }
-    @else {
-      @include below($media) { font-size: $size; }
-    }
-  }
-}
-
-// Disable User Select
-// 
-@mixin user-select($value) {
-  -webkit-touch-callout: $value;
-  -webkit-user-select: $value;
-  -moz-user-select: $value;
-  user-select: $value;
 }

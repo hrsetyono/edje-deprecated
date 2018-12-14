@@ -2,7 +2,7 @@
 // VENDOR PREFIXES
 // -----------------
 
-@mixin _prefixer($prop, $value...) {
+@mixin _prefixer( $prop, $value... ) {
   -webkit-#{ $prop }: $value;
   #{ $prop }: $value;
 }
@@ -26,20 +26,20 @@
 
 
 // TRANSFORM
-@mixin transform-origin($value...) {
+@mixin transform-origin( $value... ) {
   @include _prefixer("transform-origin", $value...);
 }
 
-@mixin transform($value...) {
+@mixin transform( $value... ) {
   -webkit-transform: $value;
   -ms-transform: $value;
   transform: $value;
 }
 
-@mixin perspective($value...) {
+@mixin perspective( $value... ) {
   @include _prefixer("perspective", $value...);
 }
-@mixin perspective-origin($value...) {
+@mixin perspective-origin( $value... ) {
   @include _prefixer("perspective-origin", $value...);
 }
 

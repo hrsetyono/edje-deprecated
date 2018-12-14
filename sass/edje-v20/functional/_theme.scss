@@ -55,7 +55,7 @@ $_h-background-misc: (
   bg-center: ( background-position: center center ),
 
   bg-repeat: ( background-repeat: repeat ),
-  bg-repeat-no: ( background-repeat: no-repeat ),
+  bg-no-repeat: ( background-repeat: no-repeat ),
   bg-repeat-x: ( background-repeat: repeat-x ),
   bg-repeat-y: ( background-repeat: repeat-y ),
 ) !default;
@@ -101,14 +101,13 @@ $h-hover: (
 
 // Theme Misc
 $_h-theme-misc: (
-  backface: ( '-webkit-backface-visibility': hidden, backface-visibility: hidden ),
-  transition: $g-transition,
 ) !default;
 
 
 // Transition
 $h-transition: (
   transition: ( transition: $g-transition ),
+  transition-none: ( transition: none ),
 ) !default;
 
 /////

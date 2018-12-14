@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+$_h-all: (); // for functional sass
+
 // ----- OUTPUT CONFIG -----
 $include-print : false !default;
 
@@ -26,7 +28,7 @@ $body-background: #fff !default;
 $text-highlight: null !default;
 
 
-// ----- MEDIA QUERIES -----
+// Media Query
 $size-xs : 480px !default;
 $size-s  : 767px !default;
 $size-m  : 960px !default;
@@ -38,6 +40,19 @@ $_media-sizes: (
   m: $size-m,
   l: $size-l,
 ) !default;
+
+$below-xs: below(xs) !default;
+$above-xs: above(xs) !default;
+$below-s: below(s) !default;
+$above-s: above(s) !default;
+$below-m: below(m) !default;
+$above-m: above(m) !default;
+$below-l: below(l) !default;
+$above-l: above(l) !default;
+
+$portrait: "orientation: portrait" !default;
+$landscape: "orientation: landscape" !default;
+
 
 // ----- RESPONSIVE -----
 $responsive : true !default;

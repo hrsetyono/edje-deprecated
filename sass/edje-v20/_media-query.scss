@@ -61,18 +61,3 @@
     @content;
   }
 }
-
-$below-xs: below(xs);
-$above-xs: above(xs);
-$below-s: below(s);
-$above-s: above(s);
-$below-m: below(m);
-$above-m: above(m);
-$below-l: below(l);
-$above-l: above(l);
-
-$between-s-m: between(s, m);
-$between-xs-s: between(xs, s);
-$between-m-l: between(m, l);
-$portrait: "orientation: portrait";
-$landscape: "orientation: landscape";

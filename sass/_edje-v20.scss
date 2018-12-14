@@ -10,6 +10,8 @@ $output-framework: false !default;
 --------------------- */
 }
 
+@import "edje-v20/media-query"; // put on top so setting can use the function
+
 @import "edje-v20/setting";
 @import "edje-v20/utility";
 @import "edje-v20/functional";

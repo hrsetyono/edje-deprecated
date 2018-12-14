@@ -15,8 +15,10 @@ $h-padding: (
     '05': 0.5rem,
     '075': 0.75rem,
     1: 1rem,
+    125: 1.25rem,
     15: 1.5rem,
     2: 2rem,
+    25: 2.5rem,
     3: 3rem,
     4: 4rem,
   ),
@@ -40,8 +42,10 @@ $h-margin: (
     '05': 0.5rem,
     '075': 0.75rem,
     1: 1rem,
+    125: 1.25rem,
     15: 1.5rem,
     2: 2rem,
+    25: 2.5rem,
     3: 3rem,
     4: 4rem,
   )
@@ -51,15 +55,16 @@ $h-margin: (
 // Border width  (bx, btx, blx, brx, bbx)
 $h-border-width: (
   names: (
-    b: border,
-    bt: border-top,
-    bl: border-left,
-    br: border-right,
-    bb: border-bottom,
+    b: border-width,
+    bt: border-top-width,
+    bl: border-left-width,
+    br: border-right-width,
+    bb: border-bottom-width,
   ),
   values: (
-    1: 1px solid,
-    2: 2px solid,
+    0: 0,
+    1: 1px,
+    2: 2px,
   )
 ) !default;
 

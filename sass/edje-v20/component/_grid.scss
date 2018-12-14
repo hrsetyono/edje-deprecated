@@ -25,7 +25,8 @@
     max-width: $width + ($grid-rim * 2);
   }
   @else if $rim {
-    padding: 0 $rim;
+    padding-right: $rim;
+    padding-left: $rim;
   }
 
   @if $collapse {

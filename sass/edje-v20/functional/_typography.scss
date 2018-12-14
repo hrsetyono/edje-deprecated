@@ -33,11 +33,11 @@ $h-color: (
     blue: $blue,
     yellow: $yellow,
 
-    black: black,
+    'black': black,
     black75: rgba(black, .75),
     black50: rgba(black, .5),
 
-    white: white,
+    'white': white,
     white75: rgba(white, .75),
     white50: rgba(white, .5),
   ),
@@ -53,6 +53,7 @@ $h-letter-spacing: (
     0: 0,
     25: 0.025em,
     50: 0.05em,
+    75: 0.075em,
     100: 0.1em,
     150: 0.15em
   )
@@ -154,8 +155,8 @@ $_h-vertical-align: (
 
 $_h-all: map-merge( $_h-all, h-merge(
   $h-font-size,
-  $h-color,
   $h-letter-spacing,
+  $h-color,
 
   $h-font-family,
   $h-line-height,
