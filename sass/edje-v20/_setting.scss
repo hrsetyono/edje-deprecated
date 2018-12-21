@@ -7,17 +7,19 @@ $include-print : false !default;
 
 // ----- COLOR -----
 $main : #2196f3 !default;
-$sub  : #607d8b !default;
-
 $main-dark : darken($main, 10%) !default;
 $main-light : lighten($main, 10%) !default;
 
-$color-link : #0366d6 !default;
-$color-link-hover : lighten($color-link, 10%) !default;
+$sub  : #607d8b !default;
+$sub-dark: darken($sub, 10%) !default;
+$sub-light: lighten($sub, 10%) !default;
 
 $gray : #e0e0e0 !default;
 $gray-light: #f3f6f8 !default;
 $gray-dark: #b0bcc4 !default;
+
+$color-link : #0366d6 !default;
+$color-link-hover : lighten($color-link, 10%) !default;
 
 $red : #f44336 !default;
 $yellow : #ffeb3b !default;
@@ -52,7 +54,7 @@ $above-l: above(l) !default;
 
 $portrait: "orientation: portrait" !default;
 $landscape: "orientation: landscape" !default;
-
+$retina: "min-resolution: 192dpi" !default;
 
 // ----- RESPONSIVE -----
 $responsive : true !default;

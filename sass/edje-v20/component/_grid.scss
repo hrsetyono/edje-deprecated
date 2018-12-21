@@ -44,13 +44,13 @@
   }
 
   @if $span-s {
-    @include below(s) {
+    @media ($below-s) {
       grid-column: span #{ $span_s };
     }
   }
 
   @if $span-xs {
-    @include below(xs) {
+    @media ($below-xs) {
       grid-column: span #{ $span_xs };
     }
   }
@@ -88,7 +88,7 @@ h-grid {
 }
 
 // Small column
-@include below(s) {
+@media ($below-s) {
   // reset
   [class*="large-"] {
     @include column( $grid-columns );

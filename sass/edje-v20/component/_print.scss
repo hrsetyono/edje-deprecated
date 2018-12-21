@@ -9,7 +9,7 @@
   - HTML5 Boilerplate
 --------------------- */
 
-@include print {
+@media only print {
   * {
     @if $override-color {
       color: #000 !important;

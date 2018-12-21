@@ -1,3 +1,11 @@
+## 2.3.1
+
+- Removed the old media query mixin.
+- Added `50%` option to Position-move. New classes: top50, right50, bottom50, left50.
+- Merged Border-width and Border-style classes. Before: `b1` and `b-solid`. Now: `b1-solid`.
+- Removed `dotted` Border-style option.
+- Added new variable: `$sub-dark` and `$sub-light`. This is also added to Background, Color, and Border-color classes.
+
 ## 2.3.0
 
 - Changed how media query should be written. [Read more here](https://hrsetyono.github.io/edje/#/helper/media-query)

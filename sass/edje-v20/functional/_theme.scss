@@ -11,6 +11,8 @@ $h-background-color: (
     main-light: $main-light,
     
     sub: $sub,
+    sub-dark: $sub-dark,
+    sub-light: $sub-light,
     
     gray: $gray,
     gray-dark: $gray-dark,
@@ -82,6 +84,7 @@ $h-shadow: (
     1: $shadow-z1,
     2: $shadow-z2,
     3: $shadow-z3,
+    '-none': none,
   )
 ) !default;
 

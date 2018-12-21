@@ -17,16 +17,19 @@ $h-color: (
   names: ( c-: color ),
   values: (
     body: $font-color,
-    gray: $font-gray,
     inherit: inherit,
 
     main: $main,
     main75: rgba($main, .75),
     main50: rgba($main, .5),
-
     main-dark: $main-dark,
     main-light: $main-light,
+
     sub: $sub,
+    sub-dark: $sub-dark,
+    sub-light: $sub-light,
+
+    gray: $font-gray,
 
     red: $red,
     green: $green,

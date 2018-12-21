@@ -25,39 +25,8 @@
   @return "max-width: #{$_size}";
 }
 
-@mixin below( $size ) {
-  @if $responsive {
-    @media only screen and (#{ below($size) }) { @content; }
-  }
-}
-
 // Media query for above the size
 @function above( $size ) {
   $size: _getSize($size) + 1px;
   @return "min-width: #{$size}";
-}
-
-@mixin above( $size ) {
-  @media (#{ above($size) }) { @content; }
-}
-
-
-// Media query for between two sizes
-@function between( $smaller-size, $larger-size ) {
-  @return "(#{ above($smaller-size) }) and (#{ below($larger-size) })";
-}
-
-@mixin between( $smaller-size, $larger-size ) {
-  @if $responsive {
-    @media only screen and (#{ between($smaller-size, $larger-size) }) {
-      @content;
-    }
-  }
-}
-
-// Media query when printing the website
-@mixin print {
-  @media only print {
-    @content;
-  }
 }
