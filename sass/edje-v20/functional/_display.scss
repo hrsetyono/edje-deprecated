@@ -8,7 +8,7 @@ $_h-display: (
 
 // Flexbox
 $_h-flex: (
-  d-flex: ( display: flex ),
+  d-flex: ( '_display': '-webkit-flex', display: flex ),
   f: ( display: flex ),
   fd-row: ( flex-direction: row ),
   fd-column: ( flex-direction: column ),
@@ -138,7 +138,15 @@ $_h-display-misc: (
     '-moz-user-select': none,
     'user-select': none
   ),
-  appearance-none: (
+  no-events: (
+    pointer-events: none,
+  ),
+  no-appearance: (
+    '-moz-appearance': none,
+    '-webkit-appearance': none,
+    'appearance': none
+  ),
+  appearance-none: ( // deprecated
     '-moz-appearance': none,
     '-webkit-appearance': none,
     'appearance': none

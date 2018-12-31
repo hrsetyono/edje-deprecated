@@ -17,6 +17,7 @@ $h-color: (
   names: ( c-: color ),
   values: (
     body: $font-color,
+    passive: $font-passive,
     inherit: inherit,
 
     main: $main,
@@ -29,18 +30,16 @@ $h-color: (
     sub-dark: $sub-dark,
     sub-light: $sub-light,
 
-    gray: $font-gray,
-
     red: $red,
     green: $green,
     blue: $blue,
     yellow: $yellow,
 
-    'black': black,
+    black: black,
     black75: rgba(black, .75),
     black50: rgba(black, .5),
 
-    'white': white,
+    white: white,
     white75: rgba(white, .75),
     white50: rgba(white, .5),
   ),

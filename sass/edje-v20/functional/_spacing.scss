@@ -62,7 +62,8 @@ $h-border: (
     bb: border-bottom,
   ),
   values: (
-    '-none': none,
+    '-none': none, // deprecated
+    '0': 0,
     '1-solid': 1px solid,
     '1-dashed': 1px dashed,
     '2-solid': 2px solid,
@@ -88,6 +89,11 @@ $h-border-color: (
     gray-dark: $gray-dark,
     gray-light: $gray-light,
 
+    red: $red,
+    green: $green,
+    blue: $blue,
+    yellow: $yellow,
+
     black: black,
     black75: rgba(black, .75),
     black50: rgba(black, .50),
@@ -106,9 +112,14 @@ $h-border-color: (
 
 
 $h-border-radius: (
-  br: ( border-radius: $g-radius ),
-  br-circle: ( border-radius: 50% ),
-  br-pill: ( border-radius: 999px ),
+  br: ( border-radius: $g-radius ), // deprecated
+  br-circle: ( border-radius: 50% ), // deprecated
+  br-pill: ( border-radius: 999px ), // deprecated
+  
+  brad0: ( border-radius: 0 ),
+  brad: ( border-radius: $g-radius ),
+  brad-circle: ( border-radius: 50% ),
+  brad-pill: ( border-radius: 999px ),
 ) !default;
 
 

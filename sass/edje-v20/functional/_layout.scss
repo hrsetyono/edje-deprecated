@@ -3,6 +3,7 @@ $h-height: (
   names: ( h: height ),
   values: (
     '-auto': auto,
+    0: 0,
     25: 25%,
     33: calc(100% / 3),
     50: 50%,
@@ -19,6 +20,7 @@ $h-width: (
   names: ( w: width ),
   values: (
     '-auto': auto,
+    0: 0,
     10: 10%,
     20: 20%,
     25: 25%,
@@ -45,6 +47,7 @@ $_h-position: (
   relative: ( position: relative ),
   absolute: ( position: absolute ),
   fixed: ( position: fixed ),
+  sticky: ( '_position': '-webkit-sticky', position: sticky ),
 
   absolute-fill: ( position: absolute, top: 0, right: 0, left: 0, bottom: 0 ),
 ) !default;
@@ -75,6 +78,7 @@ $h-z-index: (
     2: 2,
     5: 5,
     10: 10,
+    50: 50,
     100: 100,
   )
 ) !default;

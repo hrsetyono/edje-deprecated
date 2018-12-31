@@ -1,6 +1,9 @@
 $h-background-color: (
   names: ( bg-: background-color ),
   values: (
+    body: $body-background,
+    transparent: transparent,
+    
     main: $main,
     main75: rgba($main, .75),
     main50: rgba($main, .50),
@@ -17,9 +20,6 @@ $h-background-color: (
     gray: $gray,
     gray-dark: $gray-dark,
     gray-light: $gray-light,
-
-    body: $body-background,
-    transparent: transparent,
 
     red: $red,
     blue: $blue,
@@ -49,17 +49,37 @@ $h-background-image: (
   values: ()
 ) !default;
 
+$_h-background-position: (
+  names: ( bgp-: background-position ),
+  values: (
+    cc: center center,
+    cr: center right,
+    cl: center left,
+    tc: top center,
+    tr: top right,
+    tl: top left,
+    bc: bottom center,
+    br: bottom right,
+    bl: bottom left,
+  )
+) !default;
+
 
 // Background Misc
 $_h-background-misc: (
-  bg-cover: ( background-size: cover ),
-  bg-contain: ( background-size: contain ),
-  bg-center: ( background-position: center center ),
+  bgs-cover: ( background-size: cover ),
+  bgs-contain: ( background-size: contain ),
+  
+  bgr: ( background-repeat: repeat ),
+  bgr-no: ( background-repeat: no-repeat ),
+  bgr-x: ( background-repeat: repeat-x ),
+  bgr-y: ( background-repeat: repeat-y ),
 
-  bg-repeat: ( background-repeat: repeat ),
-  bg-no-repeat: ( background-repeat: no-repeat ),
-  bg-repeat-x: ( background-repeat: repeat-x ),
-  bg-repeat-y: ( background-repeat: repeat-y ),
+  // alias
+  bgr-repeat: ( background-repeat: repeat ),
+  bgr-no-repeat: ( background-repeat: no-repeat ),
+  bgr-repeat-x: ( background-repeat: repeat-x ),
+  bgr-repeat-y: ( background-repeat: repeat-y ),
 ) !default;
 
 
@@ -72,6 +92,10 @@ $h-opacity: (
     70: .7,
     60: .6,
     50: .5,
+    40: .4,
+    30: .3,
+    20: .2,
+    10: .1,
     0: 0,
   )
 ) !default;
@@ -119,6 +143,7 @@ $h-transition: (
 $_h-all: map-merge( $_h-all, h-merge(
   $h-background-color,
   $h-background-image,
+  $_h-background-position,
   $_h-background-misc,
 
   $h-shadow,

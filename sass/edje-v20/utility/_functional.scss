@@ -11,21 +11,24 @@
       @if $prop == null {
         @warn "The class '#{ $c }' doesn't exist";
       }
-      // if extend
+      // if extend (start with percent)
       @else if type-of( $value ) == string and str-index( $value, '%') == 1 {
         @extend #{ $value };
       }
-      // if pseudoselector
+      // if pseudoselector (start with colon)
       @else if type-of( $prop ) == string and str-index( $prop, ':' ) == 1 {
-        &#{ $prop} {
+        &#{ $prop } {
           @each $p, $v in $value {
             #{ $p } : $v;
           }
         }
       }
+      // if duplicate key (start with underscore)
+      @else if type-of( $prop ) == string and str-index( $prop, '_' ) == 1 {
+        #{ str-slice($prop, 2) } : $value;
+      }
       // if normal
       @else {
-        
         #{ $prop } : $value;
       }
     }
