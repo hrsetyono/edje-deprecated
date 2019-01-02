@@ -82,7 +82,8 @@ $font-weight : 400 !default;
 $font-line   : 1.65 !default;
 
 $font-size : 16px !default;
-$font-size-s : 14px !default;
+$font-size-s : 14px !default; // deprecated
+$font-size-m : 18px !default; // deprecated
 
 // HEADER
 $header-color   : $font-color !default;

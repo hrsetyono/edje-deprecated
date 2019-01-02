@@ -1,3 +1,18 @@
+## 2.4.0
+
+- Added `float-none`.
+- Added Max/Min Width and Max/Min Height.
+- Added new value to Height: `h0`.
+- Added new value to Width: `w0`.
+- Added new value to Position: `sticky`.
+- Added new variable `$font-faces` that contain mapping of font faces.
+- Changed `fs-s` and `fs-m` to always be 0.875em and 1.125em respectively. (Previously based on body font size).
+- Changed `fs-body` to be 16px instead of 1em. Because this will be used to reset font size.
+- Changed border radius shorthand from `br` to `brad` because it clashes with border-right.
+- Deprecated: The variable `$font-size-s` and `$font-size-m`.
+- Deprecated: The value of border `b-none`, now replaced with `b0`.
+- Deprecated: The function `font-faces()`, now uses the variable `$font-faces` instead.
+
 ## 2.3.1
 
 - Removed the old media query mixin.

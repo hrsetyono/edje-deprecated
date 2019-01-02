@@ -7,8 +7,9 @@ $h-font-size: (
     h4: '%h4',
     h5: '%h5',
     h6: '%h6',
-    body: em( $font-size ),
-    s: em( $font-size-s ),
+    body: $font-size,
+    s: 0.875em,
+    m: 1.125em,
   ),
 ) !default;
 
