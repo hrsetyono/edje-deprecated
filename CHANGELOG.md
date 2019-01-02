@@ -1,3 +1,33 @@
+## 2.4.0
+
+- Added `float-none`.
+- Added Max/Min Width and Max/Min Height.
+- Added new value to Height: `h0`.
+- Added new value to Width: `w0`.
+- Added new value to Position: `sticky`.
+- Added new variable `$font-faces` that contain mapping of font faces.
+- Changed `fs-s` and `fs-m` to always be 0.875em and 1.125em respectively. (Previously based on body font size).
+- Changed `fs-body` to be 16px instead of 1em. Because this will be used to reset font size.
+- Changed border radius shorthand from `br` to `brad` because it clashes with border-right.
+- Deprecated: The variable `$font-size-s` and `$font-size-m`.
+- Deprecated: The value of border `b-none`, now replaced with `b0`.
+- Deprecated: The function `font-faces()`, now uses the variable `$font-faces` instead.
+
+## 2.3.1
+
+- Removed the old media query mixin.
+- Added `50%` option to Position-move. New classes: top50, right50, bottom50, left50.
+- Merged Border-width and Border-style classes. Before: `b1` and `b-solid`. Now: `b1-solid`.
+- Removed `dotted` Border-style option.
+- Added new variable: `$sub-dark` and `$sub-light`. This is also added to Background, Color, and Border-color classes.
+
+## 2.3.0
+
+- Changed how media query should be written. [Read more here](https://hrsetyono.github.io/edje/#/helper/media-query)
+- Added Visibility to functional Sass.
+- Removed the prefix `color-` in some variables. For example `$color-main` is now shortened to `$main`.
+- Changed the variable containing the word `passive` to `gray`. For example `$color-passive` is now just `$gray`.
+
 ## 2.2.0
 
 - Removed Functional CSS feature, replacing it with Functional Sass. [Read full doc here](https://hrsetyono.github.io/edje/)

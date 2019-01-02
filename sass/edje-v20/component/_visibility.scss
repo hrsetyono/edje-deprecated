@@ -1,26 +1,30 @@
+@if $output-framework {
+
 // Visibility
-@include above(s) {
+@media ($above-s) {
   .hide-for-l,
   .show-for-s {
     display: none !important;
   }
 }
 
-@include below(s) {
+@media ($below-s) {
   .hide-for-s,
   .show-for-l {
     display: none !important;
   }
 }
 
-@include above(xs) {
+@media ($above-xs) {
   .show-for-xs {
     display: none !important;
   }
 }
 
-@include below(xs) {
+@media ($below-xs) {
   .hide-for-xs {
     display: none !important;
   }
 }
+
+} // @if

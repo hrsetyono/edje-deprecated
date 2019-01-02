@@ -8,7 +8,8 @@ $h-font-size: (
     h5: '%h5',
     h6: '%h6',
     body: $font-size,
-    small: $font-size-s,
+    s: 0.875em,
+    m: 1.125em,
   ),
 ) !default;
 
@@ -17,21 +18,23 @@ $h-color: (
   names: ( c-: color ),
   values: (
     body: $font-color,
-    passive: $font-color-passive,
+    passive: $font-passive,
     inherit: inherit,
 
-    main: $color-main,
-    main75: rgba($color-main, .75),
-    main50: rgba($color-main, .5),
+    main: $main,
+    main75: rgba($main, .75),
+    main50: rgba($main, .5),
+    main-dark: $main-dark,
+    main-light: $main-light,
 
-    main-dark: $color-main-dark,
-    main-light: $color-main-light,
-    sub: $color-sub,
+    sub: $sub,
+    sub-dark: $sub-dark,
+    sub-light: $sub-light,
 
-    red: $color-red,
-    green: $color-green,
-    blue: $color-blue,
-    yellow: $color-yellow,
+    red: $red,
+    green: $green,
+    blue: $blue,
+    yellow: $yellow,
 
     black: black,
     black75: rgba(black, .75),
@@ -44,7 +47,6 @@ $h-color: (
 ) !default;
 
 
-// Letter Spacing
 $h-letter-spacing: (
   names: ( ls: letter-spacing ),
   values: (
@@ -54,13 +56,13 @@ $h-letter-spacing: (
     0: 0,
     25: 0.025em,
     50: 0.05em,
+    75: 0.075em,
     100: 0.1em,
     150: 0.15em
   )
 ) !default;
 
 
-// Font Family
 $h-font-family: (
   names: ( ff-: font-family ),
   values: (
@@ -70,11 +72,11 @@ $h-font-family: (
 ) !default;
 
 
-// Line Height
 $h-line-height: (
   names: ( lh-: line-height ),
   values: (
     base: 1,
+    normal: normal,
     body: $font-line,
     header: $header-line,
   )
@@ -156,8 +158,8 @@ $_h-vertical-align: (
 
 $_h-all: map-merge( $_h-all, h-merge(
   $h-font-size,
-  $h-color,
   $h-letter-spacing,
+  $h-color,
 
   $h-font-family,
   $h-line-height,

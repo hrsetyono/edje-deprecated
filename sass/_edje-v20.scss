@@ -6,9 +6,11 @@ $output-framework: false !default;
 /* --------------------
   EDJE Framework
   http://github.com/hrsetyono/edje
-  v2.0.0 (Morphling)
+  v2.3.0 (Morphling)
 --------------------- */
 }
+
+@import "edje-v20/media-query"; // put on top so setting can use the function
 
 @import "edje-v20/setting";
 @import "edje-v20/utility";

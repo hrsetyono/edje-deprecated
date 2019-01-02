@@ -25,7 +25,8 @@
     max-width: $width + ($grid-rim * 2);
   }
   @else if $rim {
-    padding: 0 $rim;
+    padding-right: $rim;
+    padding-left: $rim;
   }
 
   @if $collapse {
@@ -34,23 +35,23 @@
 }
 
 @mixin column(
-  $size: false,
-  $size_s: false,
-  $size_m: false,
+  $span: false,
+  $span-s: false,
+  $span-xs: false,
 ) {
-  @if $size {
-    grid-column: span #{ $size };
+  @if $span {
+    grid-column: span #{ $span }; 
+  }
 
-    @if $size_s {
-      @include below(s) {
-        grid-column: span #{ $size_s };
-      }
+  @if $span-s {
+    @media ($below-s) {
+      grid-column: span #{ $span_s };
     }
+  }
 
-    @if $size_xs {
-      @include below(xs) {
-        grid-column: span #{ $size_xs };
-      }
+  @if $span-xs {
+    @media ($below-xs) {
+      grid-column: span #{ $span_xs };
     }
   }
 }
@@ -87,7 +88,7 @@ h-grid {
 }
 
 // Small column
-@include below(s) {
+@media ($below-s) {
   // reset
   [class*="large-"] {
     @include column( $grid-columns );

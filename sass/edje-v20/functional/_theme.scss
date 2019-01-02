@@ -1,27 +1,30 @@
-
-// Background Color
 $h-background-color: (
   names: ( bg-: background-color ),
   values: (
-    main: $color-main,
-    main75: rgba($color-main, .75),
-    main50: rgba($color-main, .50),
-    main25: rgba($color-main, .25),
-    main10: rgba($color-main, .10),
-    main05: rgba($color-main, .05),
-
-    main-dark: $color-main-dark,
-    main-light: $color-main-light,
-    sub: $color-sub,
-
     body: $body-background,
-    passive: $color-passive,
     transparent: transparent,
+    
+    main: $main,
+    main75: rgba($main, .75),
+    main50: rgba($main, .50),
+    main25: rgba($main, .25),
+    main10: rgba($main, .10),
+    main05: rgba($main, .05),
+    main-dark: $main-dark,
+    main-light: $main-light,
+    
+    sub: $sub,
+    sub-dark: $sub-dark,
+    sub-light: $sub-light,
+    
+    gray: $gray,
+    gray-dark: $gray-dark,
+    gray-light: $gray-light,
 
-    red: $color-red,
-    blue: $color-blue,
-    yellow: $color-yellow,
-    green: $color-green,
+    red: $red,
+    blue: $blue,
+    yellow: $yellow,
+    green: $green,
 
     black: black,
     black75: rgba(black, .75),
@@ -46,16 +49,40 @@ $h-background-image: (
   values: ()
 ) !default;
 
-
-// Background Misc
-$_h-background-misc: (
-  bg-cover: ( background-size: cover ),
-  bg-contain: ( background-size: contain ),
-  bg-center: ( background-position: center center )
+$_h-background-position: (
+  names: ( bgp-: background-position ),
+  values: (
+    cc: center center,
+    cr: center right,
+    cl: center left,
+    tc: top center,
+    tr: top right,
+    tl: top left,
+    bc: bottom center,
+    br: bottom right,
+    bl: bottom left,
+  )
 ) !default;
 
 
-// Opacity
+// Background Misc
+$_h-background-misc: (
+  bgs-cover: ( background-size: cover ),
+  bgs-contain: ( background-size: contain ),
+  
+  bgr: ( background-repeat: repeat ),
+  bgr-no: ( background-repeat: no-repeat ),
+  bgr-x: ( background-repeat: repeat-x ),
+  bgr-y: ( background-repeat: repeat-y ),
+
+  // alias
+  bgr-repeat: ( background-repeat: repeat ),
+  bgr-no-repeat: ( background-repeat: no-repeat ),
+  bgr-repeat-x: ( background-repeat: repeat-x ),
+  bgr-repeat-y: ( background-repeat: repeat-y ),
+) !default;
+
+
 $h-opacity: (
   names: ( o: opacity ),
   values: (
@@ -65,24 +92,27 @@ $h-opacity: (
     70: .7,
     60: .6,
     50: .5,
+    40: .4,
+    30: .3,
+    20: .2,
+    10: .1,
     0: 0,
   )
 ) !default;
 
 
-// Shadow
 $h-shadow: (
   names: ( shadow: box-shadow ),
   values: (
-    0: ( 0 0.5px 2px rgba(black, .18), 0 1.5px 6px rgba(black, .08) ),
-    1: ( 0 1.5px 4px rgba(black, .24), 0 1.5px 6px rgba(black, .12) ),
-    2: ( 0 3px 12px rgba(black, .23), 0 3px 12px rgba(black, .16) ),
-    3: ( 0 6px 12px rgba(black, .23), 0 10px 40px rgba(black, .19) ),
+    0: $shadow-z0,
+    1: $shadow-z1,
+    2: $shadow-z2,
+    3: $shadow-z3,
+    '-none': none,
   )
 ) !default;
 
 
-// Common Hover effect
 $h-hover: (
   hover-dim: (
     ':hover': ( opacity: .6 ),
@@ -98,14 +128,13 @@ $h-hover: (
 
 // Theme Misc
 $_h-theme-misc: (
-  backface: ( '-webkit-backface-visibility': hidden, backface-visibility: hidden ),
-  transition: $g-transition,
 ) !default;
 
 
 // Transition
 $h-transition: (
   transition: ( transition: $g-transition ),
+  transition-none: ( transition: none ),
 ) !default;
 
 /////
@@ -114,6 +143,7 @@ $h-transition: (
 $_h-all: map-merge( $_h-all, h-merge(
   $h-background-color,
   $h-background-image,
+  $_h-background-position,
   $_h-background-misc,
 
   $h-shadow,

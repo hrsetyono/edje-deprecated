@@ -15,8 +15,10 @@ $h-padding: (
     '05': 0.5rem,
     '075': 0.75rem,
     1: 1rem,
+    125: 1.25rem,
     15: 1.5rem,
     2: 2rem,
+    25: 2.5rem,
     3: 3rem,
     4: 4rem,
   ),
@@ -40,8 +42,10 @@ $h-margin: (
     '05': 0.5rem,
     '075': 0.75rem,
     1: 1rem,
+    125: 1.25rem,
     15: 1.5rem,
     2: 2rem,
+    25: 2.5rem,
     3: 3rem,
     4: 4rem,
   )
@@ -49,7 +53,7 @@ $h-margin: (
 
 
 // Border width  (bx, btx, blx, brx, bbx)
-$h-border-width: (
+$h-border: (
   names: (
     b: border,
     bt: border-top,
@@ -58,19 +62,37 @@ $h-border-width: (
     bb: border-bottom,
   ),
   values: (
-    1: 1px solid,
-    2: 2px solid,
+    '-none': none, // deprecated
+    '0': 0,
+    '1-solid': 1px solid,
+    '1-dashed': 1px dashed,
+    '2-solid': 2px solid,
+    '2-dashed': 2px dashed,
   )
 ) !default;
 
 
 // Border color
 $h-border-color: (
-  names: ( b-: border-color ),
+  names: ( bc-: border-color ),
   values: (
-    main: $color-main,
-    sub: $color-sub,
+    main: $main,
+    main-dark: $main-dark,
+    main-light: $main-light,
+    
+    sub: $sub,
+    sub-dark: $sub-dark,
+    sub-light: $sub-light,
     transparent: transparent,
+
+    gray: $gray,
+    gray-dark: $gray-dark,
+    gray-light: $gray-light,
+
+    red: $red,
+    green: $green,
+    blue: $blue,
+    yellow: $yellow,
 
     black: black,
     black75: rgba(black, .75),
@@ -89,16 +111,15 @@ $h-border-color: (
 ) !default;
 
 
-$_h-border-misc: (
-  b-dashed: ( border-style: dashed ),
-  b-dotted: ( border-style: dotted ),
-) !default;
-
-
 $h-border-radius: (
-  br: ( border-radius: $g-radius ),
-  br-circle: ( border-radius: 50% ),
-  br-pill: ( border-radius: 999px ),
+  br: ( border-radius: $g-radius ), // deprecated
+  br-circle: ( border-radius: 50% ), // deprecated
+  br-pill: ( border-radius: 999px ), // deprecated
+  
+  brad0: ( border-radius: 0 ),
+  brad: ( border-radius: $g-radius ),
+  brad-circle: ( border-radius: 50% ),
+  brad-pill: ( border-radius: 999px ),
 ) !default;
 
 
@@ -108,8 +129,7 @@ $_h-all: map-merge( $_h-all, h-merge(
   $h-padding,
   $h-margin,
 
-  $h-border-width,
+  $h-border,
   $h-border-color,
-  $_h-border-misc,
   $h-border-radius,
 ) );
