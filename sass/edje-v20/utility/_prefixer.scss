@@ -43,6 +43,36 @@
   @include _prefixer("perspective-origin", $value...);
 }
 
+// ANIMATION
+
+@mixin animation($value...) {
+  @include _prefixer("animation", $value...);
+}
+@mixin animation-name($value...) {
+  @include _prefixer("animation-name", $value...);
+}
+@mixin animation-duration($value...) {
+  @include _prefixer("animation-duration", $value...);
+}
+@mixin animation-timing-function($value...) {
+  @include _prefixer("animation-timing-function", $value...);
+}
+@mixin animation-delay($value...) {
+  @include _prefixer("animation-delay", $value...);
+}
+@mixin animation-direction($value...) {
+  @include _prefixer("animation-direction", $value...);
+}
+@mixin animation-iteration-count($value...) {
+  @include _prefixer("animation-iteration-count", $value...);
+}
+@mixin animation-fill-mode($value...) {
+  @include _prefixer("animation-fill-mode", $value...);
+}
+@mixin animation-play-state($value...) {
+  @include _prefixer("animation-play-state", $value...);
+}
+
 // APPEARANCE
 @mixin appearance( $value: none ) {
   -webkit-appearance: $value;

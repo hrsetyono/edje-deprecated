@@ -1,5 +1,6 @@
 // Display Type
 $_h-display: (
+  d-inline-block: ( display: inline-block ),
   d-iblock: ( display: inline-block ),
   d-block: ( display: block ),
   d-none: ( display: none ),
@@ -132,21 +133,22 @@ $_h-cursor: (
 $_h-display-misc: (
   v-visible: ( visibility: visible ),
   v-hidden: ( visibility: hidden ),
-  no-select: (
+
+  select-none: (
     '-webkit-touch-callout': none,
     '-webkit-user-select': none,
     '-moz-user-select': none,
     'user-select': none
   ),
-  no-events: (
+  
+  events-none: (
     pointer-events: none,
   ),
-  no-appearance: (
-    '-moz-appearance': none,
-    '-webkit-appearance': none,
-    'appearance': none
+  events-all: (
+    pointer-events: all,
   ),
-  appearance-none: ( // deprecated
+
+  appearance-none: (
     '-moz-appearance': none,
     '-webkit-appearance': none,
     'appearance': none
@@ -154,6 +156,21 @@ $_h-display-misc: (
   backface-hidden: (
     '-webkit-backface-visibility': hidden,
     'backface-visibility': hidden
+  ),
+
+  no-select: ( // deprecated
+    '-webkit-touch-callout': none,
+    '-webkit-user-select': none,
+    '-moz-user-select': none,
+    'user-select': none
+  ),
+  no-appearance: ( // deprecated
+    '-moz-appearance': none,
+    '-webkit-appearance': none,
+    'appearance': none
+  ),
+  no-events: ( // deprecated
+    pointer-events: none,
   ),
 ) !default;
 

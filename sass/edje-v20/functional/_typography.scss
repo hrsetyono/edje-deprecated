@@ -7,7 +7,7 @@ $h-font-size: (
     h4: '%h4',
     h5: '%h5',
     h6: '%h6',
-    body: $font-size,
+    body: 1rem,
     s: 0.875em,
     m: 1.125em,
   ),
@@ -19,7 +19,9 @@ $h-color: (
   values: (
     body: $font-color,
     passive: $font-passive,
+    link: $color-link,
     inherit: inherit,
+    'transparent': transparent,
 
     main: $main,
     main75: rgba($main, .75),
@@ -31,16 +33,16 @@ $h-color: (
     sub-dark: $sub-dark,
     sub-light: $sub-light,
 
-    red: $red,
-    green: $green,
-    blue: $blue,
-    yellow: $yellow,
+    'red': $red,
+    'green': $green,
+    'blue': $blue,
+    'yellow': $yellow,
 
-    black: black,
+    'black': black,
     black75: rgba(black, .75),
     black50: rgba(black, .5),
 
-    white: white,
+    'white': white,
     white75: rgba(white, .75),
     white50: rgba(white, .5),
   ),
@@ -126,16 +128,22 @@ $_h-font-weight: (
     400: 400,
     600: 600,
     700: 700,
-    900: 900
+    900: 900,
+    '-body': $font-weight,
+    '-header': $header-weight,
   )
 ) !default;
+
 
 // Font Styles
 $_h-font-style: (
   b: ( font-weight: 700 ),
   i: ( font-style: italic ),
   u: ( text-decoration: underline ),
+  td-underline: ( text-decoration: underline ),
   strike: ( text-decoration: line-through ),
+  td-strike: ( text-decoration: line-through ),
+  td-none: ( text-decoration: none ),
 ) !default;
 
 

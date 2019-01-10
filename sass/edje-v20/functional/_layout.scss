@@ -110,6 +110,7 @@ $h-z-index: (
   names: ( z: z-index ),
   values: (
     '-1': -1,
+    0: 0,
     2: 2,
     5: 5,
     10: 10,
@@ -123,6 +124,8 @@ $_h-float: (
   float-left: ( float: left ),
   float-right: ( float: right ),
   float-none: ( float: none ),
+  clear-both: ( clear: both ),
+  clear-none: ( clear: none ),
   clearfix: (
     '::before': ( content: " ", display: table ),
     '::after': ( content: " ", display: table, clear: both )
