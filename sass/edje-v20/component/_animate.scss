@@ -2,16 +2,21 @@
 // EDJE ANIMATE
 // ===============
 
-// Pair animate class with keyframes
+@mixin keyframes( $name ) {
+  @-webkit-keyframes #{ $name } { @content; }
+  @keyframes #{ $name } { @content; }
+}
+
 @mixin animate( $name ) {
   .animate.#{$name} {
     animation-name: $name;
   }
 
-  @keyframes( #{$name} ) {
+  @include keyframes( #{$name} ) {
     @content;
   }
 }
+
 
 @if $output-framework {
 

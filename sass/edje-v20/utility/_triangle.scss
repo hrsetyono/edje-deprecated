@@ -1,77 +1,62 @@
-
 // -------------
 // TRIANGLE
 // -------------
+
 @mixin triangle(
+  $direction,
+  $color,
   $width,
-  $direction : top,
-  $color     : $main,
-  $height    : false) {
+  $height: false) {
+
   // If height is not specified, make the triangle equalateral
   @if not $height {
-    // If normal triangle, `height` must follow the formula
-    @if $direction == top or
-      $direction == up or
-      $direction == right or
-      $direction == left or
-      $direction == bottom or 
-      $direction == down {
+    @if $direction in (n, e, s, w) {
       $height : ($width / 2) * 1.732;
     }
-    // Else if cornered triangle, `heigth` is the same as `width`
-    @else if $direction == top-right or
-         $direction == top-left or
-         $direction == bottom-right or
-         $direction == bottom-left {
+    @else if $direction in (ne, se, sw, nw) {
       $height : $width;
     }
   }
+
   width: 0;
   height: 0;
   font-size: 0;
   line-height: 0%;
   border-style: solid;
   border-color: transparent;
-  // Top /\
-  @if $direction == top or $direction == up {
-    border-width        : 0 $width/2 $height $width/2;
-    border-bottom-color : $color;
+
+
+  @if $direction == n {
+    border-width: 0 $width/2 $height $width/2;
+    border-bottom-color: $color;
   }
-  // Right |>
-  @else if $direction == right {
-    border-width      : $width/2 0 $width/2 $height;
+  @else if $direction == e {
+    border-width: $width/2 0 $width/2 $height;
     border-left-color : $color;
   }
-  // Bottom \/
-  @else if $direction == bottom or $direction == down {
-    border-width     : $height $width/2 0 $width/2;
-    border-top-color : $color;
+  @else if $direction == s {
+    border-width: $height $width/2 0 $width/2;
+    border-top-color: $color;
   }
-  // Left <|
-  @else if $direction == left {
-    border-width       : $width/2 $height $width/2 0;
-    border-right-color : $color;
+  @else if $direction == w {
+    border-width: $width/2 $height $width/2 0;
+    border-right-color: $color;
   }
 
-  // Top-right  \|              
-  @else if $direction == top-right {
-    border-width       : 0 $width $height 0;
-    border-right-color : $color;
+  @else if $direction == ne {
+    border-width: 0 $width $height 0;
+    border-right-color: $color;
   }
-  
-  // Bottom-right /| 
-  @else if $direction == bottom-right {
-    border-width        : 0 0 $height $width;
-    border-bottom-color : $color;
+  @else if $direction == se {
+    border-width: 0 0 $height $width;
+    border-bottom-color: $color;
   }
-  // Bottom-left |\
-  @else if $direction == bottom-left {
-    border-width      : $height 0 0 $width;
-    border-left-color : $color;
+  @else if $direction == sw {
+    border-width: $height 0 0 $width;
+    border-left-color: $color;
   }
-  // Top-left |/
-  @else if $direction == top-left {
-    border-width     : $height $width 0 0;
-    border-top-color : $color;
+  @else if $direction == nw {
+    border-width: $height $width 0 0;
+    border-top-color: $color;
   }
 }

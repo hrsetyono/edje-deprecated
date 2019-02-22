@@ -89,7 +89,7 @@ $_h-position: (
 
 
 // Position Move
-$h-position-move: (
+$h-position: (
   names: (
     top: top,
     right: right,
@@ -146,7 +146,7 @@ $_h-all: map-merge( $_h-all, h-merge(
   $_h-max-height,
 
   $_h-position,
-  $h-position-move,
+  $h-position,
   $h-z-index,
   $_h-float,
 
