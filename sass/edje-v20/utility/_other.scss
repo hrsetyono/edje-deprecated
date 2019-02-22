@@ -95,9 +95,8 @@
   }
 }
 
-///// DEPRECATED
-
 // Clearfix
+// Deprecated: Use h( clearfix ) instead
 @mixin clearfix {
   &::before,
   &::after {

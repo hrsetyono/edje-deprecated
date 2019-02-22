@@ -4,13 +4,13 @@ $_h-display: (
   d-iblock: ( display: inline-block ),
   d-block: ( display: block ),
   d-none: ( display: none ),
+  d-flex: ( '_display': '-webkit-flex', display: flex ),
+  d-grid: ( '_display': '-ms-grid', display: grid ),
 ) !default;
 
 
 // Flexbox
 $_h-flex: (
-  d-flex: ( '_display': '-webkit-flex', display: flex ),
-  f: ( display: flex ),
   fd-row: ( flex-direction: row ),
   fd-column: ( flex-direction: column ),
   fd-column-reverse: ( flex-direction: column-reverse ),
