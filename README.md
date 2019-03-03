@@ -61,9 +61,19 @@ There are 4 default breakpoint: Extra Small (`xs`) is 480px, Small (`s`) is 767p
 
 1. Run the command `npm install -g node-sass` and `npm install -g edje`.
 
-1. If you are on Windows, add **NODE_PATH** to your System Variable and set it to **%AppData%/npm/node_modules**.
+1. For Windows user, open Command prompt and type these 4 commands one by one:
 
-1. Test whether it's successfully installed by running the command `npm`. If not found, try restarting your PC and double-check your `NODE_PATH`. If still doesn't work, run these [4 commands](http://stackoverflow.com/a/9588052/1318622) one by one.
+    ```
+    rem for future
+    
+    setx NODE_PATH %AppData%\npm\node_modules
+    
+    rem for current session
+    
+    set NODE_PATH=%AppData%\npm\node_modules
+    ```
+
+1. Test if Edje is successfully installed by running this command `node -p "require('edje')"`. If it doesn't give "Module not found: Edje" error, then everything is set!
 
 -----
 
